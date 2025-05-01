@@ -28,7 +28,13 @@ const Navbar = () => {
         {/* Top Navbar */}
         <nav className="h-[70px] flex justify-between py-1 px-4 items-center bg-[var(--primary)]">
           <div className="flex items-center gap-2">
-            <img src={Elena} className="h-[50px] bg-white p-1 rounded-md" />
+          <img 
+  src={Elena} 
+  className="h-[50px] bg-white p-1 rounded-md cursor-pointer" 
+  alt="Elena Logo" 
+  onClick={() => window.location.reload()} 
+/>
+
             <h5 className="text-white font-semibold text-xl ml-2">
                Grid Converter
             </h5>
@@ -68,7 +74,7 @@ const Navbar = () => {
                   className={`font-semibold p-2 px-3 cursor-pointer duration-300 text-center ${
                     Location.pathname === val.link
                       ? "text-white bg-[var(--primary)]"
-                      : "text-gray-500"
+                      : "text-gray-900"
                   } rounded-lg m-1`}
                 >
                   {val.display}

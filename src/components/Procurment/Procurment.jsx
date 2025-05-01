@@ -5,6 +5,7 @@ import { FaYoutube, FaExternalLinkAlt } from "react-icons/fa";
 import tech from '../../assets/Documents/GC_Tech_spe.pdf'
 import co from '../../assets/Documents/PAC_Cos.pdf'
 import oem from '../../assets/Documents/PAC_Grid_Converter.pdf'
+import coc from '../../assets/Documents/GC_COC_Certificate.pdf'
 
 
 
@@ -25,34 +26,51 @@ function Procurment() {
         advanced hardware, iterative software updates, and ruggedized design, is
         ₹75,999 (inclusive of all taxes). Discounted Rate is given below
       </p>
-      <div className="grid ">
-      <div className="flex justify-center items-center">
-  <img src={pricing} className="h-[300px] m-0 p-0" />
-</div>
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-  {/* YouTube Link */}
-  <a
-    href="https://www.youtube.com/watch?v=your_video_id"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center justify-center gap-3 text-red-600 font-semibold py-3 px-5 transition-all duration-300 hover:text-red-700"
-  >
-    <FaYoutube className="text-2xl" />
-    <span>Watch on YouTube</span>
-  </a>
+      <div className="grid grid-cols-12 gap-6 items-center">
+  {/* Image Column */}
+  <div className="flex justify-center col-span-12 sm:col-span-9">
+    <img src={pricing} alt="Pricing" className="w-auto object-contain max-h-[400px]" />
+  </div>
 
-  {/* GeM Link */}
-  <a
-    href="https://gem.gov.in/your_product_page"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center justify-center gap-3 text-blue-600 font-semibold py-3 px-5 transition-all duration-300 hover:text-blue-700"
-  >
-    <FaExternalLinkAlt className="text-2xl" />
-    <span>Visit on GeM</span>
-  </a>
+  {/* Links Column */}
+  <div className="flex flex-col gap-4 justify-center col-span-12 sm:col-span-3">
+    {/* YouTube Link */}
+    <a
+      href="https://www.youtube.com/watch?v=your_video_id"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 text-red-600 font-semibold py-3 px-5 transition-all duration-300 rounded-lg"
+    >
+      <FaYoutube className="text-2xl" />
+      <span>Watch on YouTube</span>
+    </a>
+
+    {/* GeM Link 1 */}
+    <a
+      href="https://mkp.gem.gov.in/hand-held-gps/elena-navic-grid-converter-limited-edition/p-5116877-24745995044-cat.html"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 text-blue-600 font-semibold py-3 px-5 transition-all duration-300 hover:text-blue-700 rounded-lg"
+    >
+      <FaExternalLinkAlt className="text-2xl" />
+      <span>Visit on GeM </span>
+    </a>
+
+    {/* GeM Link 2 */}
+    <a
+      href="https://mkp.gem.gov.in/hand-held-gps/elena-grid-converter/p-5116877-91668625108-cat.html"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 text-blue-600 font-semibold py-3 px-5 transition-all duration-300 hover:text-blue-700 rounded-lg"
+    >
+      <FaExternalLinkAlt className="text-2xl" />
+      <span>Visit on GeM </span>
+    </a>
+  </div>
 </div>
-      </div>
+
+
+
 
       <p>
         This is a dedicatedly developed equipment as per the instructions of
@@ -62,7 +80,7 @@ function Procurment() {
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
   <a
-    href=""
+    href={oem}
     download
     className="flex items-center gap-2 justify-center bg-[var(--secondary)] text-black font-semibold py-3 px-5 rounded-lg shadow hover:bg-[var(--primary)] hover:text-white transition-all duration-300"
   >
@@ -70,7 +88,7 @@ function Procurment() {
   </a>
 
   <a
-    href="/docs/document2.pdf"
+    href={co}
     download
     className="flex items-center gap-2 justify-center bg-[var(--secondary)] text-black font-semibold py-3 px-5 rounded-lg shadow hover:bg-[var(--primary)] hover:text-white transition-all duration-300"
   >
@@ -78,7 +96,7 @@ function Procurment() {
   </a>
 
   <a
-    href="/docs/document3.pdf"
+    href={coc}
     download
     className="flex items-center gap-2 justify-center bg-[var(--secondary)] text-black font-semibold py-3 px-5 rounded-lg shadow hover:bg-[var(--primary)] hover:text-white transition-all duration-300"
   >
@@ -86,7 +104,7 @@ function Procurment() {
   </a>
 
   <a
-    href="/docs/document4.pdf"
+    href={tech}
     download
     className="flex items-center gap-2 justify-center bg-[var(--secondary)] text-black font-semibold py-3 px-5 rounded-lg shadow hover:bg-[var(--primary)] hover:text-white transition-all duration-300"
   >
