@@ -8,13 +8,33 @@ import About from "./components/About/About";
 import Trials from "./components/Trials/Trials";
 import Feature from "./components/Feature/Feature";
 import NavIC from "./components/NaVIC/NaVIC";
+import BackGround from "./components/BackGround/BackGround";
+import Necessity from "./components/Necessity/Necessity";
+import Procurment from "./components/Procurment/Procurment";
+import Elena from "./components/Elena/Elena";
+import Contact from "./components/Contact/Contact";
+import Help from "./components/Help/Help";
+import Home from "./components/Home/Home";
+import Footer from "./components/Common/Footer";
 
 export default function AppRoutes() {
   const RouteElements = [
     {
+      path:"/",
+      component:<Home/>
+    },
+    {
+      path:"/background",
+      component:<BackGround/>
+    },
+    {
+      path:"/necessity",
+      component:<Necessity/>
+    },
+    {
       path: "/development",
       component: <Development />,
-    },
+    },  
     {
       path: "/trials",
       component: <Trials />,
@@ -24,9 +44,24 @@ export default function AppRoutes() {
       component: <Feature />,
     },
     {
+      path:"/procurment",
+      component:<Procurment/>
+    },
+    {
       path: "/NavIC",
       component: <NavIC />,
     },
+    {
+      path:"elena",
+      component:<Elena/>
+    },{
+      path:"/contact",
+      component:<Contact/>
+    },
+    {
+      path:"/help",
+      component:<Help/>
+    }
   ];
   const SuspenseFallback = (Component) => (
     <Suspense
@@ -59,7 +94,7 @@ export default function AppRoutes() {
                 element={
                   <Suspense
                     fallback={
-                      <div className=" tw-min-h-[100vh] d-flex justify-content-center align-items-center">
+                      <div className="  d-flex justify-content-center align-items-center">
                         {" "}
                         <SpinnerCircularFixed
                           speed={200}
@@ -80,8 +115,10 @@ export default function AppRoutes() {
                 <Route element={val.component} path={val.path} />
               ))}
             </Route>
+         
           </Route>
         </Routes>
+        <Footer/>
       </Router>
 
       {/* <CustomToast

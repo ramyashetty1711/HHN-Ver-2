@@ -1,84 +1,90 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Elena from "../../assets/Elena.png";
+import { FaBars } from "react-icons/fa"; // for hamburger icon
+
 const Navbar = () => {
   const Location = useLocation();
+  const Navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const MenuElements = [
-    { link: "/", display: "Background" },
-    {
-      link: "/development",
-      display: "Development",
-    },
-    {
-      link: "/trials",
-      display: "Trials",
-    },
-    {
-      link: "/features",
-      display: "Features",
-    },
-    {
-      link: "/NavIC",
-      display: "NavIC",
-    },
+    { link: "/", display: "Home" },
+    { link: "/necessity", display: "Necessity" },
+    { link: "/background", display: "Background" },
+    { link: "/development", display: "Development" },
+    { link: "/trials", display: "Trials" },
+    { link: "/features", display: "Features" },
+    { link: "/procurment", display: "Procurement" },
+    { link: "/NavIC", display: "NavIC" },
+    { link: "/elena", display: "Elena" },
+    { link: "/contact", display: "Contact" },
+    { link: "/help", display: "Help" },
   ];
+
   return (
-    <div className="min-h-[100vh] flex flex-row justify-center items-center w-[100vw] max-w-[100vw] ">
-      <div className="min-h-[100vh] bg-gradient-to-br from-sky-200 to-sky-600  w-full  rounded-xl ">
-        <nav className="bg-white h-[70px] flex flex-row justify-between py-2 px-4 items-center   ">
-          <div className="  px-2 py-1 rounded-md flex flex-row items-center">
-            <img src={Elena} className="h-[45px]" />
-            <h5 className="text-gray-700 font-semibold text-xl ml-4">
-              Elena Grid Converter
+    <div className=" flex flex-row justify-center items-center w-[100vw] max-w-[100vw]">
+      <div className=" w-full rounded-xl">
+        {/* Top Navbar */}
+        <nav className="h-[70px] flex justify-between py-1 px-4 items-center bg-[var(--primary)]">
+          <div className="flex items-center gap-2">
+            <img src={Elena} className="h-[50px] bg-white p-1 rounded-md" />
+            <h5 className="text-white font-semibold text-xl ml-2">
+               Grid Converter
             </h5>
           </div>
-          <ul className="p-0 mb-0 flex flex-row ">
-            {MenuElements.map((val, index) => (
-              <Link to={val.link}>
-                <li
-                  onClick={(e) => {}}
-                  className={`font-semibold h-full p-2 px-3  cursor-pointer duration-300 transition-all min-w-[5vw] text-center hover:bg-gray-100 ${
-                    Location.pathname === val.link
-                      ? " text-gray-800 "
-                      : " border-gray-400  text-gray-500"
-                  } rounded-lg mr-1.5`}
-                >
-                  {val.display}
-                </li>
-              </Link>
-            ))}
-          </ul>
-          <div
-            className="mr-1 font-semibold bg-blue-500 text-white p-2 rounded-lg px-4 py-3 cursor-pointer hover:bg-purple-900 transition-all duration-300 "
-            onClick={() => {
-              Navigate("/login");
-            }}
-          >
-            Login
+
+          <div className="flex items-center gap-3">
+            {/* Mobile Menu Button */}
+           
+            {/* Login Button */}
+            <div
+              className="font-semibold bg-white border  rounded-lg px-3 py-2 cursor-pointer hover:bg-[var(--primary)] hover:text-white hover:border-white transition-all duration-300"
+              onClick={() => Navigate("/login")}
+            >
+              Login
+            </div>
+            <button
+  className="md:hidden text-white text-2xl p-2 rounded hover:bg-white/10 transition duration-300"
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  <FaBars />
+</button>
+
+
           </div>
         </nav>
-        <div className=" pt-2    font-semibold text-lg text-gray-600 bg-gray-100/80  px-3 rounded-lg h-full min-h-[95vh] overflow-y-auto custom-scrollbar pr-2">
-          {/* <ul className="p-0 mb-0 flex flex-row ">
+
+        {/* Menu Items */}
+        <nav
+          className={`${
+            menuOpen ? "block" : "hidden"
+          } md:flex h-[70px] justify-center items-center bg-[var(--secondary)]`}
+        >
+          <ul className="flex flex-col md:flex-row p-0 m-0">
             {MenuElements.map((val, index) => (
-              <Link to={val.link}>
+              <Link to={val.link} key={index} onClick={() => setMenuOpen(false)}>
                 <li
-                  onClick={(e) => {}}
-                  className={`font-semibold h-full p-2 px-3 border-[2px]  cursor-pointer duration-300 transition-all min-w-[5vw] text-sm text-center ${
+                  className={`font-semibold p-2 px-3 cursor-pointer duration-300 text-center ${
                     Location.pathname === val.link
-                      ? "bg-gradient-to-t from-gray-500 to-gray-400 text-white border-gray-300"
-                      : " border-gray-400 hover:bg-gray-200 text-gray-500"
-                  } rounded-lg mr-1.5`}
+                      ? "text-white bg-[var(--primary)]"
+                      : "text-gray-500"
+                  } rounded-lg m-1`}
                 >
                   {val.display}
                 </li>
               </Link>
             ))}
           </ul>
-          <div className=" col-span-7"> */}
+        </nav>
+
+        {/* Main content */}
+        <div className="pt-2  text-lg text-gray-600 bg-gray-100/80 px-3 rounded-lg h-full  overflow-y-auto custom-scrollbar pr-2 min-h-[60vh]">
           <Outlet />
-          {/* </div> */}
         </div>
       </div>
     </div>
   );
 };
+
 export default Navbar;
