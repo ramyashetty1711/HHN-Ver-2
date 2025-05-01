@@ -18,7 +18,7 @@ const Navbar = () => {
     { link: "/procurment", display: "Procurement" },
     { link: "/NavIC", display: "NavIC" },
     { link: "/elena", display: "Elena" },
-    { link: "/contact", display: "Contact" },
+    { link: "/contact", display: "Contact Us" },
     { link: "/help", display: "Help" },
   ];
 
@@ -71,7 +71,7 @@ const Navbar = () => {
             {MenuElements.map((val, index) => (
               <Link to={val.link} key={index} onClick={() => setMenuOpen(false)}>
                 <li
-                  className={`font-semibold p-2 px-3 cursor-pointer duration-300 text-center ${
+                   className={`font-semibold p-2 px-3 cursor-pointer duration-300 text-center ${
                     Location.pathname === val.link
                       ? "text-white bg-[var(--primary)]"
                       : "text-gray-900"
