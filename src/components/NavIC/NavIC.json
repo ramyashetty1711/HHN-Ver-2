@@ -1,0 +1,140 @@
+[
+  {
+    "id": 0,
+    "title": "What is NavIC?",
+    "description": "NavIC is a navigation service developed in India, for India by the Indian Space Research Organization (ISRO). We are all aware of the Global Positioning System or GPS and have been using it for years now to help with geolocation services. While GPS was developed by the US Government. NavIC is India’s version of GPS."
+  },
+  {
+    "id": 1,
+    "title": "What is NavIC service area?",
+    "description": "The NavIC service area covers the Indian landmass and an area up to 1500 km beyond Indian landmass. In terms of latitude and longitude, the service area is bounded approximately by the rectangle of latitude 5°S to 50°N and longitude 55°E to 110°E."
+  },
+  {
+    "id": 2,
+    "title": "Will neighboring countries benefit from NavIC?",
+    "description": "Yes, the neighboring countries which fall within the NavIC service area can use NavIC services with an appropriate user receiver."
+  },
+  {
+    "id": 3,
+    "title": "Can NavIC be used outside India?",
+    "description": "NavIC can provide the position service within the coverage area. When a user crosses the coverage area, navigation service can be seamlessly provided by using other global navigation satellite system by having a multi-constellation user receiver."
+  },
+  {
+    "id": 4,
+    "title": "What are the services provided by NavIC?",
+    "description": "NavIC provides two types of services: Standard positioning services (SPS): Available for civilian use. Restricted services (RS): Available only for authorized use."
+  },
+  {
+    "id": 5,
+    "title": "Which are the frequencies bands being used by NavIC?",
+    "description": "NavIC provides navigation signals in two frequency bands: L5 band with center frequency of 1176.45 MHz and S band with center frequency of 2492.028 MHz in the near future, a new civilian signal will be introduced in L1 band with center frequency of 1575.42 MHz."
+  },
+  {
+    "id": 6,
+    "title": "Which are the international bodies involved in NavIC co-ordination activity?",
+    "aspects": [
+      { "id": 0, "aspect": "International Telecommunication Union (ITU)" },
+      {
+        "id": 1,
+        "aspect": "United Nations Office for Outer Space Affairs (UNOOSA)"
+      },
+      { "id": 2, "aspect": "International Committee on GNSS (ICG)" },
+      {
+        "id": 3,
+        "aspect": "Other navigation service providers (like GPS, GLONASS, Galileo, BeiDou, QZSS)"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "What are the commercialization aspects of NavIC? ",
+    "description": "Antrix, the commercial arm of ISRO has floated two separate tenders to identify industries that can develop dedicated NavIC-based hardware and systems. Suitable device manufacturers are being identified along with integrator's of NavIC-based systems.",
+    "aspectTitle": "NavIC is being commercialized for the following applications :",
+    "aspects": [
+      { "id": 0, "aspect": "Navigation (Aerial, marines and terrestrial)" },
+      {
+        "id": 1,
+        "aspect": "Maps (Charting, Plotting and Geodetic data capture)"
+      },
+      { "id": 2, "aspect": "Disaster Management" },
+      {
+        "id": 3,
+        "aspect": "Fleet Management and Vehicle Tracking (important during mining and transport operations)"
+      },
+      { "id": 4, "aspect": "Mobile phone integration" },
+      {
+        "id": 5,
+        "aspect": "Precise timing (useful for power grids and ATMs)"
+      }
+    ],
+    "description1": "The Ministry of Road Transport and Highways has mandated that all national-permit vehicles must have such tracking devices. As a pilot, many fishing boats have been fitted with these devices that have a unique texting facility. The 3GPP certification will allow multiple possibilities of further commercialization of NavIC. DGCA has also stipulated the use of NavIC in Drones."
+  },
+  {
+    "id": 8,
+    "title": "NavIC vs. GPS: Which one is more accurate?",
+    "description": "Global Positioning System tracks the entire globe and is maintained by the USA. The constellation requires 24 Satellites to be operational and has around 31 satellites in orbit. All of these are Medium Earth Orbit, which is to say that they are not stationary in space with respect to the revolving earth. GPS also uses a single frequency band and this makes calculations a bit more complex.",
+    "description1": "India’s NavIC has 3 geostationary satellites and 4 geosynchronous satellites, and these satellites are situated in much higher orbit (signal is less prone to obstructions). NavIC satellites use dual frequency bands (L5-band and S-band), which is why the system is relatively more accurate than GPS (that uses a single band and makes compensation for error due to signal deterioration by the atmosphere.",
+    "description2": "If the navigation receiver is kept inside a building and the antenna is positioned outside the building some distance away, will the receiver report position of the receiver inside the building correctly?",
+    "description3": "Any navigation receiver computes the position of the antenna and not the receiver unit itself. In case the antenna is placed outside the building with sufficient clear view to the sky, and sufficiently less cable length is maintained, the receiver will correctly report position of the antenna.",
+    "tableHeading": [
+      {
+        "title1": "Parameter",
+        "title2": "NavIC",
+        "title3": "GPS"
+      }
+    ],
+    "tableData": [
+      {
+        "availability": "Accuracy",
+        "navIC": "Up to 5 meters",
+        "gps": "Up to 20-30 meters"
+      },
+
+      {
+        "availability": "Frequency",
+        "navIC": "S-band and L-Band",
+        "gps": "L- Band"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Is NavIC fully functional?",
+    "description": "Yes. currently there are 09 NavIC satellites and 03 GAGAN satellites in the Indian Constellation to provide positional data."
+  },
+  {
+    "id": 10,
+    "title": "What are the advantages of NavIC?",
+    "description": "Any satellite-based system is characterized by its availability, Accuracy, Assurance and Integrity. NavIC is the best for India.",
+    "tableHeading": [
+      {
+        "title1": "Characteristics",
+        "title2": "NavIC",
+        "title3": "GPS"
+      }
+    ],
+    "tableData": [
+      {
+        "availability": "Availability",
+        "navIC": "More than 5 Satellites available 24/7",
+        "gps": "There are gaps even up to 3 hours within 24 hr cycle."
+      },
+
+      {
+        "availability": "Accuracy",
+        "navIC": "Less than 1 Mtr achieved",
+        "gps": "10 Mtr at best"
+      },
+      {
+        "availability": "Assurance",
+        "navIC": "Indian government has assured NavIC signals for everyone. Both L5 and S bands are available.",
+        "gps": "Owned by American Air Force. Can be denied any time. Has been denied during Kargil war."
+      },
+      {
+        "availability1": "Integrity",
+        "navIC1": "Indian Government has assured integrity.",
+        "gps1": "GPS location data can be tinkered by their handlers in realtime showing your location elsewhere than the actual."
+      }
+    ]
+  }
+]
