@@ -10,8 +10,8 @@ const Navbar = () => {
 
   const MenuElements = [
     { link: "/", display: "Home" },
-    { link: "/necessity", display: "Necessity" },
     { link: "/background", display: "Background" },
+    { link: "/necessity", display: "Necessity" },
     { link: "/development", display: "Development" },
     { link: "/trials", display: "Trials" },
     { link: "/features", display: "Features" },
@@ -63,7 +63,7 @@ const Navbar = () => {
         <nav
           className={`${
             menuOpen ? "block" : "hidden"
-          } md:flex h-[70px] justify-center items-center bg-[var(--secondary)]`}
+          } md:flex h-[45px] justify-center items-center bg-[var(--secondary)]`}
         >
           <ul className="flex flex-col md:flex-row p-0 m-0">
             {MenuElements.map((val, index) => (
@@ -73,7 +73,7 @@ const Navbar = () => {
                 onClick={() => setMenuOpen(false)}
               >
                 <li
-                   className={`font-semibold p-2 px-3 cursor-pointer duration-300 text-center ${
+                   className={`font-semibold p-1 px-2 cursor-pointer duration-300 text-center ${
                     Location.pathname === val.link
                       ? "text-white bg-[var(--primary)]"
                       : "text-gray-900"
@@ -87,7 +87,7 @@ const Navbar = () => {
         </nav>
 
         {/* Main content */}
-        <div className="pt-2  text-lg text-gray-600 bg-white px-3  h-full  overflow-y- overflow-x-hidden custom-scrollbar pr-2 min-h-[60vh]">
+        <div className="pt-2  text-lg text-gray-900 bg-white px-3  h-full  overflow-y- overflow-x-hidden custom-scrollbar pr-2 min-h-[60vh]">
           <Outlet />
         </div>
       </div>

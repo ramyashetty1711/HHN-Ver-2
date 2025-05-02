@@ -1,18 +1,18 @@
 import React from "react";
 import Elena from "../../assets/Elena.png";
+import elena from '../../assets/elena.jpg'
 import {
   FaFacebookF,
-  FaTwitter,
   FaLinkedinIn,
   FaInstagram,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Footer() {
   const footerLinks = [
     { path: "/", label: "Home" },
-    { path: "/background", label: "Background" },
     { path: "/contact", label: "Contact" },
     { path: "/help", label: "Help" },
   ];
@@ -20,13 +20,31 @@ function Footer() {
     <div className="min-h-[200px] bg-[var(--primary)] px-4 pt-10 ">
       <div className="grid grid-cols-12 gap-8 border-b-1 border-white pb-7">
         {/* Column 1: Powered by */}
-        <div className="col-span-4 flex items-center justify-center">
+        <div className="col-span-4 flex items-center flex-col gap-5 justify-center">
           <div className="inline-flex items-center gap-3 bg-[var(--secondary)] p-4 rounded-lg w-max">
             <p className="text-2xl font-semibold tracking-wide text-black/80">
               Powered by
             </p>
-            <img src={Elena} alt="Elena Logo" className="h-[70px]" />
+            <img src={elena} alt="Elena Logo" className="h-[70px]" />
           </div>
+          <div className="col-span-6 flex items-center justify-end gap-4">
+          {[
+            { href: "https://www.facebook.com/share/1ZDxcXpVNr/", icon: <FaFacebookF /> },
+            { href: "https://x.com/ElenaGeoSys?t=zXsK5BplurtIwv8lZHHxuQ&s=08", icon: <FaXTwitter /> },
+            { href: "https://www.linkedin.com/company/elena-geo-systems-private-limited/", icon: <FaLinkedinIn /> },
+            { href: "https://www.instagram.com/elena_geosystems?igsh=Ym0xbmVvZGd2M2V2", icon: <FaInstagram /> },
+          ].map((item, index) => (
+            <a
+              key={index}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white border border-white p-2 rounded-full hover:bg-white hover:border-white  hover:text-[var(--primary)] transition duration-200"
+            >
+              {React.cloneElement(item.icon, { size: 15 })}
+            </a>
+          ))}
+        </div>
         </div>
 
         {/* Column 2: Page Links */}
@@ -57,14 +75,18 @@ function Footer() {
           <ul className="text-white space-y-3">
             <li className="flex items-center gap-2">
               <FaEnvelope size={18} />
-              <span>info@elenageo.com </span>
+              <span>
+  <a href="mailto:info@elenageo.com" className="">info@elenageo.com</a>
+</span>
             </li>
             <li className="flex flex-col items-start gap-2">
-              <div className="flex items-center gap-2">
-                <FaPhoneAlt size={18} />
-                <span>+91 9384864411</span>
-              </div>
-              <div className="pl-6">+91 9384864422</div>
+            <div className="flex items-center gap-2">
+  <FaPhoneAlt size={18} />
+  <a href="tel:+919384864411" className="">+91 9384864411</a>
+</div>
+<div className="pl-6">
+  <a href="tel:+919384864422" className="">+91 9384864422</a>
+</div>
             </li>
 
             <li className="flex items-start gap-2">
@@ -80,31 +102,14 @@ function Footer() {
         </div>
       </div>
       <div className="grid grid-cols-12 gap-8 py-2">
-        <div className="col-span-6 flex justify-start items-center">
+        <div className="col-span-12 flex justify-center items-center">
           <p className="text-sm text-white">
             copyright &copy; {new Date().getFullYear()} Elena Geo Systems. All
             rights reserved
           </p>
         </div>
 
-        <div className="col-span-6 flex items-center justify-end gap-4">
-          {[
-            { href: "https://facebook.com", icon: <FaFacebookF /> },
-            { href: "https://twitter.com", icon: <FaTwitter /> },
-            { href: "https://linkedin.com", icon: <FaLinkedinIn /> },
-            { href: "https://instagram.com", icon: <FaInstagram /> },
-          ].map((item, index) => (
-            <a
-              key={index}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white border border-white p-2 rounded-full hover:bg-white hover:border-white  hover:text-[var(--primary)] transition duration-200"
-            >
-              {React.cloneElement(item.icon, { size: 15 })}
-            </a>
-          ))}
-        </div>
+        
       </div>
     </div>
   );

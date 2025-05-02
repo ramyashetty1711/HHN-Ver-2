@@ -29,7 +29,7 @@ const ImageSlider = () => {
         {images.map((src, index) => (
           <div key={index}>
             <div
-              className="w-full h-[70vh] bg-center bg-contain rounded-md"
+              className="w-full h-[50vh] bg-center bg-contain rounded-md"
               style={{
                 backgroundImage: `url(${src})`,
                 backgroundRepeat: "no-repeat",

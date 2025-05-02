@@ -6,6 +6,7 @@ import Adv from "../../assets/Advantages.jpg";
 export default function Feature() {
   const FeatureList = [
     "Displays current location in ESM GR, DSM GR, and Lat-Long formats",
+    "Supports display of 6, 8, and 10-digit GR in both ESM and DSM formats",
     "Converts Lat-Long to ESM GR and DSM GR",
     "Converts ESM GR to DSM GR and Lat-Long",
     "Converts DSM GR to ESM GR and Lat-Long",
@@ -15,11 +16,9 @@ export default function Feature() {
     "LCD view panel for clear daylight visibility",
     "Small built-in Torch light for night use",
     "IP67 rated",
-    "Battery: Normal Operations - 60 hours",
+    "Battery: Normal Operations for 60 hours",
     "Kill button to delete all data securely",
-    "Rubber covering for easy holding with a gloved hand Highly secure",
-    "The parameters for grid conversion are uploaded into the device by ADG Mil Svy representative, through a window-based easy-to-use software",
-    "Supports display of 6, 8, and 10-digit GR in both ESM and DSM formats",
+
     "Supplied with a waterproof pouch for additional protection",
   ];
 
@@ -52,7 +51,7 @@ export default function Feature() {
             <h5 className="text-3xl text-[var(--heading)] mb-4 font-bold drop-shadow">
               Features
             </h5>
-            <ul className="list-disc px-8 h-[55vh] overflow-y-auto custom-scrollbar grid grid-cols-2 ">
+            <ul className="list-disc px-8 h-[40vh] overflow-y-auto custom-scrollbar grid grid-cols-2 ">
               {FeatureList.map((val, index) => (
                 <li key={index} className="text-black drop-shadow">
                   {val}
@@ -73,7 +72,7 @@ export default function Feature() {
             <h5 className="text-3xl text-[var(--heading)] mb-4 font-bold drop-shadow">
               Advantages
             </h5>
-            <ul className="list-disc px-8 h-[60vh] overflow-y-auto custom-scrollbar">
+            <ul className="list-disc px-8 h-[40vh] overflow-y-auto custom-scrollbar">
               {advantages.map((val, index) => (
                 <li key={index} className="text-black drop-shadow mb-1">
                   {val}

@@ -3,9 +3,11 @@ import NavICFAQ from "./NavICFAQ.jsx";
 import NavicCoverage from "../../assets/coverage.png";
 export default function NavIC() {
   return (
+   
     <div className="flex flex-col max-w-full  font-semibold text-lg text-gray-600  pt-6 px-6 pb-3 rounded-lg h-full max-h-[85vh] overflow-y-auto custom-scrollbar">
-      <h5 className="text-2xl text-gray-800 mb-4">NavIC</h5>
-      <div className="px-4 font-medium pb-8 text-md">
+     <div className=" ">
+     <h5 className="text-2xl  mb-4 flex justify-center text-[var(--heading)]">NavIC</h5>
+      <p className="px-4 font-medium pb-8 text-md">
         NavIC, Navigation with Indian Constellation, is a Global Navigation
         Satellite System which is the third system in the world to give location
         services and the best of its kind in providing accurate, reliable data
@@ -13,12 +15,14 @@ export default function NavIC() {
         functional since June 2019. Currently, 11 navigation satellites can be
         used by the public for efficient monitoring applications. Elena Geo
         works only in this niche segment.
-      </div>
+      </p>
 
-      <div className="mb-6">
-        <img src={NavicCoverage} className=""/>
       </div>
-      <h5 className="text-2xl text-gray-800 mb-4">
+      <div className="flex justify-center my-2">
+  <img src={NavicCoverage} className="w-[700px] h-[400px] " />
+</div>
+
+      <h5 className="text-2xl mb-4 flex justify-center text-[var(--heading)]">
         Issues with GPS - Loss in coverage
       </h5>
       <div className="px-4 font-medium pb-8 text-md">
@@ -28,14 +32,14 @@ export default function NavIC() {
         in 24 Hrs cycle. Each dot represents a loss of coverage as per the
         legend over the area it is marked.
       </div>
-      <h5 className="text-2xl text-gray-800 mb-4">NavIC ADVANTAGES</h5>
+      <h5 className="text-2xl  mb-4 flex justify-center text-[var(--heading)]">NavIC ADVANTAGES</h5>
       <div className="px-4 font-medium pb-8 text-md">
         In the earlier study (pictured above) by Prof A Bose et al, Burdwan
         University, when IRNSS is included, the Indian region does not have any
         loss in coverage all through the day. Hence, using this we can now put
         up 24/7 navigation and monitoring systems
       </div>
-
+      <h5 className="text-2xl  mb-4 flex justify-center text-[var(--heading)]">NavIC FAQ</h5>
       <NavICFAQ />
     </div>
   );

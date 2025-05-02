@@ -53,8 +53,8 @@ const FAQItem = ({ data, isActive, onClick }) => {
 
           {/* Table Rendering */}
           {data?.tableHeading?.[0] && data?.tableData?.length > 0 && (
-            <div className="overflow-x-auto">
-              <table className="table-auto w-full text-left border border-gray-300">
+            <div className="overflow-x-auto ">
+              <table className="table-auto w-full text-left  border border-gray-300">
                 <thead className="bg-gray-100 text-gray-800">
                   <tr>
                     <th className="p-2 border">

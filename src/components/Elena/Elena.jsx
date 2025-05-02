@@ -1,74 +1,75 @@
 import React from "react";
-import Velan from "../../assets/velan.jpeg";
+import journey from "../../assets/journey.png";
+import e2e from "../../assets/e2e.png";
 import { FiExternalLink } from "react-icons/fi";
+
 function Elena() {
   return (
     <>
-      <div className="grid grid-cols-12">
-        <div className="md:col-span-6 col-span-12 mt-4 w-full">
-          <p className=" text-justify  text-lg pr-5 place-items-center w-full">
-            <img src={Velan} className="w-[30em] rounded-lg" />
-          </p>
+      <div className=" mx-auto px-4 py-8 space-y-8">
+      <h2 className="text-3xl font-bold text-[var(--heading)] my-2 flex justify-center">
+            Our Journey
+          </h2>
+        {/* Journey Section - 2 Column Layout */}
+        <div className="grid grid-cols-12  gap-6 mt-4">
+          {/* Left: Image */}
+          <div className="flex justify-center col-span-6">
+            <img
+              src={journey}
+              className="max-h-[500px] max-w-[600px] rounded-lg"
+              alt="Elena Journey"
+            />
+          </div>
+
+          {/* Right: Content */}
+          <div className="flex flex-col justify-center col-span-6">
+            <p className="text-justify text-lg pr-10 pb-5">
+              Elena Geo was founded at Technology Business Incubator (TBI) at IIT
+              Kharagpur in 2012 and has quickly emerged as a pioneer in navigation
+              technology. Here's a brief look at its journey:
+           
+            </p>
+          </div>
         </div>
-        <div className="md:col-span-6 col-span-12 mt-4">
-          <p className=" text-justify  text-lg pr-10 pb-5">
-            <h2 className="text-3xl font-bold text-[var(--heading)] my-2 ">
-              About Elena
-            </h2>
-            Lt Col V S Velan, an Army Veteran, has dedicated himself for the
-            proliferation of satellite-based navigation using Indian
-            constellation called NavIC. He has been associated with this
-            technology from 1998 and with NavIC from its genesis in 2008- 2010.
-            Since 2010, he has been working only in this niche segment for which
-            he had to travel around the world gathering knowledge. While in
-            service, Col Velan was instrumental in establishing and developing
-            the Ministry of Defence’s Integrated Space Cell which has now grown
-            into Space Forces of India. With his tremendous domain knowledge and
-            expertise on GNSS, Col Velan launched Elena Geo Systems in 2012 in
-            the Technology Business Incubator of IIT Kharagpur. Elena is the
-            only company working dedicatedly to develop indigenous solutions for
-            NavIC. Col Velan’s ceaseless drive to innovate has made Elena Geo
-            Systems a trailblazer in multi-GNSS devices and applications with an
-            orientation to use and deploy NavIC as its core. <br />
-            <br />
-            The company demonstrated its first NavIC module on April 6, 2019,
-            and its first GNSS processor on April 13, 2023.Elena’s
-            accomplishments are many: it boasts of having all hardware and
-            software to provide end-to-end solution for using NavIC. The
-            products include NavIC-based antennae, drone navigation units,
-            atomic clocks, tracking devices and severs among others. All the
-            devices were designed and developed in the spirit of Make in India.
-            Elena Geo Systems is the industrial partner for Bengaluru’s
-            prestigious Ramaiah Institute of Technology and IIT, Tirupati.In
-            recognition of his ground-breaking work on NavIC, Col Velan was
-            appointed as a technology development advisor at IIT-Tirupati’s
-            Navavishkar innovation Hub Foundation in July 2023.
-            <br /> <br />
-            <a
-              href="http://elenageo.com"
-              target="_blank"
-              className="font-bold text-blue-500 flex flex-row items-center hover:text-blue-600 duration-300 transition-all underline"
-            >
-              Visit Elena <FiExternalLink size={20} className="ms-2" />
-            </a>
-          </p>
+
+        {/* Elena for NavIC Section - 2 Column Layout */}
+        <h2 className="text-3xl font-bold text-[var(--heading)] my-2 flex justify-center">
+            Elena for NavIC
+          </h2>
+        <div className="grid grid-cols-12 gap-6 mt-4">
+          {/* Left: Image */}
+          
+
+          {/* Right: Content */}
+          <div className="flex flex-col justify-center col-span-8">
+            <p className="text-justify text-lg pr-10 pb-5">
+              Elena Geo has designed and developed NavIC products which are large
+              in range and depth to cater to all types of user segments. It has
+              products for research domains and high-precision applications.
+              Elena's multitude of products ranges from a dual-band antenna to a
+              complex system, customized to the user's requirements. The products
+              bring full GNSS services to user applications with all the
+              advantages of NavIC such as Availability, Accuracy, Reliability, and
+              Integrity.
+            </p>
+          </div>
+          <div className="flex justify-center col-span-4">
+            <img
+              src={e2e}
+              className="rounded-lg max-h-[400px] max-w-[400px] "
+              alt="Elena Journey"
+            />
+          </div>
         </div>
-        {/* <div className="md:col-span-6 col-span-12 mt-4">
-          <p className=" text-justify  text-lg pr-5">
-            The company demonstrated its first NavIC module on April 6, 2019,
-            and its first GNSS processor on April 13, 2023.Elena’s
-            accomplishments are many: it boasts of having all hardware and
-            software to provide end-to-end solution for using NavIC. The
-            products include NavIC-based antennae, drone navigation units,
-            atomic clocks, tracking devices and severs among others. All the
-            devices were designed and developed in the spirit of Make in India.
-            Elena Geo Systems is the industrial partner for Bengaluru’s
-            prestigious Ramaiah Institute of Technology and IIT, Tirupati.In
-            recognition of his ground-breaking work on NavIC, Col Velan was
-            appointed as a technology development advisor at IIT-Tirupati’s
-            Navavishkar innovation Hub Foundation in July 2023.
-          </p>
-        </div> */}
+
+        <a
+          href="http://elenageo.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-bold text-[var(--primary)] flex items-center justify-center mb-3 hover:text-blue-600 transition-all underline"
+        >
+          Visit Elena <FiExternalLink size={20} className="ms-2" />
+        </a>
       </div>
     </>
   );

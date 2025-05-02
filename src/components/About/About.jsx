@@ -8,8 +8,8 @@ export default function About() {
           <ImageSlider />
         </div>
         <div className="flex justify-center mb-5">
-          <div className="px-8 py-6 border-l-8 border-[var(--primary)] bg-gradient-to-r from-yellow-100 via-white to-yellow-100 rounded-xl shadow-xl max-w-4xl">
-            <p className="text-3xl font-bold text-center text-gray-800 tracking-wide leading-relaxed">
+          <div className="px-8 py-6 border-l-8 border-[var(--primary)] rounded-xl shadow-xl max-w-4xl">
+            <p className="text-2xl font-bold text-center text-gray-800 tracking-wide leading-relaxed">
               <span className="text-[var(--primary)]">Grid Converter</span> is a
               special tool to bring Arty Net into one grid
             </p>
