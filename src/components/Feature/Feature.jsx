@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
-import bgImage from '../../assets/Features_BG.png';
-import Adv from '../../assets/Advantages.jpg';
+import bgImage from "../../assets/Features_BG.png";
+import Adv from "../../assets/Advantages.jpg";
 
 export default function Feature() {
   const FeatureList = [
@@ -28,7 +28,7 @@ export default function Feature() {
     "Auto compensation for different zones to ensure accuracy.",
     "Accurate navigation.",
     "Assist target management.",
-    "Assist firepower coordination."
+    "Assist firepower coordination.",
   ];
 
   const settings = {
@@ -37,7 +37,7 @@ export default function Feature() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true
+    arrows: true,
   };
 
   return (
@@ -49,8 +49,10 @@ export default function Feature() {
           style={{ backgroundImage: `url(${bgImage})` }}
         >
           <div className="bg-blue/40 p-4 rounded-lg">
-            <h5 className="text-3xl text-[var(--heading)] mb-4 font-bold drop-shadow">Features</h5>
-            <ul className="list-disc px-8 h-[60vh] overflow-y-auto custom-scrollbar grid grid-cols-2 ">
+            <h5 className="text-3xl text-[var(--heading)] mb-4 font-bold drop-shadow">
+              Features
+            </h5>
+            <ul className="list-disc px-8 h-[55vh] overflow-y-auto custom-scrollbar grid grid-cols-2 ">
               {FeatureList.map((val, index) => (
                 <li key={index} className="text-black drop-shadow">
                   {val}
@@ -68,10 +70,12 @@ export default function Feature() {
           style={{ backgroundImage: `url(${Adv})` }}
         >
           <div className="bg-blue/40 p-4 rounded-lg">
-            <h5 className="text-3xl text-[var(--heading)] mb-4 font-bold drop-shadow">Advantages</h5>
+            <h5 className="text-3xl text-[var(--heading)] mb-4 font-bold drop-shadow">
+              Advantages
+            </h5>
             <ul className="list-disc px-8 h-[60vh] overflow-y-auto custom-scrollbar">
               {advantages.map((val, index) => (
-                <li key={index} className="text-black drop-shadow mb-2">
+                <li key={index} className="text-black drop-shadow mb-1">
                   {val}
                 </li>
               ))}

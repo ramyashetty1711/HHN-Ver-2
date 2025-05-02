@@ -1,9 +1,9 @@
 import React from "react";
 import NavICFAQ from "./NavICFAQ.jsx";
-
+import NavicCoverage from "../../assets/coverage.png";
 export default function NavIC() {
   return (
-    <div className="flex flex-col max-w-full  font-semibold text-lg text-gray-600 bg-gray-100 pt-6 px-6 pb-3 rounded-lg h-full max-h-[85vh] overflow-y-auto custom-scrollbar">
+    <div className="flex flex-col max-w-full  font-semibold text-lg text-gray-600  pt-6 px-6 pb-3 rounded-lg h-full max-h-[85vh] overflow-y-auto custom-scrollbar">
       <h5 className="text-2xl text-gray-800 mb-4">NavIC</h5>
       <div className="px-4 font-medium pb-8 text-md">
         NavIC, Navigation with Indian Constellation, is a Global Navigation
@@ -13,6 +13,10 @@ export default function NavIC() {
         functional since June 2019. Currently, 11 navigation satellites can be
         used by the public for efficient monitoring applications. Elena Geo
         works only in this niche segment.
+      </div>
+
+      <div className="mb-6">
+        <img src={NavicCoverage} className=""/>
       </div>
       <h5 className="text-2xl text-gray-800 mb-4">
         Issues with GPS - Loss in coverage

@@ -1,5 +1,5 @@
 import React from "react";
-import background from '../../assets/background.jpg'
+import background from "../../assets/background.jpg";
 
 function BackGround() {
   return (
@@ -9,17 +9,17 @@ function BackGround() {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Image Section */}
-        <div>
+        <div className="place-items-center">
           <img
             src={background}
             alt="Background Illustration"
-            className="w-full h-auto rounded-lg shadow-md"
+            className="w-auto h-[20em] rounded-lg shadow-md"
           />
         </div>
 
         {/* Text Section */}
         <div>
-          <p className="text-base text-justify leading-relaxed">
+          <p className="text-lg text-justify leading-relaxed">
             This Grid Converter is state-of-the-art positioning equipment made
             using Elena's multi-GNSS processor, which utilizes NavIC, GPS, and
             GLONASS to provide one-meter accuracy without any external support.

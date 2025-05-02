@@ -20,21 +20,21 @@ import Footer from "./components/Common/Footer";
 export default function AppRoutes() {
   const RouteElements = [
     {
-      path:"/",
-      component:<Home/>
+      path: "/",
+      component: <Home />,
     },
     {
-      path:"/background",
-      component:<BackGround/>
+      path: "/background",
+      component: <BackGround />,
     },
     {
-      path:"/necessity",
-      component:<Necessity/>
+      path: "/necessity",
+      component: <Necessity />,
     },
     {
       path: "/development",
       component: <Development />,
-    },  
+    },
     {
       path: "/trials",
       component: <Trials />,
@@ -44,24 +44,25 @@ export default function AppRoutes() {
       component: <Feature />,
     },
     {
-      path:"/procurment",
-      component:<Procurment/>
+      path: "/procurment",
+      component: <Procurment />,
     },
     {
       path: "/NavIC",
       component: <NavIC />,
     },
     {
-      path:"elena",
-      component:<Elena/>
-    },{
-      path:"/contact",
-      component:<Contact/>
+      path: "elena",
+      component: <Elena />,
     },
     {
-      path:"/help",
-      component:<Help/>
-    }
+      path: "/contact",
+      component: <Contact />,
+    },
+    {
+      path: "/help",
+      component: <Help />,
+    },
   ];
   const SuspenseFallback = (Component) => (
     <Suspense
@@ -115,10 +116,9 @@ export default function AppRoutes() {
                 <Route element={val.component} path={val.path} />
               ))}
             </Route>
-         
           </Route>
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
 
       {/* <CustomToast

@@ -17,12 +17,14 @@ function Footer() {
     { path: "/help", label: "Help" },
   ];
   return (
-    <div className="min-h-[200px] bg-[var(--primary)] px-4 pt-10 mt-10">
+    <div className="min-h-[200px] bg-[var(--primary)] px-4 pt-10 ">
       <div className="grid grid-cols-12 gap-8 border-b-1 border-white pb-7">
         {/* Column 1: Powered by */}
         <div className="col-span-4 flex items-center justify-center">
           <div className="inline-flex items-center gap-3 bg-[var(--secondary)] p-4 rounded-lg w-max">
-            <p className="text-2xl font-semibold tracking-wide">Powered by</p>
+            <p className="text-2xl font-semibold tracking-wide text-black/80">
+              Powered by
+            </p>
             <img src={Elena} alt="Elena Logo" className="h-[70px]" />
           </div>
         </div>
@@ -58,12 +60,12 @@ function Footer() {
               <span>info@elenageo.com </span>
             </li>
             <li className="flex flex-col items-start gap-2">
-  <div className="flex items-center gap-2">
-    <FaPhoneAlt size={18} />
-    <span>+91 9384864411</span>
-  </div>
-  <div className="pl-6">+91 9384864422</div>
-</li>
+              <div className="flex items-center gap-2">
+                <FaPhoneAlt size={18} />
+                <span>+91 9384864411</span>
+              </div>
+              <div className="pl-6">+91 9384864422</div>
+            </li>
 
             <li className="flex items-start gap-2">
               <FaMapMarkerAlt size={18} />
@@ -80,8 +82,8 @@ function Footer() {
       <div className="grid grid-cols-12 gap-8 py-2">
         <div className="col-span-6 flex justify-start items-center">
           <p className="text-sm text-white">
-            copyright &copy; {new Date().getFullYear()} Elena Geo Systems. All rights
-            reserved
+            copyright &copy; {new Date().getFullYear()} Elena Geo Systems. All
+            rights reserved
           </p>
         </div>
 

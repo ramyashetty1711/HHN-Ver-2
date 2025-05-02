@@ -1,7 +1,7 @@
 import React from "react";
 import GC1 from "../../assets/GC/GC_2.png";
-import GC_Device from '../../assets/GC/GC_Device.png'
-import necessity from '../../assets/necessity_gc .jpg'
+import GC_Device from "../../assets/GC/GC_Device.png";
+import necessity from "../../assets/necessity_gc .jpg";
 
 const steps = [
   {
@@ -28,42 +28,42 @@ const probSol = [
 export default function Necessity() {
   return (
     <div className=" mx-auto px-4 py-8 space-y-16">
-      <h2 className="text-3xl font-bold text-[var(--heading)] mb-4">
-        Necessity
-      </h2>
       {steps.map((data, index) => {
         const isEven = index % 2 === 0;
 
         return (
           <div
             key={index}
-            className={`grid grid-cols-1 md:grid-cols-12 items-stretch gap-8 transform ${
-              isEven ? "-skew-y-3" : "skew-y-3"
-            }`}
+            className={`grid grid-cols-1 md:grid-cols-12 items-stretch gap-8 transform `}
           >
             {/* Image */}
             <div
               className={`col-span-6 ${
                 isEven ? "" : "md:order-last"
-              } transform ${isEven ? "skew-y-3" : "-skew-y-3"} h-full`}
+              } transform  h-full  content-center`}
             >
-              <div className="">
-                <img
-                  src={data.image}
-                  alt={data.title}
-                  className="w-full h-full object-cover"
-                />
+              <div className="h-[75%] w-full">
+                {data.image ? (
+                  <img
+                    src={data.image}
+                    alt={data.title}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <div className="h-full bg-gray-200 flex flex-row justify-center items-center text-gray-600 rounded-xl">
+                    Necessity image
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Text Content */}
-            <div
-              className={`col-span-6 transform ${
-                isEven ? "skew-y-3" : "-skew-y-3"
-              } h-full`}
-            >
+            <div className={`col-span-6 transform h-full`}>
               <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-[var(--secondary)] h-full flex flex-col justify-center">
-                <p className="text-gray-900 leading-relaxed font-normal text-base text-justify">
+                <h2 className="text-2xl font-bold text-[var(--heading)] mb-4">
+                  Necessity
+                </h2>
+                <p className="text-gray-900 leading-relaxed font-normal text-md text-justify">
                   {data.content}
                 </p>
               </div>
@@ -77,12 +77,10 @@ export default function Necessity() {
             <h2 className="text-2xl font-bold text-[var(--heading)] mb-4">
               {data.title}
             </h2>
-            <p className="text-base">{data.content}</p>
+            <p className="text-md">{data.content}</p>
           </div>
         ))}
       </div>
-      
-      
     </div>
   );
 }
