@@ -1,149 +1,72 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SplashPage from "./components/Splash/SplashPage";
 import { SpinnerCircularFixed } from "spinners-react";
-import Development from "./components/Development/Development";
 import Navbar from "./components/Common/Navbar";
-import About from "./components/About/About";
-import Trials from "./components/Trials/Trials";
-import Feature from "./components/Feature/Feature";
-import NavIC from "./components/NaVIC/NaVIC";
+import Footer from "./components/Common/Footer";
+
+import Home from "./components/Home/Home";
 import BackGround from "./components/BackGround/BackGround";
 import Necessity from "./components/Necessity/Necessity";
+import Development from "./components/Development/Development";
+import Trials from "./components/Trials/Trials";
+import Feature from "./components/Feature/Feature";
 import Procurment from "./components/Procurment/Procurment";
+import NavIC from "./components/NaVIC/NaVIC";
 import Elena from "./components/Elena/Elena";
 import Contact from "./components/Contact/Contact";
 import Help from "./components/Help/Help";
-import Home from "./components/Home/Home";
-import Footer from "./components/Common/Footer";
+import About from "./components/About/About";
 
 export default function AppRoutes() {
-  const RouteElements = [
-    {
-      path: "/",
-      component: <Home />,
-    },
-    {
-      path: "/background",
-      component: <BackGround />,
-    },
-    {
-      path: "/necessity",
-      component: <Necessity />,
-    },
-    {
-      path: "/development",
-      component: <Development />,
-    },
-    {
-      path: "/trials",
-      component: <Trials />,
-    },
-    {
-      path: "/features",
-      component: <Feature />,
-    },
-    {
-      path: "/procurment",
-      component: <Procurment />,
-    },
-    {
-      path: "/NavIC",
-      component: <NavIC />,
-    },
-    {
-      path: "elena",
-      component: <Elena />,
-    },
-    {
-      path: "/contact",
-      component: <Contact />,
-    },
-    {
-      path: "/help",
-      component: <Help />,
-    },
+  const routes = [
+    { path: "/", element: <About/> },
+    { path: "/background", element: <BackGround /> },
+    { path: "/necessity", element: <Necessity /> },
+    { path: "/development", element: <Development /> },
+    { path: "/trials", element: <Trials /> },
+    { path: "/features", element: <Feature /> },
+    { path: "/procurment", element: <Procurment /> },
+    { path: "/NavIC", element: <NavIC /> },
+    { path: "/elena", element: <Elena /> },
+    { path: "/contact", element: <Contact /> },
+    { path: "/help", element: <Help /> },
   ];
-  const SuspenseFallback = (Component) => (
-    <Suspense
-      fallback={
-        <div className=" tw-min-h-[25vh] d-flex justify-content-center align-items-center">
-          {" "}
-          <Spinner
-            style={{
-              height: "1.5em",
-              width: "1.5em",
-              color: "#745236",
-            }}
-            className="p-1"
-          />
-        </div>
-      }
-    >
-      <Component />
-    </Suspense>
-  );
 
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route>
-            <Route element={<Navbar />}>
-              <Route
-                path="/"
-                element={
-                  <Suspense
-                    fallback={
-                      <div className="  d-flex justify-content-center align-items-center">
-                        {" "}
-                        <SpinnerCircularFixed
-                          speed={200}
-                          thickness={200}
-                          size={20}
-                          color="sky"
-                          className="p-1"
-                        />
-                      </div>
-                    }
-                  >
-                    <About />
-                  </Suspense>
-                }
-              />
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        {/* Navbar at top center */}
+        <header className="">
+          <Navbar />
+        </header>
 
-              {RouteElements.map((val) => (
-                <Route element={val.component} path={val.path} />
+        {/* Main content takes remaining height */}
+        <main className="flex-1 flex justify-center items-center p-4">
+          <Suspense
+            fallback={
+              <div className="flex justify-center items-center h-full">
+                <SpinnerCircularFixed
+                  speed={200}
+                  thickness={200}
+                  size={40}
+                  color="skyblue"
+                />
+              </div>
+            }
+          >
+            <Routes>
+              {routes.map((route, i) => (
+                <Route key={i} path={route.path} element={route.element} />
               ))}
-            </Route>
-          </Route>
-        </Routes>
-        <Footer />
-      </Router>
+            </Routes>
+          </Suspense>
+        </main>
 
-      {/* <CustomToast
-        icon={toastData.icon}
-        color={toastData.color}
-        header={toastData.header}
-        body={toastData.body}
-        show={toastData.show}
-        toggleShow={hideToast}
-      /> */}
-    </>
+        {/* Footer fixed at bottom */}
+        <footer className="">
+          <Footer />
+        </footer>
+      </div>
+    </Router>
   );
 }
-
-const PrivateRoute = ({ path, isAuthenticated, component: Component }) => {
-  return (
-    <Route
-      path={path}
-      render={(props) =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          (window.location.href = "/")
-        )
-      }
-    />
-  );
-};

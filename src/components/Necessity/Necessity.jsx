@@ -12,8 +12,8 @@ const steps = [
 
 export default function Necessity() {
   return (
-   <div className=" mx-auto px-4 py-8 space-y-8">
-     <div className="mx-auto px-4  grid grid-cols-1 md:grid-cols-12 gap-8">
+   <div className="mx-auto px-4 py-4">
+     <div className="mx-auto   grid grid-cols-1 md:grid-cols-12 gap-8">
       {/* Centered Image on the Left */}
       <div className="md:col-span-4 col-span-12 flex items-center justify-center">
         <img

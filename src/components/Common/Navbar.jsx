@@ -46,7 +46,7 @@ const Navbar = () => {
             {/* Login Button */}
             <div
               className="font-semibold bg-white border  rounded-lg px-3 py-2 cursor-pointer text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white hover:border-white transition-all duration-300"
-              onClick={() => Navigate("/login")}
+              // onClick={() => Navigate("/login")}
             >
               Login
             </div>
@@ -87,7 +87,7 @@ const Navbar = () => {
         </nav>
 
         {/* Main content */}
-        <div className="pt-2  text-lg text-gray-900 bg-white px-3  h-full  overflow-y- overflow-x-hidden custom-scrollbar pr-2 min-h-[60vh]">
+        <div >
           <Outlet />
         </div>
       </div>

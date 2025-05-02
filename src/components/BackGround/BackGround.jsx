@@ -3,7 +3,7 @@ import background from "../../assets/backgroung_gc.png";
 
 function BackGround() {
   return (
-    <div className=" mx-auto px-4  space-y-8">
+    <div className=" mx-auto px-4">
       <div className="grid grid-cols-12 gap-8 items-center">
         {/* Image Section - centered in column */}
         <div className="col-span-4 flex justify-center items-center">
@@ -15,7 +15,7 @@ function BackGround() {
         </div>
 
         {/* Text Section */}
-        <div className="col-span-8 bg-white p-6 rounded-lg shadow-lg border-l-4 border-[var(--secondary)] mb-2">
+        <div className="col-span-8 bg-white p-6 rounded-lg border-l-4 border-[var(--secondary)] mb-2">
           <p className="text-md text-justify leading-relaxed">
             This Grid Converter is state-of-the-art positioning equipment made
             using Elena's multi-GNSS processor, which utilizes NavIC, GPS, and

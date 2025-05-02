@@ -27,16 +27,12 @@ const ImageSlider = () => {
     <div className="relative w-full max-w-7xl mx-auto my-6">
       <Slider ref={sliderRef} {...settings}>
         {images.map((src, index) => (
-          <div key={index}>
-            <div
-              className="w-full h-[50vh] bg-center bg-contain rounded-md"
-              style={{
-                backgroundImage: `url(${src})`,
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              {/* You can add overlay text/content here if needed */}
-            </div>
+          <div key={index} className="flex justify-center items-center">
+            <img
+              src={src}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-[60vh] object-contain sm:h-[50vh] md:h-[60vh] rounded-md"
+            />
           </div>
         ))}
       </Slider>
