@@ -10,8 +10,8 @@ function Help() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full">
         {[
-          { title: "Grid Convertor Brochure", link: gcb },
-          { title: " User Manual", link: manual },
+          { title: "Grid Converter Brochure", link: gcb },
+          { title: " User Manual ", link: manual },
           { title: "Troubleshoot", link: manual },
         ].map((item, index) => (
           <div

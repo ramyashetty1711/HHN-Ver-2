@@ -5,8 +5,10 @@ export default function Trials() {
   return (
     <div className="mx-auto max-w-7xl px-4 pt-12 pb-8">
       {/* <h2 className="text-3xl font-bold text-[var(--heading)] mb-8">Trials</h2> */}
+      
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-5">
+        <p className="text-xl font-bold text-[var(--heading)] my-2 flex justify-center">Field Testing and Trials of Elena Handheld Devices</p>
           <img
             src={trialsimg}
             alt="Trials"

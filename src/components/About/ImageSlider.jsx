@@ -24,7 +24,7 @@ const ImageSlider = () => {
   const images = [NavIC, Artillery, GC, Elena];
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto my-6">
+    <div className="relative w-full max-w-7xl mx-auto my-2">
       <Slider ref={sliderRef} {...settings}>
         {images.map((src, index) => (
           <div key={index}>

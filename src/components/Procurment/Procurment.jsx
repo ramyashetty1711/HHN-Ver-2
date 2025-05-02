@@ -41,9 +41,9 @@ function Procurment() {
             set of 2 equipment will be given under ₹1 Lakh inclusive of all
             taxes.
           </p>
-          <p>
+          <p className="mb-2">
             This should be procured through GeM. The proprietary procurement
-            process document is attached. <a
+            process document is attached.<br/> <a
             href={ProcurementPDF} // Update this path to your file location
             target="_blank"
             rel="noopener noreferrer"

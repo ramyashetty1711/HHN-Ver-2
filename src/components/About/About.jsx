@@ -4,7 +4,7 @@ export default function About() {
   return (
     <>
       <div className="flex flex-col  font-semibold text-lg text-gray-600 bg-white pt-3 px-3 rounded-lg h-full   pr-2">
-        <div className=" w-full min-h-[40vh] mb-[5em]">
+        <div className=" w-full min-h-[35vh] mb-[5em]">
           <ImageSlider />
         </div>
         <div className="flex justify-center mb-5">

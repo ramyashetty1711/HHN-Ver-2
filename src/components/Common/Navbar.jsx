@@ -23,7 +23,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className=" flex flex-row justify-center items-center w-[100vw] max-w-[100vw]">
+    <div className=" flex flex-row justify-center items-center ">
       <div className=" w-full rounded-xl">
         {/* Top Navbar */}
         <nav className="h-[70px] flex justify-between py-1 px-4 pl-8 items-center bg-[var(--primary)] ">

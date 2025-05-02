@@ -7,16 +7,16 @@ function Elena() {
   return (
     <>
       <div className=" mx-auto px-4 py-8 space-y-8">
-      <h2 className="text-3xl font-bold text-[var(--heading)] my-2 flex justify-center">
-            Our Journey
-          </h2>
+        <h2 className="text-3xl font-bold text-[var(--heading)] my-2 flex justify-center">
+          Our Journey
+        </h2>
         {/* Journey Section - 2 Column Layout */}
         <div className="grid grid-cols-12  gap-6 mt-4">
           {/* Left: Image */}
           <div className="flex justify-center col-span-6">
             <img
               src={journey}
-              className="max-h-[500px] max-w-[600px] rounded-lg"
+              className="max-h-[500px] max-w-[700px] rounded-lg"
               alt="Elena Journey"
             />
           </div>
@@ -24,39 +24,56 @@ function Elena() {
           {/* Right: Content */}
           <div className="flex flex-col justify-center col-span-6">
             <p className="text-justify text-lg pr-10 pb-5">
-              Elena Geo was founded at Technology Business Incubator (TBI) at IIT
-              Kharagpur in 2012 and has quickly emerged as a pioneer in navigation
-              technology. Here's a brief look at its journey:
-           
+              Elena Geo was founded for developing NavIC-based monitoring
+              Systems. It works only in this niche segment and has been
+              marketing solutions since 2013. It has End-to-End presence in the
+              NavIC-based PNT domain. Elena Geo distinguishes itself by
+              providing unique and forefront services within the industry.{" "}
+              <br />
+              <br /> Elena Geo embarked on its journey with a distinct vision to
+              address India's navigation needs through the development of
+              ground-based electronics and solutions utilizing Indian
+              satellites. The choice of the name "Elena" reflects the company's
+              commitment to guiding and illuminating new paths, aligning with
+              its overarching goal.
+              <br />
+              <br /> Elena Geo delivers a diverse range of products and services
+              tailored to the NavIC-based navigation sector. The core principles
+              of these solutions lie in a commitment to achieving the utmost
+              accuracy, pioneering technology, and affordability.
+            </p>
+            <p className="text-justify text-lg pr-10 pb-5">
+              Elena Geo was founded at Technology Business Incubator (TBI) at
+              IIT Kharagpur in 2012 and has quickly emerged as a pioneer in
+              navigation technology. Here's a brief look at its journey.
             </p>
           </div>
         </div>
 
         {/* Elena for NavIC Section - 2 Column Layout */}
         <h2 className="text-3xl font-bold text-[var(--heading)] my-2 flex justify-center">
-            Elena for NavIC
-          </h2>
+          Elena for NavIC
+        </h2>
         <div className="grid grid-cols-12 gap-6 mt-4">
           {/* Left: Image */}
-          
 
           {/* Right: Content */}
           <div className="flex flex-col justify-center col-span-8">
             <p className="text-justify text-lg pr-10 pb-5">
-              Elena Geo has designed and developed NavIC products which are large
-              in range and depth to cater to all types of user segments. It has
-              products for research domains and high-precision applications.
-              Elena's multitude of products ranges from a dual-band antenna to a
-              complex system, customized to the user's requirements. The products
-              bring full GNSS services to user applications with all the
-              advantages of NavIC such as Availability, Accuracy, Reliability, and
-              Integrity.
+              Elena Geo has designed and developed NavIC products which are
+              large in range and depth to cater to all types of user segments.
+              It has products for research domains and high-precision
+              applications. Elena's multitude of products ranges from a
+              dual-band antenna to a complex system, customized to the user's
+              requirements. The products bring full GNSS services to user
+              applications with all the advantages of NavIC such as
+              Availability, Accuracy, Reliability, and Integrity.
             </p>
           </div>
           <div className="flex justify-center col-span-4">
             <img
               src={e2e}
-              className="rounded-lg max-h-[400px] max-w-[400px] "
+              className="rounded-lg max-h-[500px] max-w-[500px] "
               alt="Elena Journey"
             />
           </div>
