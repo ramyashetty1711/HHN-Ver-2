@@ -1,6 +1,9 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SpinnerCircularFixed } from "spinners-react";
+
+import SplashPage from "./components/Splash/SplashPage";
+import Development from "./components/Development/Development";
 import Navbar from "./components/Common/Navbar";
 import Footer from "./components/Common/Footer";
 
@@ -19,53 +22,46 @@ import About from "./components/About/About";
 
 export default function AppRoutes() {
   const routes = [
-    { path: "/", element: <About/> },
-    { path: "/background", element: <BackGround /> },
-    { path: "/necessity", element: <Necessity /> },
-    { path: "/development", element: <Development /> },
-    { path: "/trials", element: <Trials /> },
-    { path: "/features", element: <Feature /> },
-    { path: "/procurment", element: <Procurment /> },
-    { path: "/NavIC", element: <NavIC /> },
-    { path: "/elena", element: <Elena /> },
-    { path: "/contact", element: <Contact /> },
-    { path: "/help", element: <Help /> },
+    { path: "/", component: <About /> },
+    { path: "/background", component: <BackGround /> },
+    { path: "/necessity", component: <Necessity /> },
+    { path: "/development", component: <Development /> },
+    { path: "/trials", component: <Trials /> },
+    { path: "/features", component: <Feature /> },
+    { path: "/procurement", component: <Procurment /> },
+    { path: "/NavIC", component: <NavIC /> },
+    { path: "/elena", component: <Elena /> },
+    { path: "/contact", component: <Contact /> },
+    { path: "/help", component: <Help /> },
+    { path: "/about", component: <About /> },
   ];
 
   return (
     <Router>
+      {/* Outer container with full height flex column */}
       <div className="flex flex-col min-h-screen">
-        {/* Navbar at top center */}
-        <header className="">
-          <Navbar />
-        </header>
+        {/* Navbar */}
+        <Navbar />
 
-        {/* Main content takes remaining height */}
-        <main className="flex-1 flex justify-center items-center p-4">
+        {/* Main content takes remaining space */}
+        <main className="flex-1 bg-white overflow-hidden">
           <Suspense
             fallback={
               <div className="flex justify-center items-center h-full">
-                <SpinnerCircularFixed
-                  speed={200}
-                  thickness={200}
-                  size={40}
-                  color="skyblue"
-                />
+                <SpinnerCircularFixed size={40} thickness={180} speed={120} color="skyblue" />
               </div>
             }
           >
             <Routes>
-              {routes.map((route, i) => (
-                <Route key={i} path={route.path} element={route.element} />
+              {routes.map((val, idx) => (
+                <Route key={idx} path={val.path} element={val.component} />
               ))}
             </Routes>
           </Suspense>
         </main>
 
-        {/* Footer fixed at bottom */}
-        <footer className="">
-          <Footer />
-        </footer>
+        {/* Footer at the bottom */}
+        <Footer />
       </div>
     </Router>
   );

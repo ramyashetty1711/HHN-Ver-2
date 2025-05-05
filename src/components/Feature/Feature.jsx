@@ -33,11 +33,14 @@ export default function Feature() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 500, // Duration of the transition in milliseconds
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
+    autoplay: true, // Enables autoplay
+    autoplaySpeed: 3000, // Time between slides in milliseconds (3 seconds)
   };
+  
 
   return (
     <Slider {...settings}>
@@ -47,11 +50,11 @@ export default function Feature() {
           className="flex flex-col font-semibold text-lg text-white pt-6 px-6 rounded-lg h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${bgImage})` }}
         >
-          <div className="bg-blue/40 p-4 rounded-lg">
-            <h5 className="text-3xl text-[var(--heading)] mb-4 font-bold drop-shadow">
+          <div className="bg-blue/40  rounded-lg">
+            <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold  flex justify-center">
               Features
             </h5>
-            <ul className="list-disc px-8 h-[40vh] overflow-y-auto custom-scrollbar grid grid-cols-2 ">
+            <ul className="list-disc px-8 md:h-[64vh] overflow-y-auto custom-scrollbar grid md:grid-cols-2 grid-cols-1 ">
               {FeatureList.map((val, index) => (
                 <li key={index} className="text-black drop-shadow">
                   {val}
@@ -68,13 +71,13 @@ export default function Feature() {
           className="flex flex-col font-semibold text-lg text-white pt-6 px-6 rounded-lg h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${Adv})` }}
         >
-          <div className="bg-blue/40 p-4 rounded-lg">
-            <h5 className="text-3xl text-[var(--heading)] mb-4 font-bold drop-shadow">
+          <div className="bg-blue/40  rounded-lg">
+            <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold  flex justify-center">
               Advantages
             </h5>
-            <ul className="list-disc px-8 h-[40vh] overflow-y-auto custom-scrollbar">
+            <ul className="list-disc px-8 h-[65vh] overflow-y-auto custom-scrollbar">
               {advantages.map((val, index) => (
-                <li key={index} className="text-black drop-shadow mb-1">
+                <li key={index} className="text-black drop-shadow mb-6">
                   {val}
                 </li>
               ))}

@@ -1,22 +1,27 @@
 import React from "react";
 import background from "../../assets/backgroung_gc.png";
+import necessity from "../../assets/necessity_gc.png";
 
 function BackGround() {
   return (
-    <div className=" mx-auto px-4">
-      <div className="grid grid-cols-12 gap-8 items-center">
+    <div className="flex flex-col h-full bg-white py-3 px-6">
+    
+    <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+              Background
+            </h2>
+      <div className="grid grid-cols-12  items-start gap-4 ">
         {/* Image Section - centered in column */}
-        <div className="col-span-4 flex justify-center items-center">
+        <div className="md:col-span-4 col-span-12 flex justify-center items-center ">
           <img
-            src={background}
+            src={necessity}
             alt="Background Illustration"
             className="w-auto h-[20em] rounded-lg  object-contain"
           />
         </div>
 
         {/* Text Section */}
-        <div className="col-span-8 bg-white p-6 rounded-lg border-l-4 border-[var(--secondary)] mb-2">
-          <p className="text-md text-justify leading-relaxed">
+        <div className="md:col-span-8  col-span-12 rounded-lg  ">
+          <p className=" text-justify leading-relaxed ">
             This Grid Converter is state-of-the-art positioning equipment made
             using Elena's multi-GNSS processor, which utilizes NavIC, GPS, and
             GLONASS to provide one-meter accuracy without any external support.

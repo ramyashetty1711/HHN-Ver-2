@@ -7,6 +7,9 @@ import Artillery from "../../assets/HOME/Artillery.png";
 import GC from "../../assets/HOME/Grid_Converter.png";
 import Elena from "../../assets/HOME/Elena.jpeg";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const ImageSlider = () => {
   const sliderRef = useRef(null);
 
@@ -17,25 +20,41 @@ const ImageSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     arrows: false,
   };
 
   const images = [NavIC, Artillery, GC, Elena];
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto my-6">
+    <div className="relative w-full  overflow-hidden  h-[calc(100vh-13em)] ">
+      <button
+        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000"
+        onClick={() => sliderRef.current?.slickPrev()}
+      >
+        <FaChevronCircleLeft />
+      </button>
+      <button
+        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000"
+        onClick={() => sliderRef.current?.slickNext()}
+      >
+        <FaChevronCircleRight />
+      </button>
+
       <Slider ref={sliderRef} {...settings}>
-        {images.map((src, index) => (
-          <div key={index} className="flex justify-center items-center">
-            <img
-              src={src}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-[60vh] object-contain sm:h-[50vh] md:h-[60vh] rounded-md"
-            />
-          </div>
-        ))}
-      </Slider>
+  {images.map((src, index) => (
+    <div key={index}>
+      <div className="flex justify-center items-center h-[calc(100vh-15em)]">
+      <img
+  src={src}
+  alt={`slide-${index}`}
+  className="w-full h-full object-contain mx-auto"
+/>
+      </div>
+    </div>
+  ))}
+</Slider>
+
     </div>
   );
 };

@@ -65,53 +65,54 @@ export default function Contact() {
   };
 
   return (
-    <div className="mx-auto px-4 py-8 space-y-16">
-      <div className="grid grid-cols-12 gap-4">
-        <div className="md:col-span-5 col-span-12 flex justify-center items-center">
-          <div className="bg-[var(--secondary)] p-20 rounded-lg shadow-md w-full max-w-md ">
-            <h2 className="text-2xl text-[var(--heading)] mb-2">
-              Get in Touch with Us
-            </h2>
-            <p className="text-gray-600 text-sm">
-              We’d love to hear from you.
-              <br />
-              Reach out anytime using the details below.
-            </p>
-            <div className="space-y-4 mt-5 text-lg">
-              <ul className="flex flex-col justify-center space-y-3">
-                <li className="flex flex-col items-start gap-2">
-                  <div className="flex items-center gap-2">
-                    <FaEnvelope size={18} color="#004080" />
-                    <a href="mailto:info@elenageo.com" className="">
-                      info@elenageo.com
-                    </a>
-                  </div>
-                  <div className="pl-6">
-                    <a
-                      href="mailto:sales@elenageo.com"
-                      className=""
-                    >
-                      sales@elenageo.com
-                    </a>
-                  </div>
-                </li>
-                <li className="flex flex-col items-start gap-2">
-  <div className="flex items-center gap-2">
-    <FaPhoneAlt size={18} color="#004080" />
-    <a href="tel:+919384864411" >+91 9384864411</a>
-  </div>
-  <div className="pl-6">
-    <a href="tel:+919384864422" >+91 9384864422</a>
-  </div>
-</li>
-
-              </ul>
-            </div>
-          </div>
+    <div className="flex flex-col h-full bg-white py-3 px-6">
+      <div className="grid grid-cols-12 ">
+      
+      <div className="md:col-span-4 col-span-12 flex justify-center items-start px-10 py-6">
+      <div className="w-full max-w-md">
+        <h2 className="text-2xl text-[var(--heading)] mb-4">
+          Get in Touch with Us
+        </h2>
+        <p className="text-gray-600 text-sm mb-6">
+          We’d love to hear from you.
+          <br />
+          Reach out anytime using the details below.
+        </p>
+        <div className="space-y-6 mt-5 text-lg">
+          <ul className="flex flex-col justify-center space-y-4">
+            <li className="flex flex-col items-start gap-3">
+              <div className="flex items-center gap-3">
+                <FaEnvelope size={20} color="#004080" />
+                <a href="mailto:info@elenageo.com" className="text-lg">
+                  info@elenageo.com
+                </a>
+              </div>
+              <div className="pl-8">
+                <a href="mailto:sales@elenageo.com" className="text-lg">
+                  sales@elenageo.com
+                </a>
+              </div>
+            </li>
+            <li className="flex flex-col items-start gap-3">
+              <div className="flex items-center gap-3">
+                <FaPhoneAlt size={20} color="#004080" />
+                <a href="tel:+919384864411" className="text-lg">
+                  +91 9384864411
+                </a>
+              </div>
+              <div className="pl-8">
+                <a href="tel:+919384864422" className="text-lg">
+                  +91 9384864422
+                </a>
+              </div>
+            </li>
+          </ul>
         </div>
+      </div>
+    </div>
 
-        <div className="md:col-span-7 col-span-12 px-10">
-          <h2 className="text-2xl mb-10 text-[var(--heading)]">
+        <div className="md:col-span-8 col-span-12 px-10 py-6">
+          <h2 className="text-2xl mb-2 text-[var(--heading)]">
             Have Questions? Message Us!
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
