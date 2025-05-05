@@ -10,7 +10,6 @@ const Navbar = () => {
 
   const MenuElements = [
     { link: "/", display: "Home" },
-    { link: "/background", display: "Background" },
     { link: "/necessity", display: "Necessity" },
     { link: "/development", display: "Development" },
     { link: "/trials", display: "Trials" },
@@ -19,7 +18,7 @@ const Navbar = () => {
     { link: "/NavIC", display: "NavIC" },
     { link: "/elena", display: "Elena" },
     { link: "/contact", display: "Contact Us" },
-    { link: "/help", display: "Help" }
+    { link: "/faq", display: "FAQ" }
   ];
 
   return (
@@ -30,7 +29,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <img
               src={Elena}
-              className="h-[50px] bg-white p-1 rounded-md cursor-pointer"
+              className="h-[50px] bg-white p-1 roun ded-md cursor-pointer"
               alt="Elena Logo"
               onClick={() => window.location.reload()}
             />

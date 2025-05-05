@@ -8,7 +8,24 @@ import { FaArrowCircleDown } from "react-icons/fa";
 export default function Development() {
   return (
     <div className="flex flex-col h-full bg-white py-3 px-6">
-      <div className="bg-white ">
+      
+      <div className="grid grid-cols-12 ">
+      <div className="md:col-span-3 col-span-12 flex justify-center items-center flex-col h-full gap-8">
+  <img
+    src={black}
+    alt="Device"
+    className="w-[200px] object-cover mb-4" // Added margin-bottom for spacing
+  />
+  <img
+    src={GC_Device}
+    alt="Device"
+    className="w-[100px] object-cover"
+  />
+</div>
+
+
+        <div className=" md:col-span-9 col-span-12"> 
+       
         <h2 className="text-xl font-bold text-[var(--heading)] mt-4 mb-2  flex justify-center">
           Proof of Concept (POC) Demonstrated to COAS
         </h2>
@@ -17,21 +34,9 @@ export default function Development() {
           of Army Staff (COAS), was a basic prototype designed specifically for
           a single zone (Delhi). This simplified version served as a feasibility
           demonstration, showcasing the potential for grid conversion
-          functionality. However, the scope was later expanded to cover all
-          zones across India, necessitating significant upgrades to both
-          hardware and software components.
+          functionality. 
         </p>
-      </div>
-      <div className="grid grid-cols-12 ">
-      <div className="md:col-span-3 col-span-12 flex justify-center items-center  h-full">
-  <img
-    src={black}
-    alt="Device"
-    className="w-[200px] object-cover"
-  />
-</div>
-
-        <div className=" md:col-span-9 col-span-12"> 
+   
         <h2 className="text-xl font-bold text-[var(--heading)] my-2 flex justify-center">
            Prototype
         </h2>
@@ -53,35 +58,11 @@ export default function Development() {
             this device was demonstrated to HAL where it garnered interest for
             potential procurement and other operational uses.
         </p>
-      </div>
-      </div>
-
-      
-
-      {/* Grid Section */}
-      <div className="grid grid-cols-12 gap-2 items-start ">
-        {/* Image Column */}
-        <div className="col-span-12 md:col-span-3 flex flex-col items-center justify-center">
-          {/* <img src={GC_from} alt="Device From" className="w-[100px]" />
-          <FaArrowCircleDown
-            size={25}
-            className="text-[var(--primary)] mt-4 mb-2"
-          /> */}
-          <img
-            src={GC_Device}
-            alt="Device"
-            className="w-[100px] object-cover"
-          />
-        </div>
-
-        {/* Text Column */}
-        <div className="col-span-12 md:col-span-9 bg-white ">
-          <h2 className="text-xl font-bold text-[var(--heading)] my-2 flex justify-center">
+        <h2 className="text-xl font-bold text-[var(--heading)] my-2 flex justify-center">
             Final Design
           </h2>
           <p className="text-justify ">
-            Elena Geo Tech was contacted by ADG Mil Svy and Arty Dte to develop
-            this equipment. As a result, the product has been developed into a
+            A small instrument was created As a result, the product has been developed into a
             full-fledged military device by Elena and is being sold through GeM.
             The development took about 12 months, mainly due to the need to
             develop the correct algorithm to ensure accurate conversion across
@@ -93,8 +74,13 @@ export default function Development() {
             anyone else; hence, the product is proprietary to the development
             partner, EGT.
           </p>
-        </div>
       </div>
+      </div>
+
+      
+
+      {/* Grid Section */}
+     
     </div>
   );
 }

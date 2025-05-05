@@ -11,9 +11,9 @@ export default function About() {
 
   {/* Description Text */}
   <div className="text-center px-2">
-    <p className="text-2xl font-bold text-gray-800 tracking-wide leading-relaxed">
-      <span className="text-[var(--primary)]">Grid Converter</span> is a special tool to bring
-      <span className="text-[var(--primary)]"> Artillery Network</span> into one Grid.
+    <p className="text-2xl font-bold tracking-wide leading-relaxed text-[var(--primary)]">
+     Grid Converter is a special tool to bring
+   Artillery Network into one Grid.
     </p>
   </div>
 

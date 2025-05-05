@@ -21,19 +21,32 @@
     },
     {
       "title": "Which Lat-Long formats are supported?",
-      "description": "Decimal Degrees: DDD.DDDDD, Degrees, Minutes, Seconds: DDD° MM' SS.S''."
+      "description": "Decimal Degrees: DDD.DDDDD, Degrees, Minutes, Seconds: DDD° MM' SS.S''."  
     },
     {
       "title": "What is the accuracy level of the device?",
       "description": "The device provides 1-meter Circular Error Probable (CEP) accuracy."
     },
     {
-      "title": "What is the Time to First Fix (TTFF)?",
-      "description": "Less than 2 minutes."
+      "title": "How to use the device",
+      "description": "You can go through the user manual.",
+      "file": "/pdfs/user_manual.pdf",
+      "downloadName": "Elena_User_Manual.pdf",
+      "linkText": "Click here to download"
     },
     {
-      "title": "What are the device dimensions?",
-      "description": "45 mm (W) × 22 mm (H) × 183 mm (L)."
+      "title": "What are the additional features and advantages of the device?",
+      "description": "You can go through the product brochure for additional information.",
+      "file": "/pdfs/product_brochure.pdf",
+      "downloadName": "Elena_Product_Brochure.pdf",
+      "linkText": "Click here to download"
+    },
+    {
+      "title": "How to rectify the specific problem condition of the device?",
+      "description": "If facing any inconvenience, please go through the PDF.",
+      "file": "/pdfs/troubleshooting.pdf",
+      "downloadName": "Elena_Troubleshooting_Guide.pdf",
+      "linkText": "Click here to download"
     }
   ]
   

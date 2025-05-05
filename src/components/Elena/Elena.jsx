@@ -24,45 +24,7 @@ function Elena() {
   return (
     <div className="flex flex-col h-full bg-white py-3 px-6">
       {/* Section 1: Our Journey */}
-      <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-        Our Journey
-      </h2>
-      <div className="grid grid-cols-12 gap-6 mt-4">
-        <div className="flex justify-center col-span-12 md:col-span-6">
-          <img
-            src={journey}
-            className="max-h-[500px] max-w-[600px] rounded-lg"
-            alt="Elena Journey"
-          />
-        </div>
-        <div className="flex flex-col justify-center col-span-12 md:col-span-6">
-          <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
-            Elena Geo was founded for developing NavIC-based monitoring Systems.
-            It works only in this niche segment and has been marketing solutions
-            since 2013. It has End-to-End presence in the NavIC-based PNT
-            domain. Elena Geo distinguishes itself by providing unique and
-            forefront services within the industry.
-            <br />
-            <br />
-            Elena Geo embarked on its journey with a distinct vision to address
-            India's navigation needs through the development of ground-based
-            electronics and solutions utilizing Indian satellites. The choice of
-            the name "Elena" reflects the company's commitment to guiding and
-            illuminating new paths, aligning with its overarching goal.
-            <br />
-            <br />
-            Elena Geo delivers a diverse range of products and services tailored
-            to the NavIC-based navigation sector. The core principles of these
-            solutions lie in a commitment to achieving the utmost accuracy,
-            pioneering technology, and affordability.
-          </p>
-          <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
-            Elena Geo was founded at Technology Business Incubator (TBI) at IIT
-            Kharagpur in 2012 and has quickly emerged as a pioneer in navigation
-            technology. Here's a brief look at its journey.
-          </p>
-        </div>
-      </div>
+     
 
       {/* Section 2: Elena for NavIC - Slider */}
       <div className="relative">
@@ -83,7 +45,9 @@ function Elena() {
         </button>
 
         <Slider ref={sliderRef} {...settings}>
+        
           {/* Slide 1 */}
+          
           <div className="">
             <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
               Elena for NavIC
@@ -92,7 +56,7 @@ function Elena() {
             <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
                   src={e2e}
-                  className="w-full h-auto max-h-[400px] object-contain"
+                  className="w-full h-full object-cover"
 
                   alt="Elena for NavIC"
                 />
@@ -109,6 +73,52 @@ function Elena() {
                   NavIC such as Availability, Accuracy, Reliability, and
                   Integrity.
                 </p>
+              </div>
+
+              
+            </div>
+          </div>
+
+          <div className="">
+            <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+             Our Journey
+            </h2>
+            <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
+            <div className="col-span-12 md:col-span-4 flex">
+  <img
+    src={journey}
+    className="w-full h-full object-cover"
+    alt="Elena for NavIC"
+  />
+</div>
+
+              <div className="col-span-12 md:col-span-8 flex flex-col justify-center">
+                
+                <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
+            Elena Geo was founded for developing NavIC-based monitoring Systems.
+            It works only in this niche segment and has been marketing solutions
+            since 2013. It has End-to-End presence in the NavIC-based PNT
+            domain. Elena Geo distinguishes itself by providing unique and
+            forefront services within the industry.
+            
+            <br />
+            Elena Geo embarked on its journey with a distinct vision to address
+            India's navigation needs through the development of ground-based
+            electronics and solutions utilizing Indian satellites. The choice of
+            the name "Elena" reflects the company's commitment to guiding and
+            illuminating new paths, aligning with its overarching goal.
+            
+            <br />
+            Elena Geo delivers a diverse range of products and services tailored
+            to the NavIC-based navigation sector. The core principles of these
+            solutions lie in a commitment to achieving the utmost accuracy,
+            pioneering technology, and affordability.
+            <br/>
+            Elena Geo was founded at Technology Business Incubator (TBI) at IIT
+            Kharagpur in 2012 and has quickly emerged as a pioneer in navigation
+            technology. Here's a brief look at its journey.
+          </p>
+              
               </div>
 
               

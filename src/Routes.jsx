@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SpinnerCircularFixed } from "spinners-react";
 
 import SplashPage from "./components/Splash/SplashPage";
-import Development from "./components/Development/Development";
 import Navbar from "./components/Common/Navbar";
 import Footer from "./components/Common/Footer";
 
@@ -19,6 +18,7 @@ import Elena from "./components/Elena/Elena";
 import Contact from "./components/Contact/Contact";
 import Help from "./components/Help/Help";
 import About from "./components/About/About";
+import Feedback from "./components/Feedback/Feedback";
 
 export default function AppRoutes() {
   const routes = [
@@ -32,8 +32,9 @@ export default function AppRoutes() {
     { path: "/NavIC", component: <NavIC /> },
     { path: "/elena", component: <Elena /> },
     { path: "/contact", component: <Contact /> },
-    { path: "/help", component: <Help /> },
+    { path: "/faq", component: <Help /> },
     { path: "/about", component: <About /> },
+    {path:"/feedback",component:<Feedback/>}
   ];
 
   return (
@@ -48,7 +49,7 @@ export default function AppRoutes() {
           <Suspense
             fallback={
               <div className="flex justify-center items-center h-full">
-                <SpinnerCircularFixed size={40} thickness={180} speed={120} color="skyblue" />
+                <SpinnerCircularFixed size={40} thic  kness={180} speed={120} color="skyblue" />
               </div>
             }
           >

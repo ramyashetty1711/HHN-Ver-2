@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import pricing from "../../assets/gc_price.png";
-import { FaDownload, FaYoutube, FaExternalLinkAlt, FaArrowRight, FaEye } from "react-icons/fa";
+import {
+  FaDownload,
+  FaEye,
+} from "react-icons/fa";
 import tech from "../../assets/Documents/GC_Tech_spe.pdf";
 import co from "../../assets/Documents/PAC_Cos.pdf";
 import oem from "../../assets/Documents/PAC_Grid_Converter.pdf";
@@ -15,10 +18,11 @@ function Procurment() {
   };
 
   const documents = [
+    { title: "Tech Specs", link: tech },
+    {title:"Collection Process", oem},
     { title: "PAC by OEM", link: oem },
     { title: "PAC by CO", link: co },
     { title: "COC", link: coc },
-    { title: "Tech Specs", link: tech },
   ];
 
   return (
@@ -27,86 +31,85 @@ function Procurment() {
         Procurement
       </h2>
 
-      <div className="text-justify">
-        <p className="mb-1">
-          The final version of the grid converter, incorporating all enhancement
-          and user-requested features, is a robust, military-grade device tailored
-          for operational requirements. The device is available on GeM on which
-          people can procure{" "}
-          <a
-            className="text-[var(--primary)] underline inline-flex items-center"
-            href="https://mkp.gem.gov.in/hand-held-gps/elena-grid-converter/p-5116877-91668625108-cat.html"
-            target="_blank"
-            title="Visit GeM"
-          >
-            Normal costing
-          </a>.
-        </p>
+      {/* Main Grid Row: 8 + 4 column layout */}
+      <div className="grid grid-cols-12 gap-10">
+        {/* Left: Text Content */}
+        <div className="text-justify col-span-12 md:col-span-9">
+  <p className="mb-1">
+    The final version of the Grid Converter, incorporating all enhancements and user-friendly features,
+    is a robust, military-grade device qualified for operational requirements. The device can be procured
+    vide the link provided{" "}
+    <a
+      className="text-[var(--primary)] underline inline-flex items-center"
+      href="https://gem.gov.in/"
+      target="_blank"
+      title="Visit GeM"
+    >
+      GeM
+    </a>.
+  </p>
 
-        <p className="mb-1">
-          The dedicated equipment, as per the instructions of Arty Directorate, should
-          be procured directly. The initial set of 2 equipment will be given under ₹1
-          Lakh, inclusive of all taxes.{" "}
-          <a
-            className="text-[var(--primary)] underline inline-flex items-center"
-            href="https://mkp.gem.gov.in/hand-held-gps/elena-navic-grid-converter-limited-edition/p-5116877-24745995044-cat.html"
-            target="_blank"
-            title="Visit GeM"
-          >
-            Discount of costing as per the instruction of Arty Dte
-          </a>.
-        </p>
+  <p className="mb-1">
+    As per the instructions issued by the Arty Directorate, the Grid Converter can be procured directly from
+    the OEM, and the initial set of 2 devices is priced under ₹1 lakh (inclusive of all taxes). The link for the{" "}
+    <strong>ibid promotional sale</strong>, as instructed by the Arty Directorate, is available{" "}
+    <a
+      className="text-[var(--primary)] underline inline-flex items-center"
+      href="https://mkp.gem.gov.in/hand-held-gps/elena-navic-grid-converter-limited-edition/p-5116877-24745995044-cat.html"
+      target="_blank"
+      title="Visit GeM"
+    >
+      here
+    </a>.
+  </p>
 
-        <p>
-          This should be procured through GeM. The proprietary procurement process
-          document is attached.{" "}
-          <a
-            href={ProcurementPDF}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--primary)] underline"
-          >
-            Procurement Process Document
-          </a>.
-        </p>
-      </div>
+  
+  <p>
+    All subsequent procurements will be as per the standard pricing. The link for the same is provided{" "}
+    <a
+      className="text-[var(--primary)] underline inline-flex items-center"
+      href="https://mkp.gem.gov.in/hand-held-gps/elena-grid-converter/p-5116877-91668625108-cat.html"
+      target="_blank"
+      title="Visit GeM"
+    >
+      here (Normal Costing)
+    </a>.
+  </p>
+  <p className="mb-1">
+    Guidance for the procurement through GeM is provided{" "}
+    <a
+      href={ProcurementPDF}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-[var(--primary)] underline"
+    >
+      here
+    </a>.
+  </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-        {documents.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => toggleIndex(index)} // Toggle on mobile
-            className="relative group bg-[var(--secondary)] text-black font-semibold p-2 rounded-lg shadow flex items-center justify-center overflow-hidden cursor-pointer"
-          >
-            {/* Icons Layer */}
-            <div
-              className={`absolute top-0 left-0 right-0 bottom-0 transition-opacity duration-300 flex justify-center items-center w-full z-10 bg-white/80 ${
-                activeIndex === index ? "opacity-100" : "opacity-0"
-              } group-hover:opacity-100`}
-            >
-              <div className="flex gap-4">
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center text-[var(--primary)] p-3 rounded-full transition"
-                >
-                  <FaEye size={20} />
-                </a>
-                <a
-                  href={item.link}
-                  download
-                  className="flex items-center justify-center text-[var(--primary)] p-3 rounded-full transition"
-                >
-                  <FaDownload size={20} />
-                </a>
-              </div>
-            </div>
+</div>
 
-            {/* Title Text */}
-            <span className="z-0 relative">{item.title}</span>
-          </div>
-        ))}
+
+        {/* Right: Document Cards */}
+        <div className="col-span-12 md:col-span-3 flex flex-col gap-4">
+  {documents.map((item, index) => (
+    <div
+      key={index}
+      className="bg-[var(--secondary)] text-black font-semibold px-2 py-1 rounded-lg shadow flex items-center justify-between"
+    >
+      <span>{item.title}</span>
+      <a
+        href={item.link}
+        download={`${item.title.replace(/\s+/g, ' ')}.pdf`} // Replace spaces with underscores and add the .pdf extension
+        className="text-[var(--primary)] p-2 rounded-full transition"
+      >
+        <FaDownload size={20} />
+      </a>
+    </div>
+  ))}
+</div>
+
+
       </div>
     </div>
   );
