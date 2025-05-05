@@ -3,21 +3,25 @@ import trialsimg from "../../assets/Trials.jpg";
 
 export default function Trials() {
   return (
-    <div className="mx-auto max-w-7xl px-4 pt-12 pb-8">
-      {/* <h2 className="text-3xl font-bold text-[var(--heading)] mb-8">Trials</h2> */}
+    <div  className="flex flex-col h-full bg-white py-3 px-6">
+      <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+              Trials
+            </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-5">
-        <p className="text-xl font-bold text-[var(--heading)] my-2 flex justify-center">Field Testing and Trials of Elena Handheld Devices</p>
-          <img
-            src={trialsimg}
-            alt="Trials"
-            className="w-full h-auto rounded shadow-md"
-          />
-          
-        </div>
-        <div className="md:col-span-7 text-justify space-y-4 text-gray-700 text-md">
-          <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-[var(--secondary)] mb-2">
+      <div className="grid grid-cols-12 ">
+      <div className="md:col-span-4 col-span-12 flex flex-col items-center justify-start">
+  <p className="text-sm font-bold text-[var(--heading)]  text-center">
+    Field Testing and Trials of Elena Handheld Devices
+  </p>
+  <img
+    src={trialsimg}
+    alt="Trials"
+    className="h-[60vh] w-auto"
+  />
+</div>
+
+        <div className="md:col-span-8 col-span-12">
+          <div className="text-justify">
           <p>
             Indian army is migrating from Everest series map (ESM) to Defence
             Series Map (DSM), to give proper support to the environment Indian
@@ -28,7 +32,7 @@ export default function Trials() {
             (PoC). After Chief of Army Staff (COAS) approval, Elena Geo Tech Pvt
             Ltd was selected as the industrial partner to scale production.
           </p>
-          <p className="mt-2">
+          <p >
           Following successful field trials at five artillery units across
             India, including the School of Artillery’s Training and Testing Wing
             (TTW), the device was confirmed to be error-proof and operationally

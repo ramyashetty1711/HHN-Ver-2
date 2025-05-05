@@ -5,11 +5,10 @@
   font-weight: 400;
   font-family: "Inter", sans-serif;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  --primary: #004080;
+  color: black;
+  --primary: #004080; 
   --secondary: #caf0f8;
-  --heading: #630000;
+  --heading: #004080;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

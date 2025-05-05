@@ -3,18 +3,22 @@ import ImageSlider from "./ImageSlider";
 export default function About() {
   return (
     <>
-      <div className="flex flex-col  font-semibold text-lg text-gray-600 bg-white pt-3 px-3 rounded-lg h-full   pr-2">
-        <div className=" w-full min-h-[35vh] mb-[5em]">
-          <ImageSlider />
-        </div>
-        <div className="flex justify-center mb-5">
-          <div className="px-8 py-6 border-l-8 border-[var(--primary)] rounded-xl shadow-xl max-w-4xl">
-            <p className="text-2xl font-bold text-center text-gray-800 tracking-wide leading-relaxed">
-              <span className="text-[var(--primary)]">Grid Converter</span> is a
-              special tool to bring Arty Net into one grid
-            </p>
-          </div>
-        </div>
+     <div className="flex flex-col h-full bg-white font-semibold text-lg py-3 px-6">
+  {/* Image Slider */}
+  <div className="mb-4">
+    <ImageSlider />
+  </div>
+
+  {/* Description Text */}
+  <div className="text-center px-2">
+    <p className="text-2xl font-bold text-gray-800 tracking-wide leading-relaxed">
+      <span className="text-[var(--primary)]">Grid Converter</span> is a special tool to bring
+      <span className="text-[var(--primary)]"> Artillery Network</span> into one Grid.
+    </p>
+  </div>
+
+
+     
 
         {/* <div className=" px-4 ">
           <h4 className=" text-stone-800 mb-6 text-lg">

@@ -1,7 +1,8 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SplashPage from "./components/Splash/SplashPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SpinnerCircularFixed } from "spinners-react";
+
+import SplashPage from "./components/Splash/SplashPage";
 import Development from "./components/Development/Development";
 import Navbar from "./components/Common/Navbar";
 import About from "./components/About/About";
@@ -18,132 +19,48 @@ import Home from "./components/Home/Home";
 import Footer from "./components/Common/Footer";
 
 export default function AppRoutes() {
-  const RouteElements = [
-    {
-      path: "/",
-      component: <Home />,
-    },
-    {
-      path: "/background",
-      component: <BackGround />,
-    },
-    {
-      path: "/necessity",
-      component: <Necessity />,
-    },
-    {
-      path: "/development",
-      component: <Development />,
-    },
-    {
-      path: "/trials",
-      component: <Trials />,
-    },
-    {
-      path: "/features",
-      component: <Feature />,
-    },
-    {
-      path: "/procurment",
-      component: <Procurment />,
-    },
-    {
-      path: "/NavIC",
-      component: <NavIC />,
-    },
-    {
-      path: "elena",
-      component: <Elena />,
-    },
-    {
-      path: "/contact",
-      component: <Contact />,
-    },
-    {
-      path: "/help",
-      component: <Help />,
-    },
+  const routes = [
+    { path: "/", component: <About /> },
+    { path: "/background", component: <BackGround /> },
+    { path: "/necessity", component: <Necessity /> },
+    { path: "/development", component: <Development /> },
+    { path: "/trials", component: <Trials /> },
+    { path: "/features", component: <Feature /> },
+    { path: "/procurement", component: <Procurment /> },
+    { path: "/NavIC", component: <NavIC /> },
+    { path: "/elena", component: <Elena /> },
+    { path: "/contact", component: <Contact /> },
+    { path: "/help", component: <Help /> },
+    { path: "/about", component: <About /> },
   ];
-  const SuspenseFallback = (Component) => (
-    <Suspense
-      fallback={
-        <div className=" tw-min-h-[25vh] d-flex justify-content-center align-items-center">
-          {" "}
-          <Spinner
-            style={{
-              height: "1.5em",
-              width: "1.5em",
-              color: "#745236",
-            }}
-            className="p-1"
-          />
-        </div>
-      }
-    >
-      <Component />
-    </Suspense>
-  );
 
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route>
-            <Route element={<Navbar />}>
-              <Route
-                path="/"
-                element={
-                  <Suspense
-                    fallback={
-                      <div className="  d-flex justify-content-center align-items-center">
-                        {" "}
-                        <SpinnerCircularFixed
-                          speed={200}
-                          thickness={200}
-                          size={20}
-                          color="sky"
-                          className="p-1"
-                        />
-                      </div>
-                    }
-                  >
-                    <About />
-                  </Suspense>
-                }
-              />
+    <Router>
+      {/* Outer container with full height flex column */}
+      <div className="flex flex-col min-h-screen">
+        {/* Navbar */}
+        <Navbar />
 
-              {RouteElements.map((val) => (
-                <Route element={val.component} path={val.path} />
+        {/* Main content takes remaining space */}
+        <main className="flex-1 bg-white overflow-hidden">
+          <Suspense
+            fallback={
+              <div className="flex justify-center items-center h-full">
+                <SpinnerCircularFixed size={40} thickness={180} speed={120} color="skyblue" />
+              </div>
+            }
+          >
+            <Routes>
+              {routes.map((val, idx) => (
+                <Route key={idx} path={val.path} element={val.component} />
               ))}
-            </Route>
-          </Route>
-        </Routes>
-        <Footer />
-      </Router>
+            </Routes>
+          </Suspense>
+        </main>
 
-      {/* <CustomToast
-        icon={toastData.icon}
-        color={toastData.color}
-        header={toastData.header}
-        body={toastData.body}
-        show={toastData.show}
-        toggleShow={hideToast}
-      /> */}
-    </>
+        {/* Footer at the bottom */}
+        <Footer />
+      </div>
+    </Router>
   );
 }
-
-const PrivateRoute = ({ path, isAuthenticated, component: Component }) => {
-  return (
-    <Route
-      path={path}
-      render={(props) =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          (window.location.href = "/")
-        )
-      }
-    />
-  );
-};

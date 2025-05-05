@@ -13,9 +13,9 @@ function Footer() {
     { path: "/help", label: "Help" },
   ];
   return (
-    <div className="min-h-[200px] bg-[var(--primary)] px-4 pt-10 ">
-      <div className="grid grid-cols-12 gap-8 border-b-1 border-white pb-7">
-        {/* Column 1: Powered by */}
+    <div className=" bg-[var(--primary)] py-2 ">
+      {/* <div className="grid grid-cols-12 gap-8 border-b-1 border-white pb-7">
+  
         <div className="col-span-4 flex items-start flex-col gap-5 justify-center">
           <div className="inline-flex items-center gap-3 bg-[var(--secondary)] p-4 rounded-lg w-max">
             <p className="text-2xl font-semibold tracking-wide text-black/80">
@@ -55,7 +55,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* Column 2: Page Links */}
         <div className="col-span-4 text-left">
           <p className="text-[var(--secondary)] text-lg font-semibold tracking-wide mb-2">
             Quick Links
@@ -75,7 +74,6 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Column 3: Contact Info or More */}
         <div className="col-span-4 text-left">
           <p className="text-[var(--secondary)] text-lg font-semibold tracking-wide mb-2">
             Reach Out
@@ -114,15 +112,15 @@ function Footer() {
             </li>
           </ul>
         </div>
-      </div>
-      <div className="grid grid-cols-12 gap-8 py-2">
+      </div> */}
+
         <div className="col-span-12 flex justify-center items-center">
           <p className="text-sm text-white">
-            copyright &copy; {new Date().getFullYear()} Elena Geo Systems. All
+             &copy; {new Date().getFullYear()} Elena Geo Tech. All
             rights reserved
           </p>
         </div>
-      </div>
+      
     </div>
   );
 }
