@@ -3,47 +3,37 @@ import trialsimg from "../../assets/Trials.jpg";
 
 export default function Trials() {
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6">
-      <div className="grid grid-cols-12 ">
-        <div className="md:col-span-5 col-span-12 flex flex-col items-center justify-start">
+    <div className="flex flex-col md:min-h-[50vh] md:h-[71vh] xl:h-[78vh] bg-white py-3 px-6">
+      
+
+      <div className="grid grid-cols-12 h-full gap-6 ">
+        <div className="md:col-span-6 col-span-12 flex flex-col items-center justify-start h-full">
           <p className="text-sm font-bold text-[var(--heading)]  text-center">
             Field Testing and Trials of Elena Handheld Devices
           </p>
-          <img src={trialsimg} alt="Trials" className="h-[60vh]  w-auto" />
+          <img
+            src={trialsimg}
+            alt="Trials"
+            className="md:h-[70%] xl:h-[85%] w-fit"
+          />
         </div>
 
-        <div className="md:col-span-7 col-span-12">
-          <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-            Trials
-          </h2>
+        <div className="md:col-span-6 col-span-12">
           <div className="text-justify">
+          <h2 className="text-2xl font-bold text-[var(--heading)] mb-2 flex justify-center">
+        Trials
+      </h2>
             <p>
-              Currently, the Indian Army is transitioning from ESM to DSM.
-              However, the transition is a complex, time-consuming process and a
-              logistical cum operational challenge. Moreover, with use of
-              Lat-Long systems in various equipment, all three reference systems
-              coexist for operational purposes. Thus, there arose a critical
-              need for a device that can seamlessly convert and display all
-              three reference systems viz ESM, DSM, and Lat-Long. Consequently,
-              ADG Mil Svy tasked by the DGMO demonstrated a proof-of-concept
-              device covering Delhi zone, to the COAS, who directed that a
-              scalable device be developed for use by Arty units. Following the
-              COAS approval, Additional Director General Military Survey (ADG
-              Mil Survey), which had developed a prototype Proof of Concept
-              (PoC), approached Elena Geo Tech Pvt Ltd and selected it as the
-              industrial partner to scale production. Conversion of data from
-              ESM with a complex numbering system and based on Everest Spheroid
-              Data to DSM based on WGS 84 datum with an international numbering
-              system is quite complex. Hence, graduating from PoC for one zone
-              to a solution covering all zones in the Indian subcontinent region
-              was a challenging and time-consuming task. After successfully
-              developing a prototype covering all regions few devices were
-              deployed for testing across various sectors from east to west.
-              Following successful field trials at five artillery units and the
-              School of Artillery’s Training and Testing Wing (TTW), the device
-              was confirmed to be error-proof and operationally reliable. The
-              Artillery Directorate then approved its procurement by arty units.
+              The final product which was developed at a rapid pace by Elena Geo
+              Tech in consultation with ADG Mil Svy and Dte of Arty, was sent
+              for field trials. The Arty Dte decided to have the product field
+              evaluated at five different locations covering the entire country.
+              This included the School of Arty wherein The Trails and Technology
+              wing was involved. On successful completion of trials, all user
+              inputs were incorporated in the final product. This product is now
+              available for use by Arty Units.
             </p>
+            
           </div>
           {/* <p>
             The device underwent rigorous verification by ADG Mil Survey teams

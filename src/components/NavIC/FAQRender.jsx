@@ -17,13 +17,13 @@ const FAQItem = ({ data, isActive, onClick }) => {
     <div className="border-b border-gray-300">
       <button
         onClick={onClick}
-        className="w-full text-left px-4 py-3  !bg-white !font-semibold text-gray-800 hover:bg-gray-100 transition flex flex-row justify-between items-center border-2 border-gray-300"
+        className="w-full text-left px-4 py-3 !bg-white !font-semibold text-gray-800 hover:bg-gray-100 transition flex flex-row justify-between items-center border-2 border-gray-300"
         aria-expanded={isActive}
       >
-        {data?.title ?? "Untitled"}{" "}
+        {data?.title ?? "Untitled"}
         <FaChevronDown
           className={`${
-            isActive ? " rotate-[180deg]" : ""
+            isActive ? "rotate-[180deg]" : ""
           } transition-all duration-300`}
         />
       </button>
@@ -31,15 +31,27 @@ const FAQItem = ({ data, isActive, onClick }) => {
       <div
         ref={contentRef}
         style={{ maxHeight: height }}
-        className="overflow-hidden transition-all duration-300 ease-in-out px-6  text-md text-gray-500 "
+        className="overflow-hidden transition-all duration-300 ease-in-out px-6 text-md text-gray-500"
       >
         <div className="pb-4 space-y-3 pt-2 py-8">
+          {/* Descriptions */}
           {data?.description && <p>{data.description}</p>}
           {data?.description1 && <p>{data.description1}</p>}
           {data?.description2 && <p>{data.description2}</p>}
           {data?.description3 && <p>{data.description3}</p>}
 
-          {/* Aspects List */}
+          {/* Download Link */}
+          {data?.file && data?.downloadName && data?.linkText && (
+            <a
+              href={data.file} 
+              download={`${data.downloadName.replace(/\s+/g, "_")}`} // Replace spaces with underscores in filename
+              className="text-[var(--primary)] p-2 rounded-full transition"
+            >
+              {data.linkText}
+            </a>
+          )}
+
+          {/* Aspect List */}
           {data?.aspectTitle && (
             <p className="font-semibold text-gray-800">{data.aspectTitle}</p>
           )}
@@ -53,8 +65,8 @@ const FAQItem = ({ data, isActive, onClick }) => {
 
           {/* Table Rendering */}
           {data?.tableHeading?.[0] && data?.tableData?.length > 0 && (
-            <div className="overflow-x-auto ">
-              <table className="table-auto w-full text-left  border border-gray-300">
+            <div className="overflow-x-auto">
+              <table className="table-auto w-full text-left border border-gray-300">
                 <thead className="bg-gray-100 text-gray-800">
                   <tr>
                     <th className="p-2 border">

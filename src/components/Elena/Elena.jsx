@@ -24,7 +24,6 @@ function Elena() {
   return (
     <div className="flex flex-col h-full bg-white py-3 px-6">
       {/* Section 1: Our Journey */}
-     
 
       {/* Section 2: Elena for NavIC - Slider */}
       <div className="relative">
@@ -45,19 +44,17 @@ function Elena() {
         </button>
 
         <Slider ref={sliderRef} {...settings}>
-        
           {/* Slide 1 */}
-          
+
           <div className="">
             <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
               Elena for NavIC
             </h2>
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-            <div className="col-span-12 md:col-span-4 flex justify-center">
+              <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
                   src={e2e}
                   className="w-full h-full object-cover"
-
                   alt="Elena for NavIC"
                 />
               </div>
@@ -74,54 +71,38 @@ function Elena() {
                   Integrity.
                 </p>
               </div>
-
-              
             </div>
           </div>
 
           <div className="">
             <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-             Our Journey
+              Our Journey
             </h2>
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-            <div className="col-span-12 md:col-span-4 flex">
-  <img
-    src={journey}
-    className="w-full h-full object-cover"
-    alt="Elena for NavIC"
-  />
-</div>
-
-              <div className="col-span-12 md:col-span-8 flex flex-col justify-center">
-                
-                <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
-            Elena Geo was founded for developing NavIC-based monitoring Systems.
-            It works only in this niche segment and has been marketing solutions
-            since 2013. It has End-to-End presence in the NavIC-based PNT
-            domain. Elena Geo distinguishes itself by providing unique and
-            forefront services within the industry.
-            
-            <br />
-            Elena Geo embarked on its journey with a distinct vision to address
-            India's navigation needs through the development of ground-based
-            electronics and solutions utilizing Indian satellites. The choice of
-            the name "Elena" reflects the company's commitment to guiding and
-            illuminating new paths, aligning with its overarching goal.
-            
-            <br />
-            Elena Geo delivers a diverse range of products and services tailored
-            to the NavIC-based navigation sector. The core principles of these
-            solutions lie in a commitment to achieving the utmost accuracy,
-            pioneering technology, and affordability.
-            <br/>
-            Elena Geo was founded at Technology Business Incubator (TBI) at IIT
-            Kharagpur in 2012 and has quickly emerged as a pioneer in navigation
-            technology. Here's a brief look at its journey.
-          </p>
-              
+              <div className="col-span-12 md:col-span-6 flex">
+                <img
+                  src={journey}
+                  className="w-full h-full object-cover"
+                  alt="Elena for NavIC"
+                />
               </div>
 
-              
+              <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+                <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
+                  Elena Geo was founded by Lt Col V S Velan in the Technology
+                  Business incubator of IIT Kharagpur in Aug 2012, to work in
+                  the niche Multi GNSS based monitoring domain. Over the years
+                  Elena has developed all products required for using NavIC. It
+                  now has end-to-end presence in this domain. To know more Visit  <a
+              className="text-[var(--primary)] underline inline-flex items-center"
+              href="https://elenageo.com/"
+              target="_blank"
+              title="Visit GeM"
+            >
+            Elena
+            </a>
+                </p>
+              </div>
             </div>
           </div>
 
@@ -131,11 +112,10 @@ function Elena() {
               Elena for Atma Nirbharta
             </h2>
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-            <div className="col-span-12 md:col-span-4 flex justify-center">
+              <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
                   src={hhn}
                   className="w-full h-auto max-h-[400px] object-contain"
-
                   alt="NavIC Systems"
                 />
               </div>
@@ -157,8 +137,6 @@ function Elena() {
                   scheme sponsored by DoT in 2021 and 2022 respectively
                 </p>
               </div>
-
-            
             </div>
           </div>
 
@@ -168,11 +146,10 @@ function Elena() {
               Elena for Defence
             </h2>
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-            <div className="col-span-12 md:col-span-4 flex justify-center">
+              <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
                   src={defence}
                   className="w-full h-auto max-h-[400px] object-contain"
-
                   alt="NavIC Systems"
                 />
               </div>
@@ -199,23 +176,12 @@ function Elena() {
                   pursuing many R&D projects for the Indian Armed Forces.
                 </p>
               </div>
-
-              
             </div>
           </div>
         </Slider>
 
         {/* Link */}
-        <div className="mt-10">
-          <a
-            href="http://elenageo.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-bold text-[var(--primary)] flex items-center justify-center  hover:text-blue-600 transition-all underline"
-          >
-            Visit Elena <FiExternalLink size={20} className="ms-2" />
-          </a>
-        </div>
+      
       </div>
     </div>
   );

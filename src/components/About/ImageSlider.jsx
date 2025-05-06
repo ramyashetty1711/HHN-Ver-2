@@ -5,7 +5,7 @@ import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import NavIC from "../../assets/HOME/NavIC.png";
 import Artillery from "../../assets/HOME/Artillery.png";
 import GC from "../../assets/HOME/Grid_Converter.png";
-import Elena from "../../assets/HOME/Elena.jpeg";
+import Elena from "../../assets/HOME/Elena.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,7 +27,7 @@ const ImageSlider = () => {
   const images = [NavIC, Artillery, GC, Elena];
 
   return (
-    <div className="relative w-full  overflow-hidden  h-[calc(100vh-13em)] ">
+    <div className="relative w-full  overflow-hidden  h-[calc(100vh-16em)] ">
       <button
         className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000"
         onClick={() => sliderRef.current?.slickPrev()}

@@ -142,7 +142,7 @@ export default function Contact() {
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row gap-4">
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">Full Name</label>
+                <label className="block text-sm font-bold mb-2">Full Name <span className="text-red-500">*</span></label>
                 <input
                   name="name"
                   value={formData.name}
@@ -156,7 +156,7 @@ export default function Contact() {
                 )}
               </div>
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">Email Address</label>
+                <label className="block text-sm font-bold mb-2">Email Address <span className="text-red-500">*</span></label>
                 <input
                   name="email"
                   value={formData.email}
@@ -173,21 +173,21 @@ export default function Contact() {
 
             <div className="flex flex-col md:flex-row gap-4">
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">Phone Number</label>
+                <label className="block text-sm font-bold mb-2">Phone Number <span className="text-red-500">*</span></label>
                 <input
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className="w-full border border-[var(--secondary)] p-4 rounded focus:border-[var(--primary)] focus:outline-none"
-                  placeholder="Enter your phone number"
+                  placeholder="Enter your 10 digit Mobile number"
                 />
                 {errors.phoneNumber && touched.phoneNumber && (
                   <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>
                 )}
               </div>
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">Company / Organization</label>
+                <label className="block text-sm font-bold mb-2">Company / Organization <span className="text-red-500">*</span></label>
                 <input
                   name="from"
                   value={formData.from}
@@ -210,7 +210,7 @@ export default function Contact() {
                 onChange={handleChange}
                 className="w-full border border-[var(--secondary)] p-4 rounded focus:border-[var(--primary)] focus:outline-none"
                 rows="4"
-                placeholder="Write your message here..."
+                placeholder="Write your message here (min 120 characters)"
               />
             </div>
 

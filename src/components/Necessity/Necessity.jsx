@@ -1,6 +1,6 @@
 import React from "react";
 import background from "../../assets/backgroung_gc.png";
-import necessity from "../../assets/necessity_pic.png";
+import necessity from "../../assets/necessity_pic.jpg";
 
 function Necessity() {
   return (
@@ -10,11 +10,11 @@ function Necessity() {
       </h2>
       <div className="grid grid-cols-12   gap-8 ">
         {/* Image Section - centered in column */}
-        <div className="md:col-span-4 col-span-12 flex justify-center items-center ">
+        <div className="md:col-span-4 col-span-12 flex justify-center ">
           <img
             src={necessity}
             alt="Background Illustration"
-            className="w-auto h-[20em] rounded-lg  object-contain"
+            className="w-auto h-[28em] rounded-lg  object-contain"
           />
         </div>
 
@@ -31,18 +31,11 @@ function Necessity() {
             time-consuming process involving the printing of map sheets for
             issuing to units and formations. The transition impacts operational
             orders and boundary realignments, making it a logistical and
-            operational challenge. Moreover, with some systems using of Lat-Long
+            operational challenge. Moreover, with some systems using of Latitude-Longitude
             systems in various equipment, all three reference systems coexist
             for operational purposes. Thus, there arose a critical need for a
             device that can seamlessly convert and display all three reference
-            systems viz ESM, DSM, and Lat-Long. Consequently, ADG Mil Svy tasked
-            by the DGMO demonstrated a proof-of-concept device covering Delhi
-            zone, to the COAS, who directed that a scalable device be developed
-            for use by Arty units. Arty units, use ESM, DSM, and Lat-Long
-            references in their Shakti Equipment. The Grid converter facilitates
-            the migration from ESM to DSM without inhibiting the modernization
-            of Artillery systems, to keep pace with the latest miltech,
-            including automation of fire control systems.
+            systems viz ESM, DSM, and Latitude-Longitude. 
           </p>
          
         </div>

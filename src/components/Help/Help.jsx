@@ -19,7 +19,7 @@ function Help() {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-13em)] overflow-y ">
+    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-13em)] overflow-y-auto ">
         <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
           Grid Converter FAQ
         </h2>

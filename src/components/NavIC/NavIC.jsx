@@ -22,7 +22,7 @@ export default function NavIC() {
   };
 
   return (
-    <div className="flex flex-col bg-white py-3 px-6 relative">
+    <div className="flex flex-col bg-white py-3 px-6 relative   ">
       {/* Slider Container */}
       <div className="relative">
         {/* Custom Previous Arrow */}
@@ -134,15 +134,19 @@ export default function NavIC() {
       </div>
 
       {/* FAQ Section */}
-      <div className="mt-10">
-      <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 text-center">
-  FAQ
-</h2>
 
-<p className="text-center text-lg text-gray-700 mb-8">
-  Have questions? Find answers to the most frequently asked questions below.
-</p>
-<NavICFAQ />
+      <div className="mt-10 flex justify-center items-center">
+        <p className="text-lg text-gray-700 mr-2">
+          To know more about NavIC, visit our site
+        </p>
+        <a
+          className="text-[var(--primary)] underline inline-flex items-center"
+          href="https://elenageo.com/faq"
+          target="_blank"
+          title="Visit FAQ"
+        >
+          visit our site
+        </a>
       </div>
     </div>
   );
