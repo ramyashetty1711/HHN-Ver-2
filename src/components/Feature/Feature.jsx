@@ -22,7 +22,7 @@ export default function Feature() {
     "Kill button to delete all data securely",
     "Supplied with a waterproof pouch for additional protection",
     "Supports display of 6, 8, and 10-digit GR in both ESM and DSM formats.",
-    "Grid conversion parameters are securely uploaded by an ADG Mil Svy representative via window-based software. "
+    "Grid conversion parameters are securely uploaded by an ADG Mil Svy representative via window-based software. ",
   ];
 
   const advantages = [
@@ -45,48 +45,42 @@ export default function Feature() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-11em)] overflow-y-auto overflow-x-hidden  ">
+    <div className="flex flex-col h-full bg-white py-3 px-6  overflow-y-auto ">
       {/* Left Arrow */}
-     
+
       {/* Slider Component */}
-   
-        {/* Slide 1: Features */}
-        <div>
-  <div
-    className="flex flex-col text-white pt-6 px-6 rounded-lg  bg-cover bg-center bg-no-repeat"
 
-  >
-    <div className="bg-blue/40 rounded-lg">
-      <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold flex justify-center">
-        Features
-      </h5>
-      <ul className="list-disc px-8  overflow-y-auto custom-scrollbar  grid md:grid-cols-2 grid-cols-1 space-y-2">
-        {FeatureList.map((val, index) => (
-          <li key={index} className="text-black">
-            {val}
-          </li>
-        ))}
-      </ul>
-    </div>
-    <div className="bg-blue/40 rounded-lg">
-              <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold flex justify-center">
-                Advantages
-              </h5>
-              <ul className="list-disc px-8  overflow-y-auto custom-scrollbar  grid md:grid-cols-2 grid-cols-1 space-y-2">
-        {advantages.map((val, index) => (
-          <li key={index} className="text-black">
-            {val}
-          </li>
-        ))}
-      </ul>
-            </div>
-  </div>
-</div>
+      {/* Slide 1: Features */}
+      <div>
+        <div className="flex flex-col text-white pt-2 px-6 rounded-lg  bg-cover bg-center bg-no-repeat">
+          <div className="bg-blue/40 rounded-lg">
+            <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold flex justify-center">
+              Features
+            </h5>
+            <ul className="list-disc px-8  overflow-y-auto custom-scrollbar  grid md:grid-cols-2 grid-cols-1 space-y-2">
+              {FeatureList.map((val, index) => (
+                <li key={index} className="text-black">
+                  {val}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-blue/40 rounded-lg mt-4">
+            <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold flex justify-center">
+              Advantages
+            </h5>
+            <ul className="list-disc px-8 grid grid-cols-4  overflow-y-auto custom-scrollbar ">
+              {advantages.map((val, index) => (
+                <li key={index} className="text-black col-span-2  mb-4">
+                  {val}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
 
-
-        {/* Slide 2: Advantages */}
-       
-      
+      {/* Slide 2: Advantages */}
     </div>
   );
 }

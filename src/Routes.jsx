@@ -1,11 +1,14 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { SpinnerCircularFixed } from "spinners-react";
-
 import SplashPage from "./components/Splash/SplashPage";
 import Navbar from "./components/Common/Navbar";
 import Footer from "./components/Common/Footer";
-
 import Home from "./components/Home/Home";
 import BackGround from "./components/BackGround/BackGround";
 import Necessity from "./components/Necessity/Necessity";
@@ -18,7 +21,10 @@ import Elena from "./components/Elena/Elena";
 import Contact from "./components/Contact/Contact";
 import Help from "./components/Help/Help";
 import About from "./components/About/About";
-import Feedback from "./components/Feedback/Feedback";
+import Login from "./components/Login/Login";
+import Wrapper from "./Wrapper";
+import Feedback from "./components/Support/Feedback";
+import Ticket from "./components/Support/Ticket";
 
 export default function AppRoutes() {
   const routes = [
@@ -34,36 +40,60 @@ export default function AppRoutes() {
     { path: "/contact", component: <Contact /> },
     { path: "/faq", component: <Help /> },
     { path: "/about", component: <About /> },
-    {path:"/feedback",component:<Feedback/>}
+    { path: "/login", component: <Login /> },
+    // { path: "/feedback", component: <Feedback /> },
+    // { path: "/ticket", component: <Ticket /> },
   ];
 
   return (
     <Router>
-      {/* Outer container with full height flex column */}
-      <div className="flex flex-col min-h-screen">
-        {/* Navbar */}
-        <Navbar />
-
-        {/* Main content takes remaining space */}
-        <main className="flex-1 bg-white overflow-hidden">
-          <Suspense
-            fallback={
-              <div className="flex justify-center items-center h-full">
-                <SpinnerCircularFixed size={40} thic  kness={180} speed={120} color="skyblue" />
-              </div>
+      {/* <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-full">
+            <SpinnerCircularFixed
+              size={40}
+              thickness={180}
+              speed={120}
+              color="skyblue"
+            />
+          </div>
+        }
+      > */}
+      <Routes>
+        <Route element={<Wrapper />}>
+          {routes.map((val, idx) => (
+            <Route key={idx} path={val.path} element={val.component} />
+          ))}
+          <Route
+            path="/ticket"
+            element={
+              <PrivateRoute>
+                <Ticket />
+              </PrivateRoute>
             }
-          >
-            <Routes>
-              {routes.map((val, idx) => (
-                <Route key={idx} path={val.path} element={val.component} />
-              ))}
-            </Routes>
-          </Suspense>
-        </main>
+          />
+          <Route
+            path="/feedback"
+            element={
+              <PrivateRoute>
+                <Feedback />
+              </PrivateRoute>
+            }
+          />
+        </Route>
 
-        {/* Footer at the bottom */}
-        <Footer />
-      </div>
+        {/* <Route path="/login" element={<Login />} /> */}
+      </Routes>
+      {/* </Suspense> */}
     </Router>
   );
 }
+
+const PrivateRoute = ({ children }) => {
+  const user = sessionStorage.getItem("user");
+  const isAuthenticated = user !== undefined && user !== null;
+
+  console.log(isAuthenticated, user);
+
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+};

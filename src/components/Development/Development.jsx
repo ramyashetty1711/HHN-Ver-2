@@ -6,7 +6,7 @@ import { FaArrowCircleDown } from "react-icons/fa";
 
 export default function Development() {
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-12em)] overflow-y-auto ">
+    <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
       <div className="grid grid-cols-12 ">
         <div className="md:col-span-2 col-span-12 flex justify-center items-center flex-col h-full ">
           <img

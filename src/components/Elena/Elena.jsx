@@ -52,7 +52,7 @@ function Elena() {
               <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
                   src={e2e}
-                  className="w-full h-[25em] object-cover"
+                  className="w-[70%] h-[70%] object-cover"
                   alt="Elena for NavIC"
                 />
               </div>
@@ -77,7 +77,7 @@ function Elena() {
 
           <div className="">
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-              <div className="col-span-12 md:col-span-6 flex">
+              <div className="col-span-12 md:col-span-4 flex">
                 <img
                   src={journey}
                   className="w-full h-full object-cover"
@@ -94,6 +94,15 @@ function Elena() {
                   Business incubator of IIT Kharagpur in Aug 2012, to work in
                   the niche Multi GNSS based monitoring domain. Over the years
                   Elena has developed all products required for using NavIC. It
+                  now has end-to-end presence in this domain. To know more Visit{" "}
+                  <a
+                    className="text-[var(--primary)] underline inline-flex items-center"
+                    href="https://elenageo.com/"
+                    target="_blank"
+                    title="Visit GeM"
+                  >
+                    Elena
+                  </a>
                   now has end-to-end presence in this domain. To know more Visit{" "}
                   <a
                     className="text-[var(--primary)] underline inline-flex items-center"

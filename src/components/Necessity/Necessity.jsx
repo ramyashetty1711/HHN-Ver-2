@@ -38,7 +38,6 @@ function Necessity() {
             device that can seamlessly convert and display all three reference
             systems viz ESM, DSM, and Latitude-Longitude. 
           </p>
-         
         </div>
       </div>
     </div>

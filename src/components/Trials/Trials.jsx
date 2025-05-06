@@ -3,11 +3,9 @@ import trialsimg from "../../assets/Trials.jpg";
 
 export default function Trials() {
   return (
-    <div className="flex flex-col md:min-h-[50vh] md:h-[71vh] xl:h-[78vh] bg-white py-3 px-6">
-      
-
-      <div className="grid grid-cols-12 h-full gap-6 ">
-        <div className="md:col-span-6 col-span-12 flex flex-col items-center justify-start h-full">
+    <div className="flex flex-col h-full bg-white py-3 px-6">
+      <div className="grid grid-cols-12 h-full pt-6 ">
+        <div className="md:col-span-4 col-span-12 flex flex-col items-center justify-start h-full">
           <p className="text-sm font-bold text-[var(--heading)]  text-center">
             Field Testing and Trials of Elena Handheld Devices
           </p>
@@ -18,11 +16,11 @@ export default function Trials() {
           />
         </div>
 
-        <div className="md:col-span-6 col-span-12">
+        <div className="md:col-span-8 col-span-12">
           <div className="text-justify">
-          <h2 className="text-2xl font-bold text-[var(--heading)] mb-2 flex justify-center">
-        Trials
-      </h2>
+            <h2 className="text-2xl font-bold text-[var(--heading)] mb-2 flex justify-center">
+              Trials
+            </h2>
             <p>
               The final product which was developed at a rapid pace by Elena Geo
               Tech in consultation with ADG Mil Svy and Dte of Arty, was sent
@@ -33,7 +31,6 @@ export default function Trials() {
               inputs were incorporated in the final product. This product is now
               available for use by Arty Units.
             </p>
-            
           </div>
           {/* <p>
             The device underwent rigorous verification by ADG Mil Survey teams

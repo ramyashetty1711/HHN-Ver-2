@@ -1,13 +1,33 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Elena from "../../assets/Elena.png";
-import { FaBars } from "react-icons/fa"; // for hamburger icon
+import { FaBars, FaUserCircle } from "react-icons/fa"; // for hamburger icon
+import { useSelector } from "react-redux";
+import { IoLogOut } from "react-icons/io5";
+import { TbLogout } from "react-icons/tb";
+import { store } from "../../redux/Store";
+import { updateLoggedInStatus } from "../../redux/DataSlice";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef();
+  const Navigate = useNavigate();
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  const LoggedInStatus = useSelector((state) => state.data.LoggedInStatus);
   const MenuElements = [
     { link: "/", display: "Home" },
     { link: "/necessity", display: "Necessity" },
@@ -18,7 +38,7 @@ const Navbar = () => {
     { link: "/NavIC", display: "NavIC" },
     { link: "/elena", display: "Elena" },
     { link: "/contact", display: "Contact Us" },
-    { link: "/faq", display: "FAQ" }
+    { link: "/faq", display: "FAQ" },
   ];
   const handlereload = () => {
     navigate("/"); // Navigate to home
@@ -28,8 +48,19 @@ const Navbar = () => {
   };
   
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="flex flex-row justify-center items-center">
+    <div className="flex   flex-row justify-center items-center">
       <div className="w-full rounded-xl relative">
         {/* Top Navbar */}
         <nav className="flex justify-between py-2 px-4 items-center bg-[var(--primary)]">
@@ -47,12 +78,39 @@ const Navbar = () => {
 
           <div className="flex items-center gap-3">
             {/* Login Button */}
-            <div
-              className="font-semibold bg-white border rounded-lg px-3 py-2 cursor-pointer text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white hover:border-white transition-all duration-300"
-              onClick={() => navigate("/login")}
-            >
-              Login
-            </div>
+            {!LoggedInStatus ? (
+              <div
+                className="font-semibold bg-white border rounded-lg px-3 py-2 cursor-pointer text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white hover:border-white transition-all duration-300"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </div>
+            ) : (
+              <div className="relative inline-block text-left" ref={menuRef}>
+                <div
+                  onClick={() => setOpen((prev) => !prev)}
+                  className="cursor-pointer"
+                >
+                  <FaUserCircle size={30} className="text-white" />
+                </div>
+
+                {open && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50">
+                    <button
+                      onClick={() => {
+                        window.sessionStorage.clear();
+                        store.dispatch(updateLoggedInStatus(false));
+                        Navigate("/login");
+                      }}
+                      className=" w-full text-left px-4 py-4 text-md text-gray-700 hover:bg-gray-100 font-semibold flex flex-row items-center"
+                    >
+                      <TbLogout size={20} className="text-red-500 mr-2" />
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Mobile Menu Button */}
             <button
@@ -72,27 +130,53 @@ const Navbar = () => {
         >
           <ul className="flex flex-col md:flex-row justify-between w-full py-1 px-4">
             {MenuElements.map((val, index) => (
-              <li
-                key={index}
-                className={`font-semibold text-sm p-2 px-4 cursor-pointer duration-300 text-center rounded-lg m-1 ${
-                  location.pathname === val.link
-                    ? "text-white bg-[var(--primary)]"
-                    : "text-gray-900"
-                }`}
+              <Link
+                to={val.link}
+                className=""
                 onClick={() => setMenuOpen(false)}
               >
-                <Link to={val.link} className="block w-full h-full">
+                <li
+                  key={index}
+                  className={`font-semibold text-sm p-2  px-4 cursor-pointer duration-300 text-center rounded-lg m-1 ${
+                    location.pathname === val.link
+                      ? "text-white bg-[var(--primary)]"
+                      : "text-gray-900"
+                  }`}
+                >
                   {val.display}
-                </Link>
-              </li>
+                </li>
+              </Link>
             ))}
+            {LoggedInStatus && (
+              <li
+                className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
+                  (location.pathname.includes("/feedback") ||
+                    location.pathname.includes("/ticket")) &&
+                  "text-white bg-[var(--primary)]"
+                }`}
+                ref={dropdownRef}
+              >
+                <div
+                  className="w-full h-full"
+                  onClick={() => setDropdownOpen((prev) => !prev)}
+                >
+                  Support
+                </div>
+
+                {dropdownOpen && (
+                  <ul className="absolute top-[100%] right-[0%] mt-2 w-40 bg-white border border-gray-300 rounded shadow-md z-[100] text-gray-700">
+                    <Link to="/feedback" onClick={() => setDropdownOpen(false)}>
+                      <li className="px-4 py-2 hover:bg-gray-100">Feedback</li>
+                    </Link>
+                    <Link to="/ticket" onClick={() => setDropdownOpen(false)}>
+                      <li className="px-4 py-2 hover:bg-gray-100">Ticket</li>
+                    </Link>
+                  </ul>
+                )}
+              </li>
+            )}
           </ul>
         </nav>
-
-        {/* Main content */}
-        <div>
-          <Outlet />
-        </div>
       </div>
     </div>
   );

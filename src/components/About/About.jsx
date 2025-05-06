@@ -3,11 +3,11 @@ import ImageSlider from "./ImageSlider";
 export default function About() {
   return (
     <>
-     <div className="flex flex-col h-full bg-white font-semibold text-lg py-3 px-6">
-  {/* Image Slider */}
-  <div className="mb-4">
-    <ImageSlider />
-  </div>
+      <div className="flex flex-col h-full bg-white font-semibold text-lg py-3 px-6">
+        {/* Image Slider */}
+        <div className="mb-4">
+          <ImageSlider />
+        </div>
 
   {/* Description Text */}
   <div className="text-center px-2">
