@@ -44,9 +44,8 @@ const Navbar = () => {
     navigate("/"); // Navigate to home
     setTimeout(() => {
       window.location.reload(); // Then reload after navigation
-    }, 100); 
+    }, 100);
   };
-  
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -69,7 +68,7 @@ const Navbar = () => {
               src={Elena}
               className="h-[50px] bg-white p-1 rounded-md cursor-pointer"
               alt="Elena Logo"
-              onClick={() =>handlereload()}
+              onClick={() => handlereload()}
             />
             <h5 className="text-white font-semibold text-xl ml-2">
               Grid Converter

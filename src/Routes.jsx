@@ -93,7 +93,5 @@ const PrivateRoute = ({ children }) => {
   const user = sessionStorage.getItem("user");
   const isAuthenticated = user !== undefined && user !== null;
 
-  console.log(isAuthenticated, user);
-
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };

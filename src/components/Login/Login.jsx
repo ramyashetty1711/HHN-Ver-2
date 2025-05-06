@@ -10,6 +10,8 @@ import { store } from "../../redux/Store";
 import { updateLoggedInStatus } from "../../redux/DataSlice";
 import { useNavigate } from "react-router-dom";
 import { SpinnerCircularFixed } from "spinners-react";
+import { APPURL } from "../../URL";
+import { useFetch } from "../../query/UseFetch";
 
 export default function Login() {
   const { showToast } = useToast();
@@ -41,18 +43,23 @@ export default function Login() {
     setError("");
     setSuccess("");
     setLoading(true);
-    setTimeout(() => {
-      window.sessionStorage.setItem("user", JSON.stringify(form));
-      store.dispatch(updateLoggedInStatus(true));
-      navigate("/feedback");
-    }, 2000);
-    return;
     try {
-      const response = await axios.post("/api/login", form);
-      setSuccess("Login successful!");
-      console.log("Login response:", response.data);
+      const response = await axios.post(APPURL.login, form);
+      if (response.status === 200) {
+        setSuccess("Login successful!");
+        const data = await response.data;
+        showToast({ type: "success", heading: "Login Successfull" });
+        window.sessionStorage.setItem("user", JSON.stringify(data));
+        store.dispatch(updateLoggedInStatus(true));
+        navigate("/feedback");
+      }
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      showToast({
+        type: "error",
+        heading: "Invalid Credentials",
+        message:
+          err.response?.data?.error || "An error occurred while logging in.",
+      });
     } finally {
       setLoading(false);
     }
@@ -173,6 +180,38 @@ const Register = ({ showRegister, setShowRegister }) => {
     mobile_otp: "",
     mail_otp: "",
   });
+  const { post } = useFetch();
+  const {
+    mutate: mutateGenerateMobileOTP,
+    isLoading: isLoadingGenerateMobileOTP,
+    isSuccess: isSuccessGenerateMobileOTP,
+    isError: isErrorGenerateMobileOTP,
+    error: errorGenerateMobileOTP,
+  } = post;
+
+  const {
+    mutate: mutateGenerateMailOTP,
+    isLoading: isLoadingGenerateMailOTP,
+    isSuccess: isSuccessGenerateMailOTP,
+    isError: isErrorGenerateMailOTP,
+    error: errorGenerateMailOTP,
+  } = post;
+
+  const {
+    mutate: mutateMobileOTP,
+    isLoading: isLoadingMobileOTP,
+    isSuccess: isSuccessMobileOTP,
+    isError: isErrorMobileOTP,
+    error: errorMobileOTP,
+  } = post;
+
+  const {
+    mutate: mutateMailOTP,
+    isLoading: isLoadingMailOTP,
+    isSuccess: isSuccessMailOTP,
+    isError: isErrorMailOTP,
+    error: errorMailOTP,
+  } = post;
 
   const [showMobileOtp, setShowMobileOtp] = useState(false);
   const [showEmailOtp, setShowEmailOtp] = useState(false);
@@ -180,15 +219,12 @@ const Register = ({ showRegister, setShowRegister }) => {
     mobile_no: false,
     mail_address: false,
   });
+
   const [VerifiedStatus, setVerifiedStatus] = useState({
     mobile_no: false,
     mail_address: false,
   });
-  // const [OTPTimer,]
-  //   const [FieldStatus, setFieldStatus] = useState({
-  //     mobile_no: false,
-  //     mail_address: false,
-  //   });
+
   const handleChange = (e) => {
     setRegisterData((prev) => ({
       ...prev,
@@ -226,8 +262,18 @@ const Register = ({ showRegister, setShowRegister }) => {
     if (key === "mobile_no") {
       const isValid = /^\d{10}$/.test(registerData.mobile_no);
       if (isValid) {
-        setFieldStatus([(prev) => ({ ...prev, [key]: true })]);
-        setShowMobileOtp(true);
+        // setFieldStatus([(prev) => ({ ...prev, [key]: true })]);
+        // setShowMobileOtp(true);
+
+        mutateGenerateMobileOTP({
+          url: APPURL.sendPhoneCode,
+          data: {
+            username: registerData.username,
+            password: registerData.password,
+            phone_no: registerData.mobile_no,
+          },
+          isForm: false,
+        });
       } else {
         showToast({
           type: "error",
@@ -253,6 +299,13 @@ const Register = ({ showRegister, setShowRegister }) => {
       }
     }
   };
+
+  useEffect(() => {}, [
+    isSuccessGenerateMailOTP,
+    isSuccessGenerateMobileOTP,
+    isSuccessMailOTP,
+    isSuccessMobileOTP,
+  ]);
 
   return (
     <Modal

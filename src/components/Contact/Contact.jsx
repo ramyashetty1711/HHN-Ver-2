@@ -22,7 +22,8 @@ export default function Contact() {
     switch (field) {
       case "name":
         if (!value.trim()) return "Full name is required";
-        if (!/^[A-Za-z\s]+$/.test(value)) return "Name should not contain numbers";
+        if (!/^[A-Za-z\s]+$/.test(value))
+          return "Name should not contain numbers";
         break;
       case "email":
         if (!value.trim()) return "Email is required";
@@ -30,7 +31,8 @@ export default function Contact() {
         break;
       case "phoneNumber":
         if (!value.trim()) return "Phone number is required";
-        if (!/^[1-9][0-9]{9}$/.test(value)) return "Invalid phone number format";
+        if (!/^[1-9][0-9]{9}$/.test(value))
+          return "Invalid phone number format";
         break;
       case "from":
         if (!value.trim()) return "Company/Organization is required";
@@ -63,13 +65,13 @@ export default function Contact() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const newErrors = {};
     Object.keys(formData).forEach((field) => {
       const error = validateField(field, formData[field]);
       if (error) newErrors[field] = error;
     });
-  
+
     setErrors(newErrors);
     setTouched({
       name: true,
@@ -77,9 +79,9 @@ export default function Contact() {
       phoneNumber: true,
       from: true,
     });
-  
+
     if (Object.keys(newErrors).length > 0) return;
-  
+
     setBtnName("Sending...");
     try {
       await axios.post("https://enquiry.elenageo.com:7443/enquiry/", {
@@ -89,7 +91,7 @@ export default function Contact() {
         query: formData.from,
         remarks: formData.remarks,
       });
-  
+
       // Reset form after successful submission
       setFormData({
         name: "",
@@ -107,10 +109,9 @@ export default function Contact() {
       setBtnName("Send Message");
     }
   };
-  
 
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-12em)] overflow-y-auto">
+    <div className="flex flex-col h-full bg-white py-3 px-6  overflow-y-auto">
       <div className="grid grid-cols-12">
         {/* Contact Info */}
         <div className="md:col-span-4 col-span-12 flex justify-center items-start px-10 py-6">
@@ -154,7 +155,9 @@ export default function Contact() {
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row gap-4">
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">Full Name <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-bold mb-2">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
                 <input
                   name="name"
                   value={formData.name}
@@ -168,7 +171,9 @@ export default function Contact() {
                 )}
               </div>
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">Email Address <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-bold mb-2">
+                  Email Address <span className="text-red-500">*</span>
+                </label>
                 <input
                   name="email"
                   value={formData.email}
@@ -185,7 +190,9 @@ export default function Contact() {
 
             <div className="flex flex-col md:flex-row gap-4">
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">Phone Number <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-bold mb-2">
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
                 <input
                   name="phoneNumber"
                   value={formData.phoneNumber}
@@ -195,11 +202,15 @@ export default function Contact() {
                   placeholder="Enter your 10 digit Mobile number"
                 />
                 {errors.phoneNumber && touched.phoneNumber && (
-                  <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.phoneNumber}
+                  </p>
                 )}
               </div>
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">Company / Organization <span className="text-red-500">*</span></label>
+                <label className="block text-sm font-bold mb-2">
+                  Company / Organization <span className="text-red-500">*</span>
+                </label>
                 <input
                   name="from"
                   value={formData.from}
@@ -215,7 +226,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2">Your Message</label>
+              <label className="block text-sm font-bold mb-2">
+                Your Message
+              </label>
               <textarea
                 name="remarks"
                 value={formData.remarks}
