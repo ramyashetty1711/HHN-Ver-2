@@ -112,45 +112,67 @@ export default function Contact() {
 
   return (
     <div className="flex flex-col h-full bg-white py-3 px-6  overflow-y-auto">
+       <h2 className="text-xl font-bold text-[var(--heading)] mt-2 mb-2 flex justify-center">
+       If you are interested in purchasing or having any enquiries, reach out to us anytime.
+ 
+            </h2>
       <div className="grid grid-cols-12">
         {/* Contact Info */}
-        <div className="md:col-span-4 col-span-12 flex justify-center items-start px-10 py-6">
+        <div className="md:col-span-4 col-span-12 flex justify-center items-start   px-5 ">
           <div className="w-full max-w-md">
-            <h2 className="text-2xl text-[var(--heading)] mb-4">
-              Get in Touch with Us
+            <h2 className="text-md text-[var(--heading)] mb-4">
+             Contact
             </h2>
-            <p className="text-gray-600 text-sm mb-6">
+            {/* <p className="text-gray-600 text-sm mb-6">
               We’d love to hear from you.
               <br />
               Reach out anytime using the details below.
-            </p>
-            <ul className="space-y-6 mt-5 text-lg">
-              <li className="flex flex-col items-start gap-3">
-                <div className="flex items-center gap-3">
-                  <FaEnvelope size={20} color="#004080" />
-                  <a href="mailto:info@elenageo.com">info@elenageo.com</a>
-                </div>
-                <div className="pl-8">
-                  <a href="mailto:sales@elenageo.com">sales@elenageo.com</a>
-                </div>
-              </li>
-              <li className="flex flex-col items-start gap-3">
-                <div className="flex items-center gap-3">
-                  <FaPhoneAlt size={20} color="#004080" />
-                  <a href="tel:+919384864411">+91 9384864411</a>
-                </div>
-                <div className="pl-8">
-                  <a href="tel:+919384864422">+91 9384864422</a>
-                </div>
-              </li>
-            </ul>
+            </p> */}
+          <div className="mt-5 space-y-4 text-md">
+  {/* Row 1 */}
+  <div className="flex flex-col md:flex-row md:items-start">
+    <div className="font-medium md:w-1/2 mb-2 md:mb-0">Mr. Purushotham V</div>
+    <div className="flex flex-col space-y-1">
+      <a href="mailto:info@elenageo.com" className="hover:text-[var(--primary)] flex items-start">
+        <FaEnvelope className="mt-1 mx-1" /> info@elenageo.com
+      </a>
+      <a href="tel:+919384864411" className="hover:text-[var(--primary)] flex items-start">
+        <FaPhoneAlt className="mt-1 mx-1" /> +91 9384864411
+      </a>
+    </div>
+  </div>
+
+  {/* Row 2 */}
+  <div className="flex flex-col md:flex-row md:items-start">
+    <div className="font-medium md:w-1/2 mb-2 md:mb-0">Mr. Naveen Kumar P</div>
+    <div className="flex flex-col space-y-1">
+      <a href="mailto:sales@elenageo.com" className="hover:text-[var(--primary)] flex items-start">
+        <FaEnvelope className="mt-1 mx-1" /> sales@elenageo.com
+      </a>
+      <a href="tel:+919384864422" className="hover:text-[var(--primary)] flex items-start">
+        <FaPhoneAlt className="mt-1 mx-1" /> +91 9384864422
+      </a>
+    </div>
+  </div>
+
+  {/* Row 3 */}
+  <div className="flex flex-col md:flex-row md:items-start">
+    <div className="font-medium md:w-1/2 mb-2 md:mb-0">Mrs. Shabeen Taj P</div>
+    <div className="flex flex-col space-y-1">
+      <a href="tel:+918023554555" className="hover:text-[var(--primary)] flex items-start">
+        <FaPhoneAlt className="mt-1 mx-1" /> +91 8023554555
+      </a>
+    </div>
+  </div>
+</div>
+
           </div>
         </div>
 
         {/* Contact Form */}
-        <div className="md:col-span-8 col-span-12 px-10 py-6">
-          <h2 className="text-2xl mb-2 text-[var(--heading)]">
-            Have Questions? Message Us!
+        <div className="md:col-span-8 col-span-12 px-5 ">
+          <h2 className="text-md mb-2 text-[var(--heading)] ">
+          Send Direct Message
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row gap-4">
@@ -163,7 +185,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[var(--secondary)] p-3 rounded focus:border-[var(--primary)] focus:outline-none"
+                  className="w-full border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none"
                   placeholder="Enter your full name"
                 />
                 {errors.name && touched.name && (
@@ -179,7 +201,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[var(--secondary)] p-3 rounded focus:border-[var(--primary)] focus:outline-none"
+                  className="w-full border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none"
                   placeholder="Email"
                 />
                 {errors.email && touched.email && (
@@ -198,7 +220,7 @@ export default function Contact() {
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[var(--secondary)] p-3 rounded focus:border-[var(--primary)] focus:outline-none"
+                  className="w-full border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none"
                   placeholder="Enter your 10 digit Mobile number"
                 />
                 {errors.phoneNumber && touched.phoneNumber && (
@@ -216,7 +238,7 @@ export default function Contact() {
                   value={formData.from}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[var(--secondary)] p-3 rounded focus:border-[var(--primary)] focus:outline-none"
+                  className="w-full border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none"
                   placeholder="Enter your company or organization"
                 />
                 {errors.from && touched.from && (
@@ -234,7 +256,7 @@ export default function Contact() {
                 value={formData.remarks}
                 onChange={handleChange}
                 className="w-full border border-[var(--secondary)] p-4 rounded focus:border-[var(--primary)] focus:outline-none"
-                rows="4"
+                rows="3"
                 placeholder="Write your message here (min 120 characters)"
               />
             </div>

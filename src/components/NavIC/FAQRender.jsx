@@ -33,22 +33,25 @@ const FAQItem = ({ data, isActive, onClick }) => {
         style={{ maxHeight: height }}
         className="overflow-hidden transition-all duration-300 ease-in-out px-6 text-md text-gray-500"
       >
-        <div className="pb-4 space-y-3 pt-2 py-8">
+        <div className="flex py-3 ">
           {/* Descriptions */}
           {data?.description && <p>{data.description}</p>}
           {data?.description1 && <p>{data.description1}</p>}
           {data?.description2 && <p>{data.description2}</p>}
           {data?.description3 && <p>{data.description3}</p>}
 
-          {/* Download Link */}
+          {/* Download Link - Same line as description */}
           {data?.file && data?.downloadName && data?.linkText && (
-            <a
-              href={data.file} 
-              download={`${data.downloadName.replace(/\s+/g, "_")}`} // Replace spaces with underscores in filename
-              className="text-[var(--primary)] p-2 rounded-full transition"
-            >
-              {data.linkText}
-            </a>
+            <div className="flex items-center space-x-2">
+              <p className="text-md text-gray-500 mr-2 flex-shrink-0">{data?.descriptionDownload}</p> {/* Description next to the link */}
+              <a
+    href={data.file}
+    download={data.downloadName}
+    className="text-[var(--primary)] inline-block"
+  >
+    {data.linkText}
+  </a>
+            </div>
           )}
 
           {/* Aspect List */}

@@ -52,7 +52,8 @@ function Elena() {
               <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
                   src={e2e}
-                  className="w-[70%] h-[70%] object-cover"
+                 
+                  className="w-full h-[27em] object-contain"
                   alt="Elena for NavIC"
                 />
               </div>
@@ -60,7 +61,7 @@ function Elena() {
                 <h2 className="text-2xl font-bold text-[var(--heading)] mt-2 mb-2 flex justify-center">
                   Elena for NavIC
                 </h2>
-                <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
+                <p className="text-justify text-lg pr-0 md:pr-10 ">
                   Elena Geo has designed and developed NavIC products which are
                   large in range and depth to cater to all types of user
                   segments. It has products for research domains and
@@ -77,7 +78,7 @@ function Elena() {
 
           <div className="">
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-              <div className="col-span-12 md:col-span-4 flex">
+              <div className="col-span-12 md:col-span-6 flex">
                 <img
                   src={journey}
                   className="w-full h-full object-cover"
@@ -94,16 +95,7 @@ function Elena() {
                   Business incubator of IIT Kharagpur in Aug 2012, to work in
                   the niche Multi GNSS based monitoring domain. Over the years
                   Elena has developed all products required for using NavIC. It
-                  now has end-to-end presence in this domain. To know more Visit{" "}
-                  <a
-                    className="text-[var(--primary)] underline inline-flex items-center"
-                    href="https://elenageo.com/"
-                    target="_blank"
-                    title="Visit GeM"
-                  >
-                    Elena
-                  </a>
-                  now has end-to-end presence in this domain. To know more Visit{" "}
+                  now has end-to-end presence in this domain.To know more Visit{" "}
                   <a
                     className="text-[var(--primary)] underline inline-flex items-center"
                     href="https://elenageo.com/"
@@ -152,15 +144,7 @@ function Elena() {
                   tune of Rs 1000 Crores. Elena Geo has conceived and developed
                   NavIC Atomic Clock and NavIC Navigator using 5G under the DCIS
                   scheme sponsored by DoT in 2021 and 2022 respectively.
-                  <br/>
-                  <span>NavIC Navigator using 5G</span>
-                  <br/>A state-of-the-art
-                  Navigator with cutting-edge technology. Provides precise,
-                  reliable multi-GNSS based navigation using NavIC.
-                  <span>NavIC Atomic Clock</span>
-                  Highly reliable, high precision, and synchronized time
-                  reference. Easily integrable, customizable in a Master-Slave
-                  configuration.
+                  
                 </p>
               </div>
             </div>
@@ -172,7 +156,7 @@ function Elena() {
               <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
                   src={defence}
-                  className="w-full h-auto max-h-[400px] object-contain"
+                  className="w-full h-auto max-h-[350px] object-contain"
                   alt="NavIC Systems"
                 />
               </div>

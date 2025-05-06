@@ -116,8 +116,8 @@ function Footer() {
 
         <div className="col-span-12 flex justify-center items-center">
           <p className="text-sm text-white">
-             &copy; {new Date().getFullYear()} Elena Geo Tech. All
-            rights reserved
+             &copy; {new Date().getFullYear()} Elena Geo Tech Pvt Ltd, All
+            Rights Reserved.
           </p>
         </div>
       

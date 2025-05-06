@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import pricing from "../../assets/gc_price.png";
 import { FaDownload, FaEye } from "react-icons/fa";
-import tech from "../../assets/Documents/GC_Tech_spe.pdf";
-import co from "../../assets/Documents/PAC_Cos.pdf";
-import oem from "../../assets/Documents/PAC_Grid_Converter.pdf";
-import coc from "../../assets/Documents/GC_COC_Certificate.pdf";
-import ProcurementPDF from "../../assets/Procurement.pdf";
-import collection from "../../assets/Documents/Collection_Process.pdf";
-
-
 
 function Procurment() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -18,23 +9,24 @@ function Procurment() {
   };
 
   const documents = [
-    { title: "Collection Process",link: collection },
-    { title: "PAC by OEM", link: oem },
-    { title: "PAC by CO", link: co },
-    { title: "Cert of Conformance", link: coc },
-    { title: "Grid Converter Tech Specs", link: tech },
+    { title: "Collection Process", link: "Collection_Process.pdf" },
+    { title: "PAC by OEM", link: "PAC_Grid_Converter.pdf" },
+    { title: "PAC by CO", link: "PAC_Cos.pdf" },
+    { title: "Cert of Conformance", link: "GC_COC_Certificate.pdf" },
+    { title: "Grid Converter Tech Specs", link: "GC_Tech_spe.pdf" },
   ];
 
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6">
-      <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-        Procurement
-      </h2>
+    <div className="w-full bg-white py-3 px-4 sm:px-6 overflow-x-hidden">
+      
 
       {/* Main Grid Row: 8 + 4 column layout */}
-      <div className="grid grid-cols-12 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Left: Text Content */}
-        <div className="text-justify col-span-12 md:col-span-9">
+        <div className="text-justify col-span-12 md:col-span-9 w-full">
+        <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
+        Procurement
+      </h2>
           <p className="mb-3">
             The final version of the Grid Converter, incorporating all
             enhancements and user-friendly features, is a robust, military-grade
@@ -70,21 +62,11 @@ function Procurment() {
             .
           </p>
 
-         
           <p className="mb-3">
-            The documents that will help in the procurement are given beside.{" "}
-            {/* <a
-              href={ProcurementPDF}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--primary)] underline"
-            >
-            Pr
-            </a>
-            . */}
+            The documents that will help in the procurement are given beside.
           </p>
           <p className="mb-1">
-          The product needs to be collected through a special process which is given beside in the document "Collection Process".
+            The product needs to be collected through a special process which is given beside in the document "Collection Process".
           </p>
         </div>
 
@@ -93,15 +75,15 @@ function Procurment() {
           {documents.map((item, index) => (
             <div
               key={index}
-              className="bg-[var(--secondary)] text-black font-semibold px-2 py-1 rounded-lg shadow flex items-center justify-between"
+              className="bg-[var(--secondary)] text-black font-semibold px-3 py-2 rounded-lg shadow flex items-center justify-between"
             >
-              <span>{item.title}</span>
+              <span className="text-sm">{item.title}</span>
               <a
-                href={item.link}
-                download={`${item.title.replace(/\s+/g, " ")}.pdf`} // Replace spaces with underscores and add the .pdf extension
-                className="text-[var(--primary)] p-2 rounded-full transition"
+                href={`/documents/${item.link}`} // served from public/documents
+                download={`${item.title.replace(/\s+/g, "_")}.pdf`} // Replace spaces with underscores and add the .pdf extension
+                className="text-[var(--primary)] p-2 rounded-full"
               >
-                <FaDownload size={20} />
+                <FaDownload size={18} />
               </a>
             </div>
           ))}

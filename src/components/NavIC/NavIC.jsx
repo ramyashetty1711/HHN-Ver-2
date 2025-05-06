@@ -44,9 +44,7 @@ export default function NavIC() {
         <Slider {...settings}>
           {/* Slide 1: NavIC */}
           <div className="">
-            <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-              NavIC
-            </h2>
+           
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
               <div className="col-span-12 md:col-span-6 flex justify-center">
                 <img
@@ -56,6 +54,9 @@ export default function NavIC() {
                 />
               </div>
               <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+              <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+              NavIC
+            </h2>
                 <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
                   NavIC is one of the three globally accepted satellite
                   navigation systems, providing location services with unmatched
@@ -73,9 +74,7 @@ export default function NavIC() {
 
           {/* Slide 2 */}
           <div className="">
-            <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-              Issues with GPS - Loss in coverage
-            </h2>
+            
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
               <div className="col-span-12 md:col-span-6 flex justify-center">
                 <img
@@ -85,6 +84,9 @@ export default function NavIC() {
                 />
               </div>
               <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+              <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+              Issues with GPS - Loss in coverage
+            </h2>
                 <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
                   GPS was designed during the Cold War era to cater primarily to
                   the temperate zones, covering latitudes between approximately
@@ -105,9 +107,7 @@ export default function NavIC() {
 
           {/* Slide 3 */}
           <div className="">
-            <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-              NavIC Advantages
-            </h2>
+            
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
               <div className="col-span-12 md:col-span-6 flex justify-center">
                 <img
@@ -117,6 +117,9 @@ export default function NavIC() {
                 />
               </div>
               <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+              <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+              NavIC Advantages
+            </h2>
                 <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
                   Continuing the same study by Prof. A. Bose et al., Burdwan
                   University, zero loss in coverage was demonstrated for IRNSS

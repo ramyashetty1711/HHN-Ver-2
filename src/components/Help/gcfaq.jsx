@@ -1,33 +1,28 @@
-// FAQList.jsx
 import React, { useState } from "react";
 import FAQItem from "../NavIC/FAQRender";
-import FAQJSON from "./gcfaq.json";
-import manual from "../../assets/Documents/user_manual.pdf";
-import brochure from "../../assets/Documents/GC_Brochure.pdf";
-import trouble from "../../assets/Documents/Troubleshooting.pdf";
 
 const Gcfaq = () => {
   const faqData = [
     {
-      title: "How to get the user manual of Grid Converter",
-      description: "You can go through the user manual attached below",
-      file: manual,
+      title: "Where can I find the user manual for the Grid Converter?",
+      description: "You can find the user manual for the Grid Converter in the attached PDF.",
+      file: "/documents/user_manual.pdf",
       downloadName: "Grid Converter User Manual.pdf",
-      linkText: "Click here to download",
+      linkText: "Download User Manual",
     },
     {
-      title: "How to get the Grid Converter Brochure?",
-      description: "You can go through the Grid Converter Brochure attached below",
-      file: brochure,
+      title: "How do I access the Grid Converter brochure?",
+      description: "The Grid Converter brochure is available for download.",
+      file: "/documents/GC_Brochure.pdf",
       downloadName: "Grid Converter Brochure.pdf",
-      linkText: "Click here to download",
+      linkText: "Download Brochure",
     },
     {
-      title: "How to rectify the specific problem condition of the device?",
-      description: "If facing any inconvenience, please go through the PDF attached below.",
-      file: trouble,
-      downloadName: "Grid Converter Trouble Shooting.pdf",
-      linkText: "Click here to download",
+      title: "What should I do if the device is malfunctioning?",
+      description: "Please refer to the troubleshooting guide attached to resolve any issues.",
+      file: "/documents/Troubleshooting.pdf",
+      downloadName: "Grid Converter Troubleshooting Guide.pdf",
+      linkText: "Download Troubleshooting Guide",
     },
     {
       title: "What is the Grid Converter Device?",
@@ -64,6 +59,7 @@ const Gcfaq = () => {
         "The device provides 1-meter Circular Error Probable (CEP) accuracy.",
     },
   ];
+
   const [activeIndex, setActiveIndex] = useState(null);
 
   return (
