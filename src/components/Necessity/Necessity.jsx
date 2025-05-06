@@ -5,21 +5,22 @@ import necessity from "../../assets/necessity_pic.jpg";
 function Necessity() {
   return (
     <div className="flex flex-col h-full bg-white py-3 px-6">
-      <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-        Necessity
-      </h2>
+      
       <div className="grid grid-cols-12   gap-8 ">
         {/* Image Section - centered in column */}
         <div className="md:col-span-4 col-span-12 flex justify-center ">
           <img
             src={necessity}
             alt="Background Illustration"
-            className="w-auto h-[28em] rounded-lg  object-contain"
+            className="w-auto h-[22em] rounded-lg  object-contain"
           />
         </div>
 
         {/* Text Section */}
         <div className="md:col-span-8  col-span-12 rounded-lg  ">
+        <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+        Necessity
+      </h2>
           
           <p className=" text-justify leading-relaxed ">
             The armed forces use Indian Grid Reference System (IGRS) for

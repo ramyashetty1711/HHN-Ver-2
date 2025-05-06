@@ -3,6 +3,7 @@ import journey from "../../assets/journey.png";
 import e2e from "../../assets/e2e.png";
 import defence from "../../assets/elena_for_defece.jpeg";
 import hhn from "../../assets/hhn.jpeg";
+import clock from "../../assets/navic_clock.png";
 import { FiExternalLink } from "react-icons/fi";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import Slider from "react-slick";
@@ -22,7 +23,7 @@ function Elena() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6">
+    <div className="flex flex-col h-full bg-white px-2 px-6">
       {/* Section 1: Our Journey */}
 
       {/* Section 2: Elena for NavIC - Slider */}
@@ -47,18 +48,18 @@ function Elena() {
           {/* Slide 1 */}
 
           <div className="">
-            <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-              Elena for NavIC
-            </h2>
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
               <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
                   src={e2e}
-                  className="w-full h-full object-cover"
+                  className="w-full h-[25em] object-cover"
                   alt="Elena for NavIC"
                 />
               </div>
               <div className="col-span-12 md:col-span-8 flex flex-col justify-center">
+                <h2 className="text-2xl font-bold text-[var(--heading)] mt-2 mb-2 flex justify-center">
+                  Elena for NavIC
+                </h2>
                 <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
                   Elena Geo has designed and developed NavIC products which are
                   large in range and depth to cater to all types of user
@@ -75,9 +76,6 @@ function Elena() {
           </div>
 
           <div className="">
-            <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-              Our Journey
-            </h2>
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
               <div className="col-span-12 md:col-span-6 flex">
                 <img
@@ -88,19 +86,23 @@ function Elena() {
               </div>
 
               <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+                <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+                  Our Journey
+                </h2>
                 <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
                   Elena Geo was founded by Lt Col V S Velan in the Technology
                   Business incubator of IIT Kharagpur in Aug 2012, to work in
                   the niche Multi GNSS based monitoring domain. Over the years
                   Elena has developed all products required for using NavIC. It
-                  now has end-to-end presence in this domain. To know more Visit  <a
-              className="text-[var(--primary)] underline inline-flex items-center"
-              href="https://elenageo.com/"
-              target="_blank"
-              title="Visit GeM"
-            >
-            Elena
-            </a>
+                  now has end-to-end presence in this domain. To know more Visit{" "}
+                  <a
+                    className="text-[var(--primary)] underline inline-flex items-center"
+                    href="https://elenageo.com/"
+                    target="_blank"
+                    title="Visit GeM"
+                  >
+                    Elena
+                  </a>
                 </p>
               </div>
             </div>
@@ -108,18 +110,24 @@ function Elena() {
 
           {/* Slide 2 */}
           <div className="">
-            <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-              Elena for Atma Nirbharta
-            </h2>
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-              <div className="col-span-12 md:col-span-4 flex justify-center">
+              <div className="md:col-span-4 col-span-12 flex justify-center items-center flex-col h-full">
                 <img
                   src={hhn}
-                  className="w-full h-auto max-h-[400px] object-contain"
+                  className="w-full h-auto max-h-[250px] object-contain"
+                  alt="NavIC Systems"
+                />
+                <img
+                  src={clock}
+                  className="w-full h-auto max-h-[100px] object-contain"
                   alt="NavIC Systems"
                 />
               </div>
               <div className="col-span-12 md:col-span-8 flex flex-col justify-center">
+                <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+                  Elena for Atma Nirbharta
+                </h2>
+
                 <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
                   As the only Indian company that provides complete NavIC-based
                   solutions, Elena Geo demonstrates unmatched expertise,
@@ -134,7 +142,16 @@ function Elena() {
                   import savings to the Govt Exchequer, approximately to the
                   tune of Rs 1000 Crores. Elena Geo has conceived and developed
                   NavIC Atomic Clock and NavIC Navigator using 5G under the DCIS
-                  scheme sponsored by DoT in 2021 and 2022 respectively
+                  scheme sponsored by DoT in 2021 and 2022 respectively.
+                  <br/>
+                  <span>NavIC Navigator using 5G</span>
+                  <br/>A state-of-the-art
+                  Navigator with cutting-edge technology. Provides precise,
+                  reliable multi-GNSS based navigation using NavIC.
+                  <span>NavIC Atomic Clock</span>
+                  Highly reliable, high precision, and synchronized time
+                  reference. Easily integrable, customizable in a Master-Slave
+                  configuration.
                 </p>
               </div>
             </div>
@@ -142,9 +159,6 @@ function Elena() {
 
           {/* Slide 3 */}
           <div className="">
-            <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
-              Elena for Defence
-            </h2>
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
               <div className="col-span-12 md:col-span-4 flex justify-center">
                 <img
@@ -154,6 +168,9 @@ function Elena() {
                 />
               </div>
               <div className="col-span-12 md:col-span-8 flex flex-col justify-center">
+                <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
+                  Elena for Defence
+                </h2>
                 <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
                   Elena Geo developed and supplied many state-of-the-art
                   products to the Indian Defence Forces. Some details are given
@@ -181,7 +198,6 @@ function Elena() {
         </Slider>
 
         {/* Link */}
-      
       </div>
     </div>
   );

@@ -20,6 +20,13 @@ const Navbar = () => {
     { link: "/contact", display: "Contact Us" },
     { link: "/faq", display: "FAQ" }
   ];
+  const handlereload = () => {
+    navigate("/"); // Navigate to home
+    setTimeout(() => {
+      window.location.reload(); // Then reload after navigation
+    }, 100); 
+  };
+  
 
   return (
     <div className="flex flex-row justify-center items-center">
@@ -29,9 +36,9 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <img
               src={Elena}
-              className="h-[50px] bg-white p-1 roun ded-md cursor-pointer"
+              className="h-[50px] bg-white p-1 rounded-md cursor-pointer"
               alt="Elena Logo"
-              onClick={() => window.location.reload()}
+              onClick={() =>handlereload()}
             />
             <h5 className="text-white font-semibold text-xl ml-2">
               Grid Converter

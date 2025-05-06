@@ -61,16 +61,15 @@ export default function Contact() {
       [name]: validateField(name, formData[name]),
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const newErrors = {};
     Object.keys(formData).forEach((field) => {
       const error = validateField(field, formData[field]);
       if (error) newErrors[field] = error;
     });
-
+  
     setErrors(newErrors);
     setTouched({
       name: true,
@@ -78,9 +77,9 @@ export default function Contact() {
       phoneNumber: true,
       from: true,
     });
-
+  
     if (Object.keys(newErrors).length > 0) return;
-
+  
     setBtnName("Sending...");
     try {
       await axios.post("https://enquiry.elenageo.com:7443/enquiry/", {
@@ -90,15 +89,28 @@ export default function Contact() {
         query: formData.from,
         remarks: formData.remarks,
       });
+  
+      // Reset form after successful submission
+      setFormData({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        from: "",
+        remarks: "",
+      });
+      setTouched({});
+      setErrors({});
+      setBtnName("Send Message");
     } catch (error) {
       console.error("Error posting enquiry:", error);
       alert("Failed to send. Please try again later.");
       setBtnName("Send Message");
     }
   };
+  
 
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6">
+    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-12em)] overflow-y-auto">
       <div className="grid grid-cols-12">
         {/* Contact Info */}
         <div className="md:col-span-4 col-span-12 flex justify-center items-start px-10 py-6">
@@ -148,7 +160,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[var(--secondary)] p-4 rounded focus:border-[var(--primary)] focus:outline-none"
+                  className="w-full border border-[var(--secondary)] p-3 rounded focus:border-[var(--primary)] focus:outline-none"
                   placeholder="Enter your full name"
                 />
                 {errors.name && touched.name && (
@@ -162,7 +174,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[var(--secondary)] p-4 rounded focus:border-[var(--primary)] focus:outline-none"
+                  className="w-full border border-[var(--secondary)] p-3 rounded focus:border-[var(--primary)] focus:outline-none"
                   placeholder="Email"
                 />
                 {errors.email && touched.email && (
@@ -179,7 +191,7 @@ export default function Contact() {
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[var(--secondary)] p-4 rounded focus:border-[var(--primary)] focus:outline-none"
+                  className="w-full border border-[var(--secondary)] p-3 rounded focus:border-[var(--primary)] focus:outline-none"
                   placeholder="Enter your 10 digit Mobile number"
                 />
                 {errors.phoneNumber && touched.phoneNumber && (
@@ -193,7 +205,7 @@ export default function Contact() {
                   value={formData.from}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[var(--secondary)] p-4 rounded focus:border-[var(--primary)] focus:outline-none"
+                  className="w-full border border-[var(--secondary)] p-3 rounded focus:border-[var(--primary)] focus:outline-none"
                   placeholder="Enter your company or organization"
                 />
                 {errors.from && touched.from && (

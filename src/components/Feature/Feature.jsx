@@ -45,7 +45,7 @@ export default function Feature() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-11em)] overflow-y-auto ">
+    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-11em)] overflow-y-auto overflow-x-hidden  ">
       {/* Left Arrow */}
      
       {/* Slider Component */}
@@ -72,13 +72,13 @@ export default function Feature() {
               <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold flex justify-center">
                 Advantages
               </h5>
-              <ul className="list-disc px-8  overflow-y-auto custom-scrollbar">
-                {advantages.map((val, index) => (
-                  <li key={index} className="text-black  mb-4">
-                    {val}
-                  </li>
-                ))}
-              </ul>
+              <ul className="list-disc px-8  overflow-y-auto custom-scrollbar  grid md:grid-cols-2 grid-cols-1 space-y-2">
+        {advantages.map((val, index) => (
+          <li key={index} className="text-black">
+            {val}
+          </li>
+        ))}
+      </ul>
             </div>
   </div>
 </div>

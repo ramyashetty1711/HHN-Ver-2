@@ -6,23 +6,23 @@ import { FaArrowCircleDown } from "react-icons/fa";
 
 export default function Development() {
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6">
+    <div className="flex flex-col h-full bg-white py-3 px-6  max-h-[calc(100vh-12em)] overflow-y-auto ">
       <div className="grid grid-cols-12 ">
-        <div className="md:col-span-3 col-span-12 flex justify-center items-center flex-col h-full ">
+        <div className="md:col-span-2 col-span-12 flex justify-center items-center flex-col h-full ">
           <img
             src={black}
             alt="Device"
-            className="w-[150px] object-cover mb-2" // Added margin-bottom for spacing
+            className="w-[100px] object-cover mb-2" // Added margin-bottom for spacing
           />
           <img
             src={GC_Device}
             alt="Device"
-            className="w-[200px] object-cover"
+            className="w-[150px] object-cover"
           />
         </div>
 
-        <div className=" md:col-span-9 col-span-12">
-          <h2 className="text-xl font-bold text-[var(--heading)] mt-4 mb-2  flex justify-center">
+        <div className=" md:col-span-10 col-span-12">
+          <h2 className="text-xl font-bold text-[var(--heading)] mt-2 mb-2  flex justify-center">
             Proof of Concept (POC) Demonstrated to COAS
           </h2>
           <p className="text-justify">
@@ -49,7 +49,7 @@ export default function Development() {
             system, needed to be reprogrammed entirely to function with the
             upgraded processor. This process involved rewriting and optimizing
             complex algorithms to suit the new architecture. A technically
-            feasible smaller device which is handy was developed initially. .
+            feasible smaller device which is handy was developed initially. 
             This device was demonstrated to HAL where it garnered interest for
             potential procurement by other operational users.
             <br />A technically feasible smaller device which is handy was
