@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 
 import NavIC from "../../assets/HOME/NavIC.png";
-import Artillery from "../../assets/HOME/Artillery.png";
-import GC from "../../assets/HOME/Grid_Converter.png";
+import Artillery from "../../assets/HOME/Areas.png";
+import GC from "../../assets/HOME/HHN.png";
 import Elena from "../../assets/HOME/Elena.png";
 
 import "slick-carousel/slick/slick.css";
@@ -24,18 +24,18 @@ const ImageSlider = () => {
     arrows: false,
   };
 
-  const images = [NavIC, Artillery, GC, Elena];
+  const images = [Elena, NavIC, GC,Artillery];
 
   return (
     <div className="relative w-full  overflow-hidden  h-[calc(100vh-16em)] ">
       <button
-        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000"
+        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 cursor-pointer"
         onClick={() => sliderRef.current?.slickPrev()}
       >
         <FaChevronCircleLeft />
       </button>
       <button
-        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000"
+        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 cursor-pointer"
         onClick={() => sliderRef.current?.slickNext()}
       >
         <FaChevronCircleRight />

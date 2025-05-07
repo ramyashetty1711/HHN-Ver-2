@@ -3,6 +3,7 @@ import { IoSend } from "react-icons/io5";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../Toast/ToastContext";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ export default function Contact() {
     remarks: "",
   });
 
+  const { showToast } = useToast();
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [btnName, setBtnName] = useState("Send Message");
@@ -38,15 +40,20 @@ export default function Contact() {
         if (!value.trim()) return "Company/Organization is required";
         if (value.trim().length < 2) return "Must be at least 2 characters";
         break;
+        case "remarks":
+          if (!value.trim()) return "Message is required";
+          if (value.trim().length < 120) return "Message must be at least 120 characters long";
+          break;
+        
       default:
         return "";
     }
     return "";
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (touched[name]) {
@@ -63,6 +70,7 @@ export default function Contact() {
       [name]: validateField(name, formData[name]),
     }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -78,6 +86,7 @@ export default function Contact() {
       email: true,
       phoneNumber: true,
       from: true,
+      remarks: true
     });
 
     if (Object.keys(newErrors).length > 0) return;
@@ -90,9 +99,9 @@ export default function Contact() {
         mobile: formData.phoneNumber,
         query: formData.from,
         remarks: formData.remarks,
+        received_from:1
       });
 
-      // Reset form after successful submission
       setFormData({
         name: "",
         email: "",
@@ -102,82 +111,90 @@ export default function Contact() {
       });
       setTouched({});
       setErrors({});
+      showToast({ type: "success", heading: "Message Status", message:"Message sent successfull" });
       setBtnName("Send Message");
     } catch (error) {
       console.error("Error posting enquiry:", error);
-      alert("Failed to send. Please try again later.");
+      showToast({
+        type: "error",
+        heading: "Message Status",
+        message:
+        error.response?.data?.error || "An error occurred sending the message.",
+      });
       setBtnName("Send Message");
     }
   };
 
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6  overflow-y-auto">
-       <h2 className="text-xl font-bold text-[var(--heading)] mt-2 mb-2 flex justify-center">
-       If you are interested in purchasing or having any enquiries, reach out to us anytime.
- 
-            </h2>
+    <div className="flex flex-col h-full bg-white py-3 px-6 overflow-y-auto">
+      <h2 className="text-xl font-bold text-[var(--heading)] mt-1 mb-1 flex justify-center">
+        If you are interested in purchasing or have any enquiries, reach out to us anytime.
+      </h2>
+
       <div className="grid grid-cols-12">
-        {/* Contact Info */}
-        <div className="md:col-span-4 col-span-12 flex justify-center items-start   px-5 ">
-          <div className="w-full max-w-md">
-            <h2 className="text-md text-[var(--heading)] mb-4">
-             Contact
-            </h2>
-            {/* <p className="text-gray-600 text-sm mb-6">
-              We’d love to hear from you.
-              <br />
-              Reach out anytime using the details below.
-            </p> */}
-          <div className="mt-5 space-y-4 text-md">
-  {/* Row 1 */}
-  <div className="flex flex-col md:flex-row md:items-start">
-    <div className="font-medium md:w-1/2 mb-2 md:mb-0">Mr. Purushotham V</div>
-    <div className="flex flex-col space-y-1">
-      <a href="mailto:info@elenageo.com" className="hover:text-[var(--primary)] flex items-start">
-        <FaEnvelope className="mt-1 mx-1" /> info@elenageo.com
+        {/* Contact Info Section */}
+        <div className="md:col-span-5 col-span-12 px-5">
+          <h2 className="text-md text-[var(--heading)] md:mb-1 mb-5 md:mt-1 mt-5">Contact</h2>
+          <div className="mt-5 space-y-6 text-md">
+  {/* Contact 1 */}
+  <div className="grid grid-cols-12 items-start">
+    <div className="md:col-span-5 col-span-12 font-medium">
+      Mr. Purushotham V
+    </div>
+    <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
+      <a href="mailto:info@elenageo.com" className="hover:text-[var(--primary)] inline-flex items-center  rounded w-fit">
+        <FaEnvelope className="mr-2" /> info@elenageo.com
       </a>
-      <a href="tel:+919384864411" className="hover:text-[var(--primary)] flex items-start">
-        <FaPhoneAlt className="mt-1 mx-1" /> +91 9384864411
+      <a href="tel:+919384864411" className="hover:text-[var(--primary)] inline-flex items-center  rounded w-fit">
+        <FaPhoneAlt className="mr-2" /> +91 9384864411
       </a>
     </div>
   </div>
 
-  {/* Row 2 */}
-  <div className="flex flex-col md:flex-row md:items-start">
-    <div className="font-medium md:w-1/2 mb-2 md:mb-0">Mr. Naveen Kumar P</div>
-    <div className="flex flex-col space-y-1">
-      <a href="mailto:sales@elenageo.com" className="hover:text-[var(--primary)] flex items-start">
-        <FaEnvelope className="mt-1 mx-1" /> sales@elenageo.com
+  {/* Contact 2 */}
+  <div className="grid grid-cols-12 items-start">
+    <div className="md:col-span-5 col-span-12 font-medium">
+      Mr. Naveen Kumar P
+    </div>
+    <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
+      <a href="mailto:sales@elenageo.com" className="hover:text-[var(--primary)] inline-flex items-center   rounded w-fit">
+        <FaEnvelope className="mr-2" /> sales@elenageo.com
       </a>
-      <a href="tel:+919384864422" className="hover:text-[var(--primary)] flex items-start">
-        <FaPhoneAlt className="mt-1 mx-1" /> +91 9384864422
+      <a href="tel:+919384864422" className="hover:text-[var(--primary)] inline-flex items-center   rounded w-fit">
+        <FaPhoneAlt className="mr-2" /> +91 9384864422
       </a>
     </div>
   </div>
 
-  {/* Row 3 */}
-  <div className="flex flex-col md:flex-row md:items-start">
-    <div className="font-medium md:w-1/2 mb-2 md:mb-0">Mrs. Shabeen Taj P</div>
-    <div className="flex flex-col space-y-1">
-      <a href="tel:+918023554555" className="hover:text-[var(--primary)] flex items-start">
-        <FaPhoneAlt className="mt-1 mx-1" /> +91 8023554555
-      </a>
+  {/* Contact 3 */}
+  <div className="grid grid-cols-12 items-start">
+    <div className="md:col-span-5 col-span-12 font-medium">
+      Mrs. Shabeen Taj P
+    </div>
+    <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
+    <a
+  href="tel:+918023554555"
+  className="hover:text-[var(--primary)] inline-flex items-center   rounded w-fit"
+>
+  <FaPhoneAlt className="mr-2" /> +91 8023554555
+</a>
+
     </div>
   </div>
 </div>
 
-          </div>
+
         </div>
 
-        {/* Contact Form */}
-        <div className="md:col-span-8 col-span-12 px-5 ">
-          <h2 className="text-md mb-2 text-[var(--heading)] ">
-          Send Direct Message
-          </h2>
+        {/* Contact Form Section */}
+        <div className="md:col-span-7 col-span-12 px-5">
+          <h2 className="text-md md:mb-1 mb-5  text-[var(--heading)] md:mt-0 mt-5">Send Direct Message</h2>
+
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row gap-4">
+              {/* Full Name */}
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">
+                <label className="block text-sm font-bold mb-1">
                   Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -189,11 +206,13 @@ export default function Contact() {
                   placeholder="Enter your full name"
                 />
                 {errors.name && touched.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                  <p className="text-red-500 text-sm ">{errors.name}</p>
                 )}
               </div>
+
+              {/* Email */}
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">
+                <label className="block text-sm font-bold mb-1">
                   Email Address <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -205,14 +224,15 @@ export default function Contact() {
                   placeholder="Email"
                 />
                 {errors.email && touched.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                  <p className="text-red-500 text-sm ">{errors.email}</p>
                 )}
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-4">
+              {/* Phone Number */}
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">
+                <label className="block text-sm font-bold mb-1">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -229,8 +249,10 @@ export default function Contact() {
                   </p>
                 )}
               </div>
+
+              {/* Organization */}
               <div className="w-full md:w-1/2">
-                <label className="block text-sm font-bold mb-2">
+                <label className="block text-sm font-bold mb-1">
                   Company / Organization <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -247,27 +269,41 @@ export default function Contact() {
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-bold mb-2">
-                Your Message
-              </label>
-              <textarea
-                name="remarks"
-                value={formData.remarks}
-                onChange={handleChange}
-                className="w-full border border-[var(--secondary)] p-4 rounded focus:border-[var(--primary)] focus:outline-none"
-                rows="3"
-                placeholder="Write your message here (min 120 characters)"
-              />
-            </div>
+            {/* Remarks */}
+            {/* Remarks */}
+<div className="grid grid-cols-12 ">
+<div className="md:col-span-8 col-span-12">
+  <label className="block text-sm font-bold mb-1">Your Message <span className="text-red-500">*</span></label>
+  <textarea
+    name="remarks"
+    value={formData.remarks}
+    onChange={handleChange}
+    onBlur={handleBlur}
+    className="w-full border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none"
+    rows="3"
+    placeholder="Write your message here (min 120 chars)"
+  />
+  {errors.remarks && touched.remarks && (
+    <p className="text-red-500 text-sm mt-1">{errors.remarks}</p>
+  )}
+</div>
+<div className="md:col-span-4 col-span-12 flex items-center justify-center mt-5 md:mt-0">
+<button
+  type="submit"
+  disabled={btnName === "Sending..." }
+  className={`border border-[var(--primary)] rounded-md px-4 py-2 flex items-center gap-2
+    ${btnName === "Sending..." ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white'}`}
+>
+  <span>{btnName}</span>
+  <IoSend />
+</button>
 
-            <button
-              type="submit"
-              className="border border-[var(--primary)] rounded-md text-[var(--primary)] px-4 py-2 hover:bg-[var(--primary)] hover:text-white flex items-center gap-2"
-            >
-              <span>{btnName}</span>
-              <IoSend />
-            </button>
+</div>
+</div>
+
+
+            {/* Submit Button */}
+            
           </form>
         </div>
       </div>

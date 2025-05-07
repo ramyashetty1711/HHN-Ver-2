@@ -10,12 +10,12 @@ export default function About() {
         </div>
 
   {/* Description Text */}
-  <div className="text-center px-2">
+  {/* <div className="text-center px-2">
     <p className="text-2xl font-bold tracking-wide leading-relaxed text-[var(--primary)]">
      Grid Converter is a special tool to bring
    Artillery Network into one Grid.
     </p>
-  </div>
+  </div> */}
 
 
      

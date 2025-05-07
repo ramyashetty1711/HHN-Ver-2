@@ -22,12 +22,12 @@ export default function NavIC() {
   };
 
   return (
-    <div className="flex flex-col bg-white py-3 px-6 relative w-[99.9%] custom-scrollbar h-full">
+    <div className=" w-[99.9%] flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
       {/* Slider Container */}
       <div className="relative">
         {/* Custom Previous Arrow */}
         <button
-          className="absolute top-1/2 left-0 z-10 text-2xl text-gray-1000"
+          className="absolute top-1/2 left-0 z-10 text-2xl text-gray-1000 cursor-pointer"
           onClick={() => sliderRef.current?.slickPrev()}
         >
           <FaChevronCircleLeft />
@@ -35,7 +35,7 @@ export default function NavIC() {
 
         {/* Custom Next Arrow */}
         <button
-          className="absolute top-1/2 right-0 z-10 text-2xl text-gray-1000"
+          className="absolute top-1/2 right-0 z-10 text-2xl text-gray-1000 cursor-pointer"
           onClick={() => sliderRef.current?.slickNext()}
         >
           <FaChevronCircleRight />

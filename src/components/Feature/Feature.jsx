@@ -1,28 +1,22 @@
-import React, { useRef,useEffect } from "react";
-import Slider from "react-slick";
+import React, { useRef, useEffect } from "react";
 import bgImage from "../../assets/Features_BG.png";
 import Adv from "../../assets/Advantages.jpg";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 
 export default function Feature() {
   const sliderRef = useRef(null);
-  
 
   const FeatureList = [
-    "Displays current location in ESM GR, DSM GR, and Lat-Long formats.",
-    "Converts Lat-Long to ESM GR and DSM GR. ",
-    "Converts Lat-Long to ESM GR and DSM GR.",
-    "Converts DSM GR to ESM GR and Lat-Long. ",
-    "Provides atomic-clock-based accurate timing. ",
-    "Displays mapsheet reference numbers in ESM and DSM formats. ",
-    "Rugged: Confirms to Military Standards.",
+    "Multi-GNSS Reception: NavIC, GPS, GLONASS, and SBAS for precise, reliable navigation.",
+    "Map Page: Add DSM/OSM Maps; includes inbuilt base map. Grid System: Provides Grid Reference Parameters.",
+    "Real-Time Tracking: View current location and track your journey. Sky Plot & Satellite SNR: Visualize the sky and monitor satellite signal strength.",
+    "Built-In Compass: Reliable direction guidance.",
+    "Reference Points: Save important locations.",
+    "Route Planning: Optimize routes for efficient navigation.",
+    "Debug Page: Advanced insights and customization.",
     "LCD view panel for clear daylight visibility.",
-    "Small built-in Torch light for night use.",
-    "IP67 rated.",
-    "Battery: Normal Operations for 60 hours.",
-    "Kill button to delete all data securely.",
-    "Supplied with a waterproof pouch for additional protection.",
-    "Supports display of 6, 8, and 10-digit GR in both ESM and DSM formats.",
+    "View Saved Tracks: Analyze past journeys.",
+    "Location Management: Save, edit, and delete location images.",
   ];
 
   const advantages = [
@@ -32,31 +26,16 @@ export default function Feature() {
     "Assist firepower coordination.",
   ];
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500, // Duration of the transition in milliseconds
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    autoplay: true, // Enables autoplay
-    autoplaySpeed: 3000, // Time between slides in milliseconds (3 seconds)
-  };
-
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6  overflow-y-auto ">
-      {/* Left Arrow */}
-
-      {/* Slider Component */}
-
+    <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar mb-10 pb-10">
       {/* Slide 1: Features */}
       <div>
-        <div className="flex flex-col text-white  md:px-6 rounded-lg  bg-cover bg-center bg-no-repeat">
-          <div className=" rounded-lg">
+        <div className="flex flex-col text-white md:px-3 rounded-lg bg-cover bg-center bg-no-repeat">
+          <div className="rounded-lg">
             <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold flex justify-center">
               Features
             </h5>
-            <ul className="list-disc md:px-8 px-4  overflow-y-auto custom-scrollbar  grid md:grid-cols-2 grid-cols-1 space-y-2">
+            <ul className="list-disc md:px-8 px-4 overflow-y-auto custom-scrollbar grid md:grid-cols-2 grid-cols-1 gap-y-3 gap-x-6">
               {FeatureList.map((val, index) => (
                 <li key={index} className="text-black">
                   {val}
@@ -64,22 +43,24 @@ export default function Feature() {
               ))}
             </ul>
           </div>
-          <div className=" rounded-lg mt-4">
+
+          {/* Uncomment if you want to show advantages */}
+          {/* 
+          <div className="rounded-lg mt-8">
             <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold flex justify-center">
               Advantages
             </h5>
-            <ul className="list-disc md:px-8  px-4 grid md:grid-cols-4  overflow-y-auto custom-scrollbar ">
+            <ul className="list-disc md:px-8 px-4 grid md:grid-cols-4 grid-cols-1 gap-y-3">
               {advantages.map((val, index) => (
-                <li key={index} className="text-black col-span-2  mb-4">
+                <li key={index} className="text-black col-span-2 mb-4">
                   {val}
                 </li>
               ))}
             </ul>
           </div>
+          */}
         </div>
       </div>
-
-      {/* Slide 2: Advantages */}
     </div>
   );
 }

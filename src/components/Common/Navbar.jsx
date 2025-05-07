@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Elena from "../../assets/Elena.png";
-import { FaBars, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { TbLogout } from "react-icons/tb";
 import { store } from "../../redux/Store";
@@ -12,7 +12,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const[supportMenu,setSuppotMenu]=useState(false)
+  const [supportMenu, setSuppotMenu] = useState(false);
+
   const dropdownRef = useRef(null);
   const menuRef = useRef(null);
   const userRef = useRef(null);
@@ -24,6 +25,7 @@ const Navbar = () => {
     { link: "/development", display: "Development" },
     { link: "/trials", display: "Trials" },
     { link: "/features", display: "Features" },
+    { link: "/certificationofhhn", display: "Certification of HHN" },
     { link: "/procurement", display: "Procurement" },
     { link: "/NavIC", display: "NavIC" },
     { link: "/elena", display: "Elena" },
@@ -40,28 +42,10 @@ const Navbar = () => {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      // Close dropdown if clicked outside
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
-      }
-      // Close mobile menu if clicked outside
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      // Close dropdown if clicked outside
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setSuppotMenu(false);
       }
-      // Close mobile menu if clicked outside
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuOpen(false);
       }
@@ -70,6 +54,7 @@ const Navbar = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
   return (
     <div className="flex flex-row justify-center items-center">
       <div className="w-full rounded-xl relative">
@@ -83,7 +68,7 @@ const Navbar = () => {
               onClick={handlereload}
             />
             <h5 className="text-white font-semibold text-xl ml-2">
-              Grid Converter
+              Elena Handheld Navigator
             </h5>
           </div>
 
@@ -127,7 +112,7 @@ const Navbar = () => {
               className="md:hidden text-white text-2xl p-2 rounded hover:bg-white/10 transition duration-300"
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              <FaBars />
+              {menuOpen ? <FaTimes /> : <FaBars />}
             </button>
           </div>
         </nav>
@@ -157,6 +142,7 @@ const Navbar = () => {
                 </li>
               </Link>
             ))}
+
             {LoggedInStatus && (
               <li
                 className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
@@ -166,9 +152,12 @@ const Navbar = () => {
                 }`}
                 ref={dropdownRef}
               >
-                <div onClick={(e) =>{ 
-                  e.stopPropagation()
-                  setSuppotMenu((prev) => !prev)}}>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSuppotMenu((prev) => !prev); 
+                  }}
+                >
                   Support
                 </div>
                 {supportMenu && (

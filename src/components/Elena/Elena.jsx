@@ -23,14 +23,14 @@ function Elena() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white px-2 px-6">
+    <div className="flex flex-col h-full bg-white px-2 px-6 overflow-y-auto custom-scrollbar">
       {/* Section 1: Our Journey */}
 
       {/* Section 2: Elena for NavIC - Slider */}
       <div className="relative">
         {/* Custom Previous Arrow */}
         <button
-          className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2"
+          className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
           onClick={() => sliderRef.current?.slickPrev()}
         >
           <FaChevronCircleLeft />
@@ -38,7 +38,7 @@ function Elena() {
 
         {/* Custom Next Arrow */}
         <button
-          className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2"
+          className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
           onClick={() => sliderRef.current?.slickNext()}
         >
           <FaChevronCircleRight />
@@ -104,6 +104,7 @@ function Elena() {
                   >
                     Elena
                   </a>
+                  .
                 </p>
               </div>
             </div>
@@ -142,7 +143,7 @@ function Elena() {
                   of these products and technology shall account towards a huge
                   import savings to the Govt Exchequer, approximately to the
                   tune of Rs 1000 Crores. Elena Geo has conceived and developed
-                  NavIC Atomic Clock and NavIC Navigator using 5G under the DCIS
+                  NavIC Navigator and NavIC Atomic Clock using 5G under the DCIS
                   scheme sponsored by DoT in 2021 and 2022 respectively.
                   
                 </p>

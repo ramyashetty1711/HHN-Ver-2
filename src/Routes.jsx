@@ -25,6 +25,7 @@ import Login from "./components/Login/Login";
 import Wrapper from "./Wrapper";
 import Feedback from "./components/Support/Feedback";
 import Ticket from "./components/Support/Ticket";
+import Cert from './components/CofHHN/Cert'
 
 export default function AppRoutes() {
   const routes = [
@@ -41,6 +42,7 @@ export default function AppRoutes() {
     { path: "/faq", component: <Help /> },
     { path: "/about", component: <About /> },
     { path: "/login", component: <Login /> },
+    { path: "/certificationofhhn", component: <Cert/> },
     // { path: "/feedback", component: <Feedback /> },
     // { path: "/ticket", component: <Ticket /> },
   ];

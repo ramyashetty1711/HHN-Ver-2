@@ -3,7 +3,7 @@ import trialsimg from "../../assets/Trials.jpg";
 
 export default function Trials() {
   return (
-    <div className="flex flex-col h-full bg-white py-3 px-6">
+    <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
       <div className="grid grid-cols-12 h-full  ">
         <div className="md:col-span-4 col-span-12 flex flex-col items-center justify-start h-full">
           <p className="text-sm font-bold text-[var(--heading)]  text-center">
