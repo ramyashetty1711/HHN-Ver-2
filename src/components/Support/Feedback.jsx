@@ -13,8 +13,8 @@ import CustomButton from "../Common/CustomButton";
 // ];
 
 export default function Feedback() {
-  const { get, post } = useFetch();
-  const { mutate, isPostLoading, isSuccess, isError, error, data } = post;
+  const { get, usePost } = useFetch();
+  const { mutate, isPostLoading, isSuccess, isError, error, data } = usePost;
   const {
     data: devices,
     isLoading,

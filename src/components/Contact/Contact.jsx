@@ -99,7 +99,7 @@ export default function Contact() {
         mobile: formData.phoneNumber,
         query: formData.from,
         remarks: formData.remarks,
-        received_from:1
+        received_from:2
       });
 
       setFormData({
@@ -134,7 +134,7 @@ export default function Contact() {
       <div className="grid grid-cols-12">
         {/* Contact Info Section */}
         <div className="md:col-span-5 col-span-12 px-5">
-          <h2 className="text-md text-[var(--heading)] md:mb-1 mb-5 md:mt-1 mt-5">Contact</h2>
+          <h2 className="text-md md:mb-1 mb-5  text-[var(--heading)] md:mt-0 mt-5">Contact</h2>
           <div className="mt-5 space-y-6 text-md">
   {/* Contact 1 */}
   <div className="grid grid-cols-12 items-start">

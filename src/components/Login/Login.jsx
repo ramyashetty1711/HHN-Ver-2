@@ -51,7 +51,7 @@ export default function Login() {
         showToast({ type: "success", heading: "Login Successfull" });
         window.sessionStorage.setItem("user", JSON.stringify(data));
         store.dispatch(updateLoggedInStatus(true));
-        navigate("/feedback");
+        navigate("/support");
       }
     } catch (err) {
       showToast({
@@ -76,10 +76,10 @@ export default function Login() {
             <img src={EleneLogo} className="h-[120px]" />
           </div>
           <h2 className="text-2xl font-semibold text-gray-600 mb-2 text-center hidden">
-            Elena Grid Converter
+            Elena Handheld Navigator
           </h2>
           <h5 className="text-md font-medium text-gray-500 mb-4 text-center">
-            You need to verify to access the website. <br />
+          You need to verify your mobile number and mail address to access the website.  <br />
             <span
               className=" text-[var(--primary)] cursor-pointer"
               onClick={(e) => {

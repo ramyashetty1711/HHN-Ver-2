@@ -31,6 +31,7 @@ export default function Trials() {
               inputs were incorporated in the final product. This product is now
               available for use by Arty Units.
             </p>
+          
           </div>
           {/* <p>
             The device underwent rigorous verification by ADG Mil Survey teams

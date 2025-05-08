@@ -6,8 +6,8 @@ const Gcfaq = () => {
     {
       title: "How to use the device?",
       description: "You can find the user manual for the HHN in the attached PDF.",
-      file: "/Documents/Grid Converter User Manual.pdf",
-      downloadName: "Grid Converter User Manual.pdf",
+      file: "/Documents/Elena HHN User Manual.pdf",
+      downloadName: "Elena HHN User Manual.pdf",
       linkText: "Download User Manual",
     },
     {
@@ -20,8 +20,8 @@ const Gcfaq = () => {
     {
       title: "How to rectify the specific problem condition of the device?",
       description: "Please refer to the troubleshooting guide attached to resolve any issues.",
-      file: "/Documents/Grid Converter Troubleshooting.pdf",
-      downloadName: "Grid Converter Troubleshooting.pdf",
+      file: "/Documents/Elena HHN Troubleshooting.pdf",
+      downloadName: "Elena HHN Troubleshooting.pdf",
       linkText: "Download Troubleshooting Guide",
     },
     {

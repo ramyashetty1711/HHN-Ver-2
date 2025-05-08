@@ -17,6 +17,8 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const menuRef = useRef(null);
   const userRef = useRef(null);
+  const supportRef = useRef(null);
+  const moreRef=useRef(null)
   const LoggedInStatus = useSelector((state) => state.data.LoggedInStatus);
 
   const MenuElements = [
@@ -42,7 +44,10 @@ const Navbar = () => {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
         setDropdownOpen(false);
         setSuppotMenu(false);
       }
@@ -74,12 +79,17 @@ const Navbar = () => {
 
           <div className="flex items-center gap-3">
             {!LoggedInStatus ? (
-              <div
-                className="font-semibold bg-white border rounded-lg px-3 py-2 cursor-pointer text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white hover:border-white transition-all duration-300"
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </div>
+              <>
+                <span className="text-sm text-gray-300 font-semibold text-center">
+                  Login for Customer Support
+                </span>
+                <div
+                  className="font-semibold bg-white border rounded-lg px-3 py-2 cursor-pointer text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white hover:border-white transition-all duration-300"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </div>
+              </>
             ) : (
               <div className="relative inline-block text-left" ref={userRef}>
                 <div
@@ -90,7 +100,10 @@ const Navbar = () => {
                 </div>
 
                 {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50">
+                  <div
+                    ref={dropdownRef}
+                    className="absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50"
+                  >
                     <button
                       onClick={() => {
                         window.sessionStorage.clear();
@@ -143,35 +156,47 @@ const Navbar = () => {
               </Link>
             ))}
 
+            {/* Support Menu - Only if logged in */}
             {LoggedInStatus && (
-              <li
-                className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
-                  (location.pathname.includes("/feedback") ||
-                    location.pathname.includes("/ticket")) &&
-                  "text-white bg-[var(--primary)]"
-                }`}
-                ref={dropdownRef}
-              >
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSuppotMenu((prev) => !prev); 
-                  }}
-                >
-                  Support
-                </div>
-                {supportMenu && (
-                  <ul className="absolute top-[100%] right-0 mt-2 w-40 bg-white border border-gray-300 rounded shadow-md z-[100] text-gray-700">
-                    <Link to="/feedback" onClick={() => setSuppotMenu(false)}>
-                      <li className="px-4 py-2 hover:bg-gray-100">Feedback</li>
-                    </Link>
-                    <Link to="/ticket" onClick={() => setSuppotMenu(false)}>
-                      <li className="px-4 py-2 hover:bg-gray-100">Ticket</li>
-                    </Link>
-                  </ul>
-                )}
-              </li>
-            )}
+  <>
+    {/* Support Tab */}
+    <li
+      className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
+        location.pathname.includes("/support") && "text-white bg-[var(--primary)]"
+      }`}
+      ref={supportRef}
+    >
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          setSuppotMenu((prev) => !prev);
+          navigate("/support");
+        }}
+      >
+        Support
+      </div>
+    </li>
+
+    {/* More Tab */}
+    <li
+      className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
+        location.pathname.includes("/more") && "text-white bg-[var(--primary)]"
+      }`}
+      ref={moreRef}
+    >
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          setSuppotMenu((prev) => !prev);
+          navigate("/more");
+        }}
+      >
+        More
+      </div>
+    </li>
+  </>
+)}
+
           </ul>
         </nav>
       </div>

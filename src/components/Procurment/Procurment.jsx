@@ -13,7 +13,7 @@ function Procurment() {
     { title: "Elena HHN Brochure", link: "Elena HHN Brochure.pdf" },
     { title: "Tech Specs", link: "Elena HHN Tech Specs.pdf" },
     { title: "Cert of Conformance", link: "Elena HHN Cert of Conformance.pdf" },
-    { title: "PAC by OEM", link: "Elena HHN Cert of Conformance.pdf" },
+    { title: "PAC by OEM", link: "Elena HHN PAC by OEM.pdf" },
   ];
 
   return (

@@ -1,27 +1,64 @@
-import React from 'react'
-import bis from '../../assets/certlogo/bis.png'
-import CE from '../../assets/certlogo/CE.png'
-import IP from '../../assets/certlogo/IP_67.png'
-import ROHS from '../../assets/certlogo/ROHS.png'
+import React from 'react';
+import bis from '../../assets/certlogo/bis.png';
+import CE from '../../assets/certlogo/CE.png';
+import IP from '../../assets/certlogo/IP_67.png';
+import ROHS from '../../assets/certlogo/ROHS.png';
+import { FaEye } from "react-icons/fa";
+
+const certificates = [
+  {
+    title: "BIS Certificate",
+    img: bis,
+    alt: "BIS",
+    link: "/Documents/Elena HHN BIS Certificate.pdf"
+  },
+  {
+    title: "CE Certificate",
+    img: CE,
+    alt: "CE",
+    link: "/Documents/Elena HHN CE Certificate.pdf"
+  },
+
+  {
+    title: "IP67 Rating",
+    img: IP,
+    alt: "IP67",
+    link: "/Documents/Elena HHN IP67 Rating.pdf"
+  },
+  {
+    title: "RoHS Certificate",
+    img: ROHS,
+    alt: "RoHS",
+    link: "/Documents/Elena HHN ROHS Certificate.pdf"
+  },
+  
+  
+
+];
 
 function Cert() {
   return (
-    <div className='flex flex-col bg-white items-center py-3 px-6 h-full overflow-y-auto custom-scrollbar'>
-      {/* First row: justify-between */}
-      <div className="flex flex-col gap-4 w-[90%] ">
-      <div className="flex justify-between">
-        <img src={bis} alt="BIS" className="w-40 h-auto" />
-        <img src={CE} alt="CE" className="w-30 h-auto" />
-      </div>
-
-      {/* Second row: justify-center */}
-      <div className="flex justify-center gap-8">
-        <img src={ROHS} alt="ROHS" className="w-40 h-auto" />
-        <img src={IP} alt="IP67" className="w-40 h-auto" />
-      </div>
+    <div className="flex flex-col items-center bg-white py-10 px-4 h-full overflow-y-auto custom-scrollbar">
+      <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">Certifications</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full mt-5">
+        {certificates.map((cert, index) => (
+          <div key={index} className="bg-gray-50 rounded-2xl  p-6 flex flex-col items-center  ">
+            <img src={cert.img} alt={cert.alt} className="w-24 h-auto mb-4" />
+            <h2 className="font-semibold text-lg text-center text-[var(--heading)] mb-2">{cert.title}</h2>
+            <a
+              href={cert.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-[var(--heading)] flex items-center gap-2 mt-2"
+            >
+              <FaEye className="text-xl" />
+              <span>View Certificate</span>
+            </a>
+          </div>
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default Cert
+export default Cert;

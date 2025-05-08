@@ -7,22 +7,21 @@ export default function Development() {
   return (
     <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
       <div className="grid grid-cols-12 ">
-        <div className="md:col-span-4 col-span-12 flex justify-start items-center flex-col h-full ">
+        <div className="md:col-span-2 col-span-12 flex justify-start items-center flex-col h-full ">
           <img
             src={black}
             alt="Device"
-            className="w-[100px] object-cover mb-2"
+            className="h-[150px] object-cover mb-2"
           />
-         
         </div>
 
-        <div className=" md:col-span-8 col-span-12">
+        <div className=" md:col-span-10 col-span-12">
           {/* <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
             Proof of Concept (POC) Demonstrated to COAS
           </h2>
           <p className="text-justify">
             Arty units, use ESM, DSM, and Lat-Long references in their Shakti
-            Equipment. The Grid converter facilitates the migration from ESM to
+            Equipment. The Grid converter facilitate  s the migration from ESM to
             DSM without inhibiting the modernization of Artillery systems, to
             keep pace with the latest miltech, including automation of fire
             control systems. The initial Proof of Concept (POC) device,
@@ -36,18 +35,17 @@ export default function Development() {
             Prototype
           </h2>
           <p className="text-justify ">
-            This is a culmination of Elena Geo's Effort from 2022, whence we
-            were identified with DCIS Scheme 22 by Department of
-            Telecommunication and were funded to develop our Handheld Navigator
-            Device.
+            In order to address the need for indigenous GNSS incorporated
+            navigation solutions, DoT tasked Elena Geo to deliver a Handheld
+            Device with NavIC based multi GNSS functionalities, through the DCIS
+            2022 scheme. Consequently, Elena, through its in house R & D and
+            domain expertise, developed the Elena Handheld Navigator Prototype.
           </p>
-          
         </div>
       </div>
 
       <div className="grid grid-cols-12 ">
-        
-        <div className=" md:col-span-8 col-span-12">
+        <div className=" md:col-span-10 col-span-12">
           {/* <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
             Proof of Concept (POC) Demonstrated to COAS
           </h2>
@@ -63,28 +61,28 @@ export default function Development() {
             the potential for grid conversion functionality.
           </p> */}
 
-          
           <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
             Final Design
           </h2>
           <p className="text-justify ">
-            The Elena NavIC Handheld Navigator has undergone rigorous testing
-            across different terrains and operational environments in India. The
-            feedback from the Defence units that have used the product in
-            real-world scenarios, including areas with difficult terrain,
-            confirms its reliability and precision to develop the device to
-            its final design.
+            The Elena NavIC Handheld Navigator prototype was put through
+            rigorous testing across different terrains and operational
+            environments in India. Subsequently, incorporating improvements
+            based on feedback from various entities, including the Armed Forces
+            user units, who used the product in real-world scenarios, across
+            areas with difficult terrain, the final version was developed and
+            deployed for user trials. The success of the trials confirms the
+            final version of Elena NavIC Handheld Navigator as an all-weather
+            device with the greatest reliability and highest precision.
           </p>
         </div>
-        <div className="md:col-span-4 col-span-12 flex justify-start items-center flex-col h-full ">
-         
+        <div className="md:col-span-2 col-span-12 flex justify-start items-center flex-col h-full ">
           <img
             src={GC_Device}
             alt="Device"
-            className="w-[140px] object-cover"
+            className="h-[250px] object-cover mb-2"
           />
         </div>
-
       </div>
 
       {/* Grid Section */}

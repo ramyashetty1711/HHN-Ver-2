@@ -26,8 +26,10 @@ import Wrapper from "./Wrapper";
 import Feedback from "./components/Support/Feedback";
 import Ticket from "./components/Support/Ticket";
 import Cert from './components/CofHHN/Cert'
+import More from "./components/More/More";
 
 export default function AppRoutes() {
+
   const routes = [
     { path: "/", component: <About /> },
     { path: "/background", component: <BackGround /> },
@@ -67,7 +69,7 @@ export default function AppRoutes() {
             <Route key={idx} path={val.path} element={val.component} />
           ))}
           <Route
-            path="/ticket"
+            path="/support"
             element={
               <PrivateRoute>
                 <Ticket />
@@ -82,7 +84,16 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/more"
+            element={
+              <PrivateRoute>
+                <More/>
+              </PrivateRoute>
+            }
+          />
         </Route>
+        
 
         {/* <Route path="/login" element={<Login />} /> */}
       </Routes>
@@ -93,6 +104,8 @@ export default function AppRoutes() {
 
 const PrivateRoute = ({ children }) => {
   const user = sessionStorage.getItem("user");
+
+  
   const isAuthenticated = user !== undefined && user !== null;
 
   return isAuthenticated ? children : <Navigate to="/login" replace />;

@@ -10,7 +10,7 @@ const api = axios.create({
 });
 
 // Helper to extract token from sessionStorage
-const getAuthToken = () => {
+export const getAuthToken = () => {
   const user = sessionStorage.getItem("user");
   try {
     return user ? JSON.parse(user).token : null;
@@ -45,14 +45,14 @@ export const useFetch = () => {
 
   const mutationFn =
     (method) =>
-    async ({ url, data, isForm = false, config = {} }) => {
+    async ({ url, data, isForm = false, config = {}, attachToken = true }) => {
       const token = getAuthToken();
 
       const headers = {
         ...(isForm
           ? { "Content-Type": "multipart/form-data" }
           : { "Content-Type": "application/json" }),
-        ...(token ? { Authorization: `Token ${token}` } : {}),
+        ...(token && attachToken ? { Authorization: `Token ${token}` } : {}),
         ...(config.headers || {}),
       };
 
@@ -69,15 +69,28 @@ export const useFetch = () => {
       return res;
     };
 
-  const post = useMutation({ mutationFn: mutationFn("post") });
-  const put = useMutation({ mutationFn: mutationFn("put") });
-  const patch = useMutation({ mutationFn: mutationFn("patch") });
+  // const post = useMutation({ mutationFn: mutationFn("post") });
+  const usePost = (options = {}) =>
+    useMutation({
+      mutationFn: mutationFn("post"),
+      ...options,
+    });
+  const usePatch = (options = {}) =>
+    useMutation({
+      mutationFn: mutationFn("patch"),
+      ...options,
+    });
+  const usePut = (options = {}) =>
+    useMutation({
+      mutationFn: mutationFn("put"),
+      ...options,
+    });
 
   return {
     get,
-    post,
-    put,
-    patch,
+    usePost,
+    usePatch,
+    usePut,
     invalidate: queryClient.invalidateQueries,
     queryClient,
   };
