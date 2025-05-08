@@ -180,14 +180,14 @@ const Register = ({ showRegister, setShowRegister }) => {
     mobile_otp: "",
     mail_otp: "",
   });
-  const { post } = useFetch();
+  const { usePost  } = useFetch();
   const {
     mutate: mutateGenerateMobileOTP,
     isLoading: isLoadingGenerateMobileOTP,
     isSuccess: isSuccessGenerateMobileOTP,
     isError: isErrorGenerateMobileOTP,
     error: errorGenerateMobileOTP,
-  } = post;
+  } = usePost;
 
   const {
     mutate: mutateGenerateMailOTP,
@@ -195,7 +195,7 @@ const Register = ({ showRegister, setShowRegister }) => {
     isSuccess: isSuccessGenerateMailOTP,
     isError: isErrorGenerateMailOTP,
     error: errorGenerateMailOTP,
-  } = post;
+  } = usePost;
 
   const {
     mutate: mutateMobileOTP,
@@ -203,7 +203,7 @@ const Register = ({ showRegister, setShowRegister }) => {
     isSuccess: isSuccessMobileOTP,
     isError: isErrorMobileOTP,
     error: errorMobileOTP,
-  } = post;
+  } = usePost;
 
   const {
     mutate: mutateMailOTP,
@@ -211,7 +211,7 @@ const Register = ({ showRegister, setShowRegister }) => {
     isSuccess: isSuccessMailOTP,
     isError: isErrorMailOTP,
     error: errorMailOTP,
-  } = post;
+  } = usePost;
 
   const [showMobileOtp, setShowMobileOtp] = useState(false);
   const [showEmailOtp, setShowEmailOtp] = useState(false);

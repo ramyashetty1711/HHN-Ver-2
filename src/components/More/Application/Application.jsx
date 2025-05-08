@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { IoIosCloseCircle } from 'react-icons/io';
-import { CgCheckO } from 'react-icons/cg';
-import { useFetch } from '../../../query/UseFetch';
-import { APPURL } from '../../../URL';
-import CustomButton from '../../Common/CustomButton';
-import { useToast } from '../../Toast/ToastContext';
+import { IoIosCloseCircle } from "react-icons/io";
+import { CgCheckO } from "react-icons/cg";
+import { useFetch } from "../../../query/UseFetch";
+import { APPURL } from "../../../URL";
+import CustomButton from "../../Common/CustomButton";
+import { useToast } from "../../Toast/ToastContext";
 
 function Application() {
-    const [addFormData, setAddFormData] = useState({
-        application_name: '',
-        exe_file: null,
-      });
+  const [addFormData, setAddFormData] = useState({
+    application_name: "",
+    exe_file: null,
+  });
 
-      const user = sessionStorage.getItem("user");
-      console.log(user.role);
-      
-      
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const role = user?.role;
+  console.log(role);
 
   const { get, usePost } = useFetch();
   const { mutate, isPostLoading, isSuccess, isError, error, data } = usePost();
@@ -101,7 +100,7 @@ function Application() {
   const handleExeChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const nameWithoutExt = file.name.replace(/\.[^/.]+$/, ""); 
+      const nameWithoutExt = file.name.replace(/\.[^/.]+$/, "");
       setAddFormData((prev) => ({
         ...prev,
         exe_file: file,
@@ -109,7 +108,6 @@ function Application() {
       }));
     }
   };
-  
 
   useEffect(() => {
     if (addFormData) {
@@ -142,16 +140,18 @@ function Application() {
 
   return (
     <>
-      <div className="flex flex-row justify-end mb-3">
-        <div
-          className="p-2 bg-[var(--primary)] text-white rounded-lg font-semibold cursor-pointer hover:bg-blue-900"
-          onClick={() => {
-            setAdd(true);
-          }}
-        >
-          Add
+      {role === 0 && (
+        <div className="flex flex-row justify-end mb-3">
+          <div
+            className="p-2 bg-[var(--primary)] text-white rounded-lg font-semibold cursor-pointer hover:bg-blue-900"
+            onClick={() => {
+              setAdd(true);
+            }}
+          >
+            Add
+          </div>
         </div>
-      </div>
+      )}
       <div className="pb-4 max-h-[72vh] overflow-y-auto custom-scrollbar">
         <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
           <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
@@ -160,7 +160,6 @@ function Application() {
               <th className="px-4 py-2">Application Name</th>
               <th className="px-4 py-2">Updated At</th>
               <th className="px-4 py-2">Actions</th>
-             
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-sm">
@@ -211,36 +210,33 @@ function Application() {
             <h4 className="text-lg">Add Application</h4>
             <div className="p-4">
               <form
-                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                className="grid grid-cols-1 md:grid-cols-2 gap-4"
                 onSubmit={handleSubmit}
               >
-                
-
+                <div>
+                  <label className="block mb-1 text-md font-medium text-gray-500">
+                    Application Name
+                  </label>
+                  <input
+                    type="text"
+                    name="application_name"
+                    value={addFormData.application_name}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    placeholder="Application name"
+                    readOnly
+                  />
+                </div>
                 <div>
   <label className="block mb-1 text-md font-medium text-gray-500">
-    Application Name
-  </label>
-  <input
-    type="text"
-    name="application_name"
-    value={addFormData.application_name}
-    onChange={handleChange}
-    className="w-full border border-gray-300 rounded px-3 py-2"
-    placeholder="Application name"
-    readOnly
-  />
-</div>
-
-<div>
-  <label className="block mb-1 text-md font-medium text-gray-500">
-    Upload Application 
+    Upload the File
   </label>
   <input
     type="file"
     name="exe_file"
     accept=".exe"
     onChange={handleExeChange}
-    className="w-full border border-gray-300 rounded px-3 py-2"
+    className="w-full border border-gray-300 rounded px-3 py-2 cursor-pointer"
   />
   {addFormData.exe_file && (
     <p className="mt-1 text-sm text-gray-600">
@@ -249,10 +245,6 @@ function Application() {
   )}
 </div>
 
-                
-              
-
-               
 
                 <div className="md:col-span-3 text-right w-full flex justify-end">
                   <CustomButton
