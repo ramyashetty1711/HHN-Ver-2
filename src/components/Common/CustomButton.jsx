@@ -22,7 +22,7 @@ export default function CustomButton({
   const baseClasses =
     "px-4 py-2 rounded transition-all font-medium flex items-center justify-center";
   const enabledClasses =
-    "bg-blue-500 text-white hover:bg-blue-600 focus:ring focus:ring-blue-300 cursor-pointer";
+    "border-1 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white  cursor-pointer";
   const disabledClasses = "bg-gray-300 text-gray-600 cursor-not-allowed";
 
   return (

@@ -46,6 +46,7 @@ function Elena() {
 
         <Slider ref={sliderRef} {...settings}>
           {/* Slide 1 */}
+          
 
           <div className="">
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
@@ -76,6 +77,7 @@ function Elena() {
             </div>
           </div>
 
+
           <div className="">
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
               <div className="col-span-12 md:col-span-6 flex">
@@ -95,20 +97,22 @@ function Elena() {
                   Business incubator of IIT Kharagpur in Aug 2012, to work in
                   the niche Multi GNSS based monitoring domain. Over the years
                   Elena has developed all products required for using NavIC. It
-                  now has end-to-end presence in this domain.To know more Visit{" "}
+                  now has end-to-end presence in this domain.To know more about Elena, visit{" "}
                   <a
                     className="text-[var(--primary)] underline inline-flex items-center"
                     href="https://elenageo.com/"
                     target="_blank"
-                    title="Visit GeM"
+                    title="Visit Elena"
                   >
-                    Elena
+                    Our Company Site
                   </a>
                   .
                 </p>
               </div>
             </div>
           </div>
+
+         
 
           {/* Slide 2 */}
           <div className="">

@@ -1,48 +1,53 @@
-import React, { useState } from "react";
-import CustomButton from "../Common/CustomButton";
-import { CgCheckO } from "react-icons/cg";
-import Application from "./Application/Application";
-import Apk from "./Apk/Apk";
-import MapSheet from "./MapSheets/MapSheet";
-import TutorialDocuments from "./Tutorial/TutorialDocuments";
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import Devices from './Apk/Devices';
+import Application from './Application/Application';
+import MapSheet from './MapSheets/MapSheet';
+import TutorialDocuments from './Tutorial/TutorialDocuments';
 
-export default function Ticket() {
-  const [activeTab, setActiveTab] = useState("application");
+function More() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Use 'subtab' instead of 'tab' to avoid conflict with outer component
+  const activeSubTab = parseInt(searchParams.get('subtab')) || 1;
 
-  const tabs = [
-    { id: "application", name: "Application" },
-    { id: "hhnapk", name: "HHN APK" },
-    { id: "mapsheet", name: "Map Sheets" },
-    { id: "tutorial", name: "Tutorials" },
+  const TabData = [
+    { name: 'Devices', TabContent: <Devices />, key: 1 },
+    { name: 'Map Processing Software', TabContent: <Application />, key: 2 },
+    { name: 'Map Sheets', TabContent: <MapSheet />, key: 3 },
+    { name: 'Tutorials', TabContent: <TutorialDocuments />, key: 4 },
   ];
+
+  const handleTabChange = (key) => {
+    searchParams.set('subtab', key); // Set subtab not tab
+    setSearchParams(searchParams);
+  };
+
   return (
-    <div className="grid grid-cols-12 min-h-[78.8vh] bg-white">
-      {/* Left tabs */}
-      <div className="col-span-2 border-r border-gray-200 p-4">
-        <ul className="space-y-2">
-          {[...tabs].map((tab) => (
-            <li
-              key={tab.id}
-              className={`cursor-pointer p-2 rounded ${
-                activeTab === tab.id
-                  ? "bg-[var(--secondary)] font-semibold"
-                   : "hover:bg-gray-100"
-              }`}
-              onClick={() => setActiveTab(tab.id)}
+    <div className="tw-text-black">
+      <div className="w-full tw-mt-2 tw-mx-2">
+        <div className="flex border-b border-gray-300">
+          {TabData.map((tab, idx) => (
+            <button
+              key={tab.key}
+              onClick={() => handleTabChange(tab.key)}
+              className={`py-2 px-4 text-sm font-medium focus:outline-none transition-colors duration-300 rounded-t-md tw-min-w-[8em] ${
+                activeSubTab === tab.key
+                  ? 'bg-[var(--primary)] text-white'
+                  : 'text-gray-500'
+              } ${idx !== TabData.length - 1 ? 'mr-1' : ''}`}
             >
               {tab.name}
-            </li>
+            </button>
           ))}
-        </ul>
-      </div>
+        </div>
 
-      {/* Right content */}
-      <div className="col-span-10 p-4">
-        {activeTab === "application" && <Application />}
-        {activeTab === "hhnapk" && <Apk />}
-        {activeTab === "mapsheet" && <MapSheet />}
-        {activeTab === "tutorial" && <TutorialDocuments />}
+        <div className="mt-6">
+          {TabData.find((tab) => tab.key === activeSubTab)?.TabContent}
+        </div>
       </div>
     </div>
   );
 }
+
+export default More;

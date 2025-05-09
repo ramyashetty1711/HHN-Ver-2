@@ -178,7 +178,7 @@ const Navbar = () => {
     </li>
 
     {/* More Tab */}
-    <li
+    {/* <li
       className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
         location.pathname.includes("/more") && "text-white bg-[var(--primary)]"
       }`}
@@ -193,7 +193,7 @@ const Navbar = () => {
       >
         More
       </div>
-    </li>
+    </li> */}
   </>
 )}
 

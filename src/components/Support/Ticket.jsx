@@ -8,20 +8,29 @@ import { APPURL } from "../../URL";
 import { useMutation } from "@tanstack/react-query";
 import Feedback from "./Feedback";
 import { IoIosCloseCircle } from "react-icons/io";
+import More from '../More/More'
+import Admin from "../Admin/Admin";
+import { useSearchParams } from "react-router-dom"; 
 
 export default function Ticket() {
-  const [activeTab, setActiveTab] = useState("ticket");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") || "downloads";
 
   const tabs = [
+    { id: "downloads", name: "Downloads" },
     { id: "ticket", name: "Ticket" },
     { id: "feedback", name: "Feedback" },
   ];
+
+  const handleTabChange = (tabId) => {
+    setSearchParams({ tab: tabId });
+  };
+
   return (
     <div className="grid grid-cols-12 min-h-[78.8vh] bg-white">
-      {/* Left tabs */}
-      <div className="col-span-2 border-r border-gray-200 p-4">
+      <div className="md:col-span-2 col-span-12 border-r border-gray-200 p-4">
         <ul className="space-y-2">
-          {[...tabs].map((tab) => (
+          {tabs.map((tab) => (
             <li
               key={tab.id}
               className={`cursor-pointer p-2 rounded ${
@@ -29,7 +38,7 @@ export default function Ticket() {
                   ? "bg-[var(--secondary)] font-semibold"
                   : "hover:bg-gray-100"
               }`}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabChange(tab.id)}
             >
               {tab.name}
             </li>
@@ -37,15 +46,14 @@ export default function Ticket() {
         </ul>
       </div>
 
-      {/* Right content */}
-      <div className="col-span-10 p-4">
+      <div className="md:col-span-10 col-span-12 p-4">
+        {activeTab === "downloads" && <More />}
         {activeTab === "ticket" && <TicketStatus />}
         {activeTab === "feedback" && <Feedback />}
       </div>
     </div>
   );
 }
-
 
 function TicketStatus() {
   const [addFormData, setAddFormData] = useState({
