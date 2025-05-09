@@ -3,13 +3,39 @@ import Navbar from "./components/Common/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Common/Footer";
 import { store } from "./redux/Store";
-import { updateLoggedInStatus } from "./redux/DataSlice";
+import {
+  updateCurrentUserRole,
+  updateLoggedInStatus,
+  updateShowVerification,
+  updateVerificationData,
+} from "./redux/DataSlice";
+import { APPURL } from "./URL";
+import { getData } from "./query/UseFetchData";
+import { useLocalUserData } from "./query/UseLocalData";
 
 export default function Wrapper() {
   useEffect(() => {
-    const getUserData = sessionStorage.getItem("user");
-    if (getUserData) {
+    const getUserData = JSON.parse(sessionStorage.getItem("user"));
+
+    if (getUserData?.user) {
       store.dispatch(updateLoggedInStatus(true));
+      store.dispatch(updateCurrentUserRole(getUserData.role));
+
+      store.dispatch(
+        updateVerificationData({
+          email_verified: getUserData.email_verified,
+          phone_verified: getUserData.phone_verified,
+        })
+      );
+
+      if (!getUserData.email_verified || !getUserData.phone_verified) {
+        store.dispatch(updateShowVerification(true));
+      } else {
+        store.dispatch(updateShowVerification(false));
+      }
+    } else {
+      store.dispatch(updateLoggedInStatus(false));
+      store.dispatch(updateCurrentUserRole(0));
     }
   }, []);
   return (

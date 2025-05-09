@@ -31,10 +31,10 @@ function More() {
             <button
               key={tab.key}
               onClick={() => handleTabChange(tab.key)}
-              className={`py-2 px-4 text-sm font-medium focus:outline-none transition-colors duration-300 rounded-t-md tw-min-w-[8em] ${
+              className={`py-2 px-4 text-sm font-medium focus:outline-none transition-colors duration-300 rounded-t-md tw-min-w-[8em] cursor-pointer  transition-all duration-300 ${
                 activeSubTab === tab.key
-                  ? 'bg-[var(--primary)] text-white'
-                  : 'text-gray-500'
+                  ? 'bg-[var(--primary)]  text-white'
+                  : 'text-gray-500 hover:bg-gray-100'
               } ${idx !== TabData.length - 1 ? 'mr-1' : ''}`}
             >
               {tab.name}

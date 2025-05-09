@@ -5,20 +5,29 @@ import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { TbLogout } from "react-icons/tb";
 import { store } from "../../redux/Store";
-import { updateLoggedInStatus } from "../../redux/DataSlice";
+import {
+  updateLoggedInStatus,
+  updateShowVerification,
+  updateVerificationData,
+} from "../../redux/DataSlice";
+import { SpinnerCircularFixed } from "spinners-react";
+import { useLocalUserData } from "../../query/UseLocalData";
+import { APPURL } from "../../URL";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const UserData = useLocalUserData();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [supportMenu, setSuppotMenu] = useState(false);
-
+  const [LogoutLoading, setLogoutLoading] = useState(false);
   const dropdownRef = useRef(null);
   const menuRef = useRef(null);
   const userRef = useRef(null);
   const supportRef = useRef(null);
-  const moreRef=useRef(null)
+
+  const moreRef = useRef(null);
   const LoggedInStatus = useSelector((state) => state.data.LoggedInStatus);
 
   const MenuElements = [
@@ -44,10 +53,7 @@ const Navbar = () => {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
         setSuppotMenu(false);
       }
@@ -59,6 +65,31 @@ const Navbar = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const HandleLogout = async () => {
+    setLogoutLoading(true);
+    fetch(APPURL.logout, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Token ${UserData.token}`,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        sessionStorage.clear();
+        store.dispatch(updateLoggedInStatus(false));
+        store.dispatch(updateShowVerification(false));
+        store.dispatch(
+          updateVerificationData({
+            email_verified: false,
+            phone_verified: false,
+          })
+        );
+        navigate("/login");
+        setLogoutLoading(false);
+      }
+    });
+  };
 
   return (
     <div className="flex flex-row justify-center items-center">
@@ -91,29 +122,42 @@ const Navbar = () => {
                 </div>
               </>
             ) : (
-              <div className="relative inline-block text-left" ref={userRef}>
+              <div className="relative inline-block text-left">
                 <div
                   onClick={() => setDropdownOpen((prev) => !prev)}
-                  className="cursor-pointer"
+                  className="cursor-pointer flex flex-row items-center "
                 >
+                  <span className="text-gray-200 font-semibold mr-2">
+                    {UserData?.user}
+                  </span>
                   <FaUserCircle size={30} className="text-white" />
                 </div>
 
                 {dropdownOpen && (
-                  <div
-                    ref={dropdownRef}
-                    className="absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50"
-                  >
+                  <div className="absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50">
                     <button
-                      onClick={() => {
-                        window.sessionStorage.clear();
-                        store.dispatch(updateLoggedInStatus(false));
-                        navigate("/login");
+                      onClick={(e) => {
+                        e.stopPropagation();
+
+                        HandleLogout();
                       }}
-                      className="w-full text-left px-4 py-4 text-md text-gray-700 hover:bg-gray-100 font-semibold flex flex-row items-center"
+                      className="w-full text-left px-4 py-4  justify-center text-md text-gray-700 hover:bg-gray-100 font-semibold flex flex-row items-center cursor-pointer"
+                      disabled={LogoutLoading}
                     >
-                      <TbLogout size={20} className="text-red-500 mr-2" />
-                      Logout
+                      {LogoutLoading ? (
+                        <SpinnerCircularFixed
+                          size={20}
+                          color="#fb2c36"
+                          secondaryColor="#fb2c3630"
+                          thickness={200}
+                          speed={200}
+                        />
+                      ) : (
+                        <>
+                          <TbLogout size={20} className="text-red-500 mr-2" />
+                          Logout
+                        </>
+                      )}
                     </button>
                   </div>
                 )}
@@ -158,24 +202,25 @@ const Navbar = () => {
 
             {/* Support Menu - Only if logged in */}
             {LoggedInStatus && (
-  <>
-    {/* Support Tab */}
-    <li
-      className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
-        location.pathname.includes("/support") && "text-white bg-[var(--primary)]"
-      }`}
-      ref={supportRef}
-    >
-      <div
-        onClick={(e) => {
-          e.stopPropagation();
-          setSuppotMenu((prev) => !prev);
-          navigate("/support");
-        }}
-      >
-        Support
-      </div>
-    </li>
+              <>
+                {/* Support Tab */}
+                <li
+                  className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
+                    location.pathname.includes("/support") &&
+                    "text-white bg-[var(--primary)]"
+                  }`}
+                  ref={supportRef}
+                >
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSuppotMenu((prev) => !prev);
+                      navigate("/support");
+                    }}
+                  >
+                    Support
+                  </div>
+                </li>
 
     {/* More Tab */}
     {/* <li

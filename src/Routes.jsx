@@ -25,11 +25,11 @@ import Login from "./components/Login/Login";
 import Wrapper from "./Wrapper";
 import Feedback from "./components/Support/Feedback";
 import Ticket from "./components/Support/Ticket";
-import Cert from './components/CofHHN/Cert'
+import Cert from "./components/CofHHN/Cert";
 import More from "./components/More/More";
+import VerificationModal from "./components/Verification/Verification";
 
 export default function AppRoutes() {
-
   const routes = [
     { path: "/", component: <About /> },
     { path: "/background", component: <BackGround /> },
@@ -44,14 +44,15 @@ export default function AppRoutes() {
     { path: "/faq", component: <Help /> },
     { path: "/about", component: <About /> },
     { path: "/login", component: <Login /> },
-    { path: "/certificationofhhn", component: <Cert/> },
+    { path: "/certificationofhhn", component: <Cert /> },
     // { path: "/feedback", component: <Feedback /> },
     // { path: "/ticket", component: <Ticket /> },
   ];
 
   return (
-    <Router>
-      {/* <Suspense
+    <>
+      <Router>
+        {/* <Suspense
         fallback={
           <div className="flex justify-center items-center h-full">
             <SpinnerCircularFixed
@@ -63,49 +64,50 @@ export default function AppRoutes() {
           </div>
         }
       > */}
-      <Routes>
-        <Route element={<Wrapper />}>
-          {routes.map((val, idx) => (
-            <Route key={idx} path={val.path} element={val.component} />
-          ))}
-          <Route
-            path="/support"
-            element={
-              <PrivateRoute>
-                <Ticket />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/feedback"
-            element={
-              <PrivateRoute>
-                <Feedback />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/more"
-            element={
-              <PrivateRoute>
-                <More/>
-              </PrivateRoute>
-            }
-          />
-        </Route>
-        
 
-        {/* <Route path="/login" element={<Login />} /> */}
-      </Routes>
-      {/* </Suspense> */}
-    </Router>
+        <Routes>
+          <Route element={<Wrapper />}>
+            {routes.map((val, idx) => (
+              <Route key={idx} path={val.path} element={val.component} />
+            ))}
+            <Route
+              path="/support"
+              element={
+                <PrivateRoute>
+                  <Ticket />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/feedback"
+              element={
+                <PrivateRoute>
+                  <Feedback />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/more"
+              element={
+                <PrivateRoute>
+                  <More />
+                </PrivateRoute>
+              }
+            />
+          </Route>
+
+          {/* <Route path="/login" element={<Login />} /> */}
+        </Routes>
+        {/* </Suspense> */}
+      </Router>
+      <VerificationModal />
+    </>
   );
 }
 
 const PrivateRoute = ({ children }) => {
   const user = sessionStorage.getItem("user");
 
-  
   const isAuthenticated = user !== undefined && user !== null;
 
   return isAuthenticated ? children : <Navigate to="/login" replace />;

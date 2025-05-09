@@ -20,9 +20,9 @@ export default function CustomButton({
   };
 
   const baseClasses =
-    "px-4 py-2 rounded transition-all font-medium flex items-center justify-center";
+    "px-4 py-2 rounded transition-all font-medium flex items-center justify-center text-white";
   const enabledClasses =
-    "border-1 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white  cursor-pointer";
+    "border-1 border-[var(--primary)] bg-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)]  cursor-pointer";
   const disabledClasses = "bg-gray-300 text-gray-600 cursor-not-allowed";
 
   return (
@@ -39,7 +39,7 @@ export default function CustomButton({
     >
       {loading ? (
         <SpinnerCircularFixed
-          size={20}
+          size={24}
           color="white"
           thickness={200}
           speed={250}

@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
-import { IoIosCloseCircle } from 'react-icons/io'
+import React, { useState } from "react";
+import { IoIosCloseCircle } from "react-icons/io";
 import CustomButton from "../../Common/CustomButton";
 import { MdAddCircleOutline } from "react-icons/md";
-import { useFetch } from '../../../query/UseFetch';
-import { APPURL } from '../../../URL';
+import { useFetch } from "../../../query/UseFetch";
+import { APPURL } from "../../../URL";
 import { CgCheckO } from "react-icons/cg";
 
 function Devices() {
-  const [add, setAdd] = useState(false)
-   const { get, usePost } = useFetch();
+  const [add, setAdd] = useState(false);
+  const { get, usePost } = useFetch();
   const [addFormData, setAddFormData] = useState({
-    deviceSerNo: '',
+    deviceSerNo: "",
     deviceId: "",
-  })
+  });
   const [addStatus, setAddStatus] = useState({
     loading: false,
     disabled: false,
-  })
-  
+  });
 
   const user = JSON.parse(sessionStorage.getItem("user"));
   const role = user?.role;
@@ -28,19 +27,17 @@ function Devices() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Submitted:', addFormData)
-    setAdd(false)
-  }
+    e.preventDefault();
+    console.log("Submitted:", addFormData);
+    setAdd(false);
+  };
 
-  
-    const { data: tickets, refetch } = get({
-      key: "tickets",
-      url: APPURL.tickets,
-    });
+  const { data: tickets, refetch } = get({
+    key: "tickets",
+    url: APPURL.tickets,
+  });
 
-    console.log(tickets);
-    
+  console.log(tickets);
 
   return (
     <div>
@@ -66,10 +63,10 @@ function Devices() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-sm">
-          {tickets && tickets.length > 0 ? (
-      tickets.map((ticket, index) => (
-        <tr key={ticket.ticket_id} className="hover:bg-gray-50">
-          {/* <td className="px-4 py-2">{index + 1}</td>
+            {tickets && tickets.length > 0 ? (
+              tickets.map((ticket, index) => (
+                <tr key={ticket.ticket_id} className="hover:bg-gray-50">
+                  {/* <td className="px-4 py-2">{index + 1}</td>
           <td className="px-4 py-2">{ticket.ticket_id}</td>
           <td className="px-4 py-2">
             {new Date(ticket.updated_at).toLocaleString()}
@@ -80,15 +77,15 @@ function Devices() {
             )}
             {ticket.status}
           </td> */}
-        </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan={4} className="text-center py-4 text-gray-500">
-          Devices not available
-        </td>
-      </tr>
-    )}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="text-center py-4 text-gray-500">
+                  Devices not available
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
 
@@ -123,7 +120,6 @@ function Devices() {
                   value={addFormData.deviceId}
                   className="w-full  border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none"
                 />
-               
               </div>
 
               <div className="md:col-span-2 flex justify-end">
@@ -140,11 +136,11 @@ function Devices() {
         </Modal>
       </div>
     </div>
-  )
+  );
 }
 
 const Modal = ({ show, handleShow, children, onHide = false }) => {
-  if (!show) return null
+  if (!show) return null;
 
   return (
     <div
@@ -167,7 +163,7 @@ const Modal = ({ show, handleShow, children, onHide = false }) => {
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Devices
+export default Devices;
