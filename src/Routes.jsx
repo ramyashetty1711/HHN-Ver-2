@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,24 +10,26 @@ import SplashPage from "./components/Splash/SplashPage";
 import Navbar from "./components/Common/Navbar";
 import Footer from "./components/Common/Footer";
 import Home from "./components/Home/Home";
-import BackGround from "./components/BackGround/BackGround";
-import Necessity from "./components/Necessity/Necessity";
-import Development from "./components/Development/Development";
-import Trials from "./components/Trials/Trials";
-import Feature from "./components/Feature/Feature";
-import Procurment from "./components/Procurment/Procurment";
-import NavIC from "./components/NaVIC/NaVIC";
-import Elena from "./components/Elena/Elena";
-import Contact from "./components/Contact/Contact";
-import Help from "./components/Help/Help";
-import About from "./components/About/About";
-import Login from "./components/Login/Login";
-import Wrapper from "./Wrapper";
-import Feedback from "./components/Support/Feedback";
-import Ticket from "./components/Support/Ticket";
-import Cert from "./components/CofHHN/Cert";
-import More from "./components/More/More";
-import VerificationModal from "./components/Verification/Verification";
+const BackGround = lazy(() => import("./components/BackGround/BackGround"));
+const Necessity = lazy(() => import("./components/Necessity/Necessity"));
+const Development = lazy(() => import("./components/Development/Development"));
+const Trials = lazy(() => import("./components/Trials/Trials"));
+const Feature = lazy(() => import("./components/Feature/Feature"));
+const Procurment = lazy(() => import("./components/Procurment/Procurment"));
+const NavIC = lazy(() => import("./components/NaVIC/NaVIC"));
+const Elena = lazy(() => import("./components/Elena/Elena"));
+const Contact = lazy(() => import("./components/Contact/Contact"));
+const Help = lazy(() => import("./components/Help/Help"));
+const About = lazy(() => import("./components/About/About"));
+const Login = lazy(() => import("./components/Login/Login"));
+const Wrapper = lazy(() => import("./Wrapper"));
+const Feedback = lazy(() => import("./components/Support/Feedback"));
+const Ticket = lazy(() => import("./components/Support/Ticket"));
+const Cert = lazy(() => import("./components/CofHHN/Cert"));
+const More = lazy(() => import("./components/More/More"));
+const VerificationModal = lazy(() =>
+  import("./components/Verification/Verification")
+);
 
 export default function AppRoutes() {
   const routes = [

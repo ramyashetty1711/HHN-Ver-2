@@ -143,9 +143,9 @@ export default function Contact() {
           <h2 className="text-xl font-semibold md:text-md md:mb-1 mb-2  text-[var(--heading)] md:mt-0 mt-2 underline underline-offset-4">
             Contact :
           </h2>
-          <div className="mt-5 space-y-6 text-md grid md:flex grid-cols-12">
+          <div className="mt-5 space-y-6 text-md grid  grid-cols-12">
             {/* Contact 1 */}
-            <div className="grid grid-cols-12 items-start col-span-6 wrap-anywhere">
+            <div className="grid grid-cols-12 md:grid-cols-6 items-start col-span-6 wrap-anywhere">
               <div className="md:col-span-5 col-span-12 font-medium">
                 Mr. Purushotham V
               </div>
@@ -166,7 +166,7 @@ export default function Contact() {
             </div>
 
             {/* Contact 2 */}
-            <div className="grid grid-cols-12 items-start col-span-6 wrap-anywhere">
+            <div className="grid grid-cols-12 md:grid-cols-6 items-start col-span-6 wrap-anywhere">
               <div className="md:col-span-5 col-span-12 font-medium">
                 Mr. Naveen Kumar P
               </div>
@@ -187,7 +187,7 @@ export default function Contact() {
             </div>
 
             {/* Contact 3 */}
-            <div className="grid grid-cols-12 items-start col-span-6">
+            <div className="grid grid-cols-12 md:grid-cols-6 items-start col-span-6">
               <div className="md:col-span-5 col-span-12 font-medium">
                 Mrs. Shabeen Taj P
               </div>
