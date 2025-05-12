@@ -25,7 +25,7 @@ export const APPURL = {
   tickets: baseURL + "tickets/",
   devices: baseURL + "device/",
   ticketImages: baseURL + "ticket-images/",
-  feedbacks: baseURL + "feedbacks/",
+  feedbacks: baseURL + "feedback/",
   user: baseURL + "user/",
   sendEmailCode: baseURL + "send_email_code/",
   verifyEmailCode: baseURL + "verify_email_code/",

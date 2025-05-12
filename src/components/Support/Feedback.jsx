@@ -4,14 +4,63 @@ import { useFetch } from "../../query/UseFetch";
 import { APPURL } from "../../URL";
 import { useToast } from "../Toast/ToastContext";
 import CustomButton from "../Common/CustomButton";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getData } from "../../query/UseFetchData";
 import { useLocalUserData } from "../../query/UseLocalData";
 
 export default function Feedback() {
-  const { get, usePost } = useFetch();
   const SessionData = useLocalUserData();
-  const { mutate, isPostLoading, isSuccess, isError, error, data } = usePost();
+
+  const [selectedDevice, setSelectedDevice] = useState({});
+  const [ratings, setRatings] = useState({
+    look_rating: 0,
+    rugged_rating: 0,
+    app_ratings: 0,
+    ease_of_use: 0,
+  });
+  const [hover, setHover] = useState({
+    look_rating: null,
+    rugged_rating: null,
+    app_ratings: null,
+    ease_of_use: null,
+  });
+  const [comments, setComments] = useState({
+    look_feedback: "",
+    rugged_feedback: "",
+    app_feedback: "",
+    ease_of_use_feedback: "",
+    feedback: "",
+  });
+
+  const { mutate: PostTicket, isPending } = useMutation({
+    mutationFn,
+
+    onSuccess: (data) => {
+      if (data.status === 201) {
+        showToast({
+          type: "success",
+          heading: "Feedback Submitted",
+          message: "We appreciate your input and have recorded your feedback.",
+        });
+        setComments({
+          look_feedback: "",
+          rugged_feedback: "",
+          app_feedback: "",
+          ease_of_use_feedback: "",
+          feedback: "",
+        });
+        setRatings({
+          look_rating: 0,
+          rugged_rating: 0,
+          app_ratings: 0,
+          easeOfUse: 0,
+        });
+        setSelectedDevice({});
+        setDisabled(true);
+      }
+    },
+    onError: (err) => {},
+  });
   const { data: devices } = useQuery({
     queryKey: ["devices"],
     queryFn: () => getData(APPURL.devices, SessionData.token),
@@ -20,35 +69,15 @@ export default function Feedback() {
     cacheTime: 5 * 60 * 1000,
   });
 
-  const [selectedDevice, setSelectedDevice] = useState({});
-  const [ratings, setRatings] = useState({
-    looks: 0,
-    ruggedness: 0,
-    software: 0,
-    easeOfUse: 0,
-  });
-  const [hover, setHover] = useState({
-    looks: null,
-    ruggedness: null,
-    software: null,
-    easeOfUse: null,
-  });
-  const [comments, setComments] = useState({
-    looks: "",
-    ruggedness: "",
-    software: "",
-    easeOfUse: "",
-    general: "",
-  });
   const [disabled, setDisabled] = useState(true);
   const { showToast } = useToast();
 
   const HandleFeedBackSubmit = async () => {
     if (
-      ratings.looks === 0 ||
-      ratings.ruggedness === 0 ||
-      ratings.software === 0 ||
-      ratings.easeOfUse === 0
+      ratings.look_rating === 0 ||
+      ratings.rugged_rating === 0 ||
+      ratings.ratings === 0 ||
+      ratings.ease_of_use === 0
     ) {
       showToast({
         type: "error",
@@ -57,48 +86,43 @@ export default function Feedback() {
       });
       return;
     }
-    if (comments.general.length === 0) {
+    if (comments.feedback.length === 0) {
       showToast({
         type: "error",
         heading: "Error",
-        message: "Please provide a general comment to submit.",
+        message: "Please provide a Additional Feedback comment to submit.",
       });
       return;
     }
-    const GetDeviceID =
-      devices.find((val) => val.device_id === selectedDevice.device_id).id ||
-      null;
-    mutate({
+    // console.log({ ...ratings, ...comments });
+    // return;
+
+    PostTicket({
       url: APPURL.feedbacks,
-      data: {
-        ratings,
-        feedback: comments.general,
-        device_info: GetDeviceID,
-        detailedFeedback: comments,
-      },
-      isForm: true,
+      token: SessionData.token,
+      data: JSON.stringify({ ...ratings, ...comments }),
     });
   };
 
-  useEffect(() => {
-    if (isSuccess) {
-      setComments({
-        looks: "",
-        ruggedness: "",
-        software: "",
-        easeOfUse: "",
-        general: "",
-      });
-      setRatings({
-        looks: 0,
-        ruggedness: 0,
-        software: 0,
-        easeOfUse: 0,
-      });
-      setSelectedDevice({});
-      setDisabled(true);
-    }
-  }, [isSuccess]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setComments({
+  //       looks: "",
+  //       ruggedness: "",
+  //       software: "",
+  //       easeOfUse: "",
+  //       general: "",
+  //     });
+  //     setRatings({
+  //       looks: 0,
+  //       ruggedness: 0,
+  //       software: 0,
+  //       easeOfUse: 0,
+  //     });
+  //     setSelectedDevice({});
+  //     setDisabled(true);
+  //   }
+  // }, [isSuccess]);
 
   const generateQuestions = (rating) => {
     if (rating < 3) {
@@ -136,20 +160,27 @@ export default function Feedback() {
                     key={i}
                     type="button"
                     onClick={() => {
-                      setRatings((prev) => ({ ...prev, looks: currentRating }));
+                      setRatings((prev) => ({
+                        ...prev,
+                        look_rating: currentRating,
+                      }));
                     }}
                     onMouseEnter={() =>
-                      setHover((prev) => ({ ...prev, looks: currentRating }))
+                      setHover((prev) => ({
+                        ...prev,
+                        look_rating: currentRating,
+                      }))
                     }
                     onMouseLeave={() =>
-                      setHover((prev) => ({ ...prev, looks: null }))
+                      setHover((prev) => ({ ...prev, look_rating: null }))
                     }
                     className="cursor-pointer"
                   >
                     <FaStar
                       size={24}
                       className={
-                        currentRating <= (hover.looks || ratings.looks)
+                        currentRating <=
+                        (hover.look_rating || ratings.look_rating)
                           ? "text-yellow-400"
                           : "text-gray-300"
                       }
@@ -158,15 +189,18 @@ export default function Feedback() {
                 );
               })}
             </div>
-            {ratings.looks > 0 && (
+            {ratings.look_rating > 0 && (
               <div className="mt-2">
                 <label className="text-sm font-semibold">
                   {questionForLooks}
                 </label>
                 <textarea
-                  value={comments.looks}
+                  value={comments.look_feedback}
                   onChange={(e) =>
-                    setComments((prev) => ({ ...prev, looks: e.target.value }))
+                    setComments((prev) => ({
+                      ...prev,
+                      look_feedback: e.target.value,
+                    }))
                   }
                   className="w-full border p-2 rounded resize-none border-gray-300 mt-2"
                   rows={3}
@@ -189,17 +223,17 @@ export default function Feedback() {
                     onClick={() => {
                       setRatings((prev) => ({
                         ...prev,
-                        ruggedness: currentRating,
+                        rugged_rating: currentRating,
                       }));
                     }}
                     onMouseEnter={() =>
                       setHover((prev) => ({
                         ...prev,
-                        ruggedness: currentRating,
+                        rugged_rating: currentRating,
                       }))
                     }
                     onMouseLeave={() =>
-                      setHover((prev) => ({ ...prev, ruggedness: null }))
+                      setHover((prev) => ({ ...prev, rugged_rating: null }))
                     }
                     className="cursor-pointer"
                   >
@@ -207,7 +241,7 @@ export default function Feedback() {
                       size={24}
                       className={
                         currentRating <=
-                        (hover.ruggedness || ratings.ruggedness)
+                        (hover.rugged_rating || ratings.rugged_rating)
                           ? "text-yellow-400"
                           : "text-gray-300"
                       }
@@ -216,17 +250,17 @@ export default function Feedback() {
                 );
               })}
             </div>
-            {ratings.ruggedness > 0 && (
+            {ratings.rugged_rating > 0 && (
               <div className="mt-2">
                 <label className="text-sm font-semibold">
                   {questionForRuggedness}
                 </label>
                 <textarea
-                  value={comments.ruggedness}
+                  value={comments.rugged_feedback}
                   onChange={(e) =>
                     setComments((prev) => ({
                       ...prev,
-                      ruggedness: e.target.value,
+                      rugged_feedback: e.target.value,
                     }))
                   }
                   className="w-full border p-2 rounded resize-none border-gray-300 mt-2"
@@ -250,21 +284,25 @@ export default function Feedback() {
                     onClick={() => {
                       setRatings((prev) => ({
                         ...prev,
-                        software: currentRating,
+                        app_ratings: currentRating,
                       }));
                     }}
                     onMouseEnter={() =>
-                      setHover((prev) => ({ ...prev, software: currentRating }))
+                      setHover((prev) => ({
+                        ...prev,
+                        app_ratings: currentRating,
+                      }))
                     }
                     onMouseLeave={() =>
-                      setHover((prev) => ({ ...prev, software: null }))
+                      setHover((prev) => ({ ...prev, app_ratings: null }))
                     }
                     className="cursor-pointer"
                   >
                     <FaStar
                       size={24}
                       className={
-                        currentRating <= (hover.software || ratings.software)
+                        currentRating <=
+                        (hover.app_ratings || ratings.app_ratings)
                           ? "text-yellow-400"
                           : "text-gray-300"
                       }
@@ -273,17 +311,17 @@ export default function Feedback() {
                 );
               })}
             </div>
-            {ratings.software > 0 && (
+            {ratings.app_ratings > 0 && (
               <div className="mt-2">
                 <label className="text-sm font-semibold">
                   {questionForSoftware}
                 </label>
                 <textarea
-                  value={comments.software}
+                  value={comments.app_feedback}
                   onChange={(e) =>
                     setComments((prev) => ({
                       ...prev,
-                      software: e.target.value,
+                      app_feedback: e.target.value,
                     }))
                   }
                   className="w-full border p-2 rounded resize-none border-gray-300 mt-2"
@@ -307,24 +345,25 @@ export default function Feedback() {
                     onClick={() => {
                       setRatings((prev) => ({
                         ...prev,
-                        easeOfUse: currentRating,
+                        ease_of_use: currentRating,
                       }));
                     }}
                     onMouseEnter={() =>
                       setHover((prev) => ({
                         ...prev,
-                        easeOfUse: currentRating,
+                        ease_of_use: currentRating,
                       }))
                     }
                     onMouseLeave={() =>
-                      setHover((prev) => ({ ...prev, easeOfUse: null }))
+                      setHover((prev) => ({ ...prev, ease_of_use: null }))
                     }
                     className="cursor-pointer"
                   >
                     <FaStar
                       size={24}
                       className={
-                        currentRating <= (hover.easeOfUse || ratings.easeOfUse)
+                        currentRating <=
+                        (hover.ease_of_use || ratings.ease_of_use)
                           ? "text-yellow-400"
                           : "text-gray-300"
                       }
@@ -333,17 +372,17 @@ export default function Feedback() {
                 );
               })}
             </div>
-            {ratings.easeOfUse > 0 && (
+            {ratings.ease_of_use > 0 && (
               <div className="mt-2">
                 <label className="text-sm font-semibold">
                   {questionForEaseOfUse}
                 </label>
                 <textarea
-                  value={comments.easeOfUse}
+                  value={comments.ease_of_use_feedback}
                   onChange={(e) =>
                     setComments((prev) => ({
                       ...prev,
-                      easeOfUse: e.target.value,
+                      ease_of_use_feedback: e.target.value,
                     }))
                   }
                   className="w-full border p-2 rounded resize-none border-gray-300 mt-2"
@@ -364,16 +403,21 @@ export default function Feedback() {
             placeholder="Write your feedback..."
             className="w-full border p-2 rounded resize-none border-gray-300"
             rows={4}
-            value={comments.general}
+            value={comments.feedback}
             onChange={(e) =>
-              setComments((prev) => ({ ...prev, general: e.target.value }))
+              setComments((prev) => ({ ...prev, feedback: e.target.value }))
             }
           />
         </div>
 
         {/* Submit Button */}
         <div className="w-full flex flex-row justify-end">
-          <CustomButton onClick={HandleFeedBackSubmit} disabled={disabled}>
+          <CustomButton
+            onClick={HandleFeedBackSubmit}
+            disabled={disabled}
+            loading={isPending}
+            className="min-w-[6em]"
+          >
             Submit
           </CustomButton>
         </div>
@@ -381,3 +425,24 @@ export default function Feedback() {
     </div>
   );
 }
+const mutationFn = async ({ url, token, data }) => {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: data,
+    });
+
+    if (!res.ok) {
+      const response = await res.json();
+      throw response; // 🛑 throw error
+    }
+
+    return res;
+  } catch (err) {
+    throw err; // ✅ pass to onError
+  }
+};
