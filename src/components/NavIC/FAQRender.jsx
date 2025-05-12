@@ -33,7 +33,7 @@ const FAQItem = ({ data, isActive, onClick }) => {
         style={{ maxHeight: height }}
         className="overflow-hidden transition-all duration-300 ease-in-out px-6 text-md text-gray-500"
       >
-        <div className="flex py-3 ">
+        <div className="md:flex py-3 ">
           {/* Descriptions */}
           {data?.description && <p>{data.description}</p>}
           {data?.description1 && <p>{data.description1}</p>}
@@ -42,7 +42,7 @@ const FAQItem = ({ data, isActive, onClick }) => {
 
           {/* Download Link - Same line as description */}
           {data?.file && data?.downloadName && data?.linkText && (
-            <div className="flex items-center space-x-2">
+            <div className="md:flex md:items-center space-x-2">
               <p className="text-md text-gray-500 mr-2 flex-shrink-0">{data?.descriptionDownload}</p> {/* Description next to the link */}
               <a
     href={data.file}

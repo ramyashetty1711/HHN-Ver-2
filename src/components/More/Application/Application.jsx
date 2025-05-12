@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocalUserData } from "../../../query/UseLocalData";
 import { getData } from "../../../query/UseFetchData";
 import { FaDownload } from "react-icons/fa";
+import { SpinnerCircularFixed } from "spinners-react";
 
 function Application() {
   const SessionData = useLocalUserData();
@@ -30,14 +31,17 @@ function Application() {
   const { get, usePost } = useFetch();
   const { mutate, isPostLoading } = usePost();
   const { showToast } = useToast();
+  
 
-  const { data: exe, refetch: refetchTicket } = useQuery({
+  const { data: exe, refetch: refetchTicket,isLoading: ApplicationLoading } = useQuery({
     queryKey: ["exe"],
     queryFn: () => getData(APPURL.exe, SessionData.token),
     enabled: !!SessionData.token,
     staleTime: 60 * 1000,
     cacheTime: 5 * 60 * 1000,
   });
+  console.log(ApplicationLoading);
+  
 
   const handleExeChange = (e) => {
     const file = e.target.files[0];
@@ -118,33 +122,51 @@ function Application() {
               <th className="px-4 py-2">S. No</th>
               <th className="px-4 py-2">Application Name</th>
               <th className="px-4 py-2">Updated At</th>
-              <th className="px-4 py-2">Actions</th>
+              <th className="md:flex md:justify-center py-2 px-4">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 text-sm">
-            {exe && exe.length > 0 ? (
-              exe.map((ticket, index) => (
-                <tr key={ticket.ticket_id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2">{index + 1}</td>
-                  <td className="px-4 py-2">{ticket.file_name}</td>
-                  <td className="px-4 py-2">
-                    {new Date(ticket.updated_at).toLocaleString()}
-                  </td>
-                  <td className="px-4 py-2">
-                    <a href={ticket.file} download>
-                      <FaDownload className="text-[var(--primary)]" size={18} />
-                    </a>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4} className="text-center py-4 text-gray-500">
-                  No application available
-                </td>
-              </tr>
-            )}
-          </tbody>
+         <tbody>
+  {ApplicationLoading ? (
+    <tr className="text-center">
+      <td colSpan={6} className="py-6">
+        <div className="flex justify-center items-center">
+          <SpinnerCircularFixed
+            speed={200}
+            thickness={200}
+            size={20}
+            color="var(--primary)"
+            secondaryColor="#98acc0"
+          />
+        </div>
+      </td>
+    </tr>
+  ) : exe && exe.length > 0 ? (
+    exe.map((ticket, index) => (
+      <tr key={ticket.ticket_id} className="hover:bg-gray-50">
+        <td className="px-4 py-2">{index + 1}</td>
+        <td className="px-4 py-2">{ticket.file_name}</td>
+        <td className="px-4 py-2">
+          {new Date(ticket.updated_at).toLocaleString()}
+        </td>
+        <td className="flex justify-center py-2">
+          <a href={ticket.file} download>
+            <FaDownload
+              className="border border-[var(--primary)] text-[var(--primary)] rounded-md p-1 cursor-pointer hover:bg-[var(--secondary)]"
+              size={25}
+            />
+          </a>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan={6} className="text-center py-4 text-gray-500">
+        No application available
+      </td>
+    </tr>
+  )}
+</tbody>
+
         </table>
       </div>
 

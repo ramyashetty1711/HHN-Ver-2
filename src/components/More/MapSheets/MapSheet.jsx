@@ -1,28 +1,30 @@
-import React, { useState } from 'react'
-import { IoIosCloseCircle } from 'react-icons/io'
+import React, { useState } from "react";
+import { IoIosCloseCircle } from "react-icons/io";
 import CustomButton from "../../Common/CustomButton";
-import { useFetch } from '../../../query/UseFetch';
-import { APPURL } from '../../../URL';
+import { useFetch } from "../../../query/UseFetch";
+import { APPURL } from "../../../URL";
+import { FaDownload } from "react-icons/fa";
+import { SpinnerCircularFixed } from "spinners-react";
 
 function MapSheet() {
-  const [add, setAdd] = useState(false)
+  const [add, setAdd] = useState(false);
   const { get, usePost } = useFetch();
   const [addFormData, setAddFormData] = useState({
-    mapSheetName: '',
+    mapSheetName: "",
     mapSheet: null,
-    users:[]
-  })
+    users: [],
+  });
   const [addStatus, setAddStatus] = useState({
     loading: false,
     disabled: false,
-  })
+  });
 
-  
-    const { data: tickets, refetch } = get({
-      key: "tickets",
-      url: APPURL.tickets,
-    });
-  
+  const { data: mapsheets, refetch, isLoading: MapSheetLoading } = get({
+    key: "mapsheets",
+    url: APPURL.mapsheets,
+  });
+console.log(mapsheets);
+
 
   const user = JSON.parse(sessionStorage.getItem("user"));
   const role = user?.role;
@@ -33,11 +35,20 @@ function MapSheet() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Submitted:', addFormData)
-    setAdd(false)
-  }
+    e.preventDefault();
+    console.log("Submitted:", addFormData);
+    setAdd(false);
+  };
 
+  const handleDownload = (url, fileName) => {
+    
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName || 'download.tiff';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 
   return (
@@ -60,34 +71,51 @@ function MapSheet() {
               <th className="px-4 py-2">S.No</th>
               <th className="px-4 py-2">Map Sheet Name</th>
               <th className="px-4 py-2">Updated at</th>
-              <th className="px-4 py-2">Actions</th>
+              <th className="md:flex md:justify-center py-2">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 text-sm">
-          {tickets && tickets.length > 0 ? (
-      tickets.map((ticket, index) => (
-        <tr key={ticket.ticket_id} className="hover:bg-gray-50">
-          {/* <td className="px-4 py-2">{index + 1}</td>
-          <td className="px-4 py-2">{ticket.application_name}</td>
-          <td className="px-4 py-2">
-            {new Date(ticket.updated_at).toLocaleString()}
-          </td>
-          <td className="px-4 py-2">
-            {ticket.status === "closed" && (
-              <CgCheckO className="text-green-700 inline-block mr-1" size={18} />
-            )}
-            {ticket.status}
-          </td> */}
-        </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan={4} className="text-center py-4 text-gray-500">
-          Map Sheets not available
+       <tbody className="divide-y divide-gray-100 text-sm">
+  {MapSheetLoading ? (
+    <tr className="text-center">
+      <td colSpan={4} className="py-6">
+        <div className="flex justify-center items-center">
+          <SpinnerCircularFixed
+            speed={200}
+            thickness={200}
+            size={20}
+            color="var(--primary)"
+            secondaryColor="#98acc0"
+          />
+        </div>
+      </td>
+    </tr>
+  ) : mapsheets && mapsheets.length > 0 ? (
+    mapsheets.map((sheet, index) => (
+      <tr key={sheet.id} className="hover:bg-gray-50">
+        <td className="px-4 py-2">{index + 1}</td>
+        <td className="px-4 py-2">{sheet.file_name}</td>
+        <td className="px-4 py-2">
+          {new Date(sheet.uploaded_at).toLocaleString()}
+        </td>
+        <td className="flex justify-center py-2">
+          <a href={sheet.file} download>
+            <FaDownload
+              className="border border-[var(--primary)] text-[var(--primary)] rounded-md p-1 cursor-pointer hover:bg-[var(--secondary)]"
+              size={25}
+            />
+          </a>
         </td>
       </tr>
-    )}
-          </tbody>
+    ))
+  ) : (
+    <tr>
+      <td colSpan={4} className="text-center py-4 text-gray-500">
+        Map Sheets not available
+      </td>
+    </tr>
+  )}
+</tbody>
+
         </table>
 
         <Modal show={add} handleShow={() => setAdd(false)} onHide={true}>
@@ -102,12 +130,12 @@ function MapSheet() {
                   Name
                 </label>
                 <input
-  type="text"
-  name="application_name"
-  value={addFormData.mapSheetName}
-  disabled
-  className="w-full border border-[var(--secondary)] p-2 rounded cursor-not-allowed  text-gray-500"
-/>
+                  type="text"
+                  name="application_name"
+                  value={addFormData.mapSheetName}
+                  disabled
+                  className="w-full border border-[var(--secondary)] p-2 rounded cursor-not-allowed  text-gray-500"
+                />
               </div>
 
               <div>
@@ -122,15 +150,14 @@ function MapSheet() {
                   className="w-full  border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none "
                   readOnly
                 />
-               
               </div>
 
               <div>
                 <label className="block mb-1 text-md font-medium text-gray-500">
                   Users
                 </label>
-                <select className='w-full  border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none'>
-                    <option>Users</option>
+                <select className="w-full  border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none">
+                  <option>Users</option>
                 </select>
               </div>
 
@@ -148,11 +175,11 @@ function MapSheet() {
         </Modal>
       </div>
     </div>
-  )
+  );
 }
 
 const Modal = ({ show, handleShow, children, onHide = false }) => {
-  if (!show) return null
+  if (!show) return null;
 
   return (
     <div
@@ -175,7 +202,7 @@ const Modal = ({ show, handleShow, children, onHide = false }) => {
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MapSheet
+export default MapSheet;

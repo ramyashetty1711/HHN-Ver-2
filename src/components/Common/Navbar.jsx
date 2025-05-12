@@ -108,7 +108,7 @@ const Navbar = () => {
             </h5>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" ref={dropdownRef}>
             {!LoggedInStatus ? (
               <>
                 <span className="text-sm text-gray-300 font-semibold text-center">

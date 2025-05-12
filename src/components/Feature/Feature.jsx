@@ -8,9 +8,9 @@ export default function Feature() {
 
   const FeatureList = [
     "Multi-GNSS Reception: NavIC, GPS, GLONASS, and SBAS for precise, reliable navigation.",
-    "Map Page: Add DSM/OSM Maps; includes inbuilt base map. Grid System: Provides Grid Reference Parameters.",
-    "Real-Time Tracking: View current location and track your journey. Sky Plot & Satellite SNR: Visualize the sky and monitor satellite signal strength.",
     "Built-In Compass: Reliable direction guidance.",
+    "Real-Time Tracking: View current location and track your journey. Sky Plot & Satellite SNR: Visualize the sky and monitor satellite signal strength.",
+    "Map Page: Add DSM/OSM Maps; includes inbuilt base map. Grid System: Provides Grid Reference Parameters.",
     "Reference Points: Save important locations.",
     "Route Planning: Optimize routes for efficient navigation.",
     "Debug Page: Advanced insights and customization.",
