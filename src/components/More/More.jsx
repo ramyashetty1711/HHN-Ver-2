@@ -14,8 +14,7 @@ function More() {
   const TabData = [
     { name: "Devices", TabContent: <Devices />, key: 1 },
     { name: "Map Processing Software", TabContent: <Application />, key: 2 },
-    { name: "Map Sheets", TabContent: <MapSheet />, key: 3 },
-    { name: "Tutorials", TabContent: <TutorialDocuments />, key: 4 },
+    { name: "Map Sheets", TabContent: <MapSheet />, key: 3 }
   ];
 
   const handleTabChange = (key) => {
@@ -24,7 +23,7 @@ function More() {
   };
 
   return (
-    <div className="tw-text-black">
+    <div className="bg-white h-full p-4 md:max-h-[72vh] overflow-y-auto custom-scrollbar">
       <div className="w-full tw-mt-2 tw-mx-2">
         <div className="flex border-b border-gray-300">
           {TabData.map((tab, idx) => (

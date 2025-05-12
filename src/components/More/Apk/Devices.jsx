@@ -7,6 +7,7 @@ import { APPURL } from "../../../URL";
 import { CgCheckO } from "react-icons/cg";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalUserData } from "../../../query/UseLocalData";
+import { SpinnerCircularFixed } from "spinners-react";
 
 function Devices() {
   const [add, setAdd] = useState(false);
@@ -40,7 +41,7 @@ function Devices() {
   //   url: APPURL.tickets,
   // });
 
-  const { data: devices, refetch: refetchTicket } = useQuery({
+  const { data: devices, refetch: refetchTicket,isLoading: DevicesLoading } = useQuery({
     queryKey: ["devices"],
     queryFn: () => getData(APPURL.devices, SessionData.token),
     enabled: !!SessionData.token,
@@ -51,7 +52,7 @@ function Devices() {
 
   return (
     <div>
-      <div className="pb-4 max-h-[62vh] overflow-y-auto custom-scrollbar">
+      <div className="pb-4 max-h-[72vh] overflow-y-auto custom-scrollbar">
         {/* {role === 0 && (
           <div className="flex flex-row justify-end mb-3">
             <div
@@ -72,25 +73,42 @@ function Devices() {
               {/* <th className="px-4 py-2">Actions</th> */}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 text-sm">
-            {devices && devices.length !== 0 ? (
-              devices.map((device, index) => (
-                <tr key={device.device_id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2" v>
-                    {index + 1}
-                  </td>
+
+           <tbody className="divide-y divide-gray-100 text-sm">
+            {DevicesLoading ? (
+              <tr className="text-center">
+                <td colSpan={6} className="py-6">
+                  <div className="flex justify-center items-center">
+                    <SpinnerCircularFixed
+                      speed={200}
+                      thickness={200}
+                      size={20}
+                      color="var(--primary)"
+                      secondaryColor="#98acc0"
+                    />
+                  </div>
+                </td>
+              </tr>
+            ) : devices && devices.length > 0 ? (
+            devices.map((device, index) => (
+                <tr key={device.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-2">{index + 1}</td>
                   <td className="px-4 py-2">{device.ser_no}</td>
-                  <td className="px-4 py-2">{device.device_id}</td>
+                  <td className="px-4 py-2">
+                   {device.device_id}
+                  </td>
+                 
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={3} className="text-center py-4 text-gray-500">
+                <td colSpan={6} className="text-center py-4 text-gray-500">
                   Devices not available
                 </td>
               </tr>
             )}
           </tbody>
+         
         </table>
 
         <Modal show={add} handleShow={() => setAdd(false)} onHide={true}>

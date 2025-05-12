@@ -14,6 +14,7 @@ function MapSheet() {
     mapSheet: null,
     users: [],
   });
+
   const [addStatus, setAddStatus] = useState({
     loading: false,
     disabled: false,
@@ -131,10 +132,10 @@ function MapSheet() {
                 </label>
                 <input
                   type="text"
-                  name="application_name"
+                  name="mapSheetName"
                   value={addFormData.mapSheetName}
-                  disabled
-                  className="w-full border border-[var(--secondary)] p-2 rounded cursor-not-allowed  text-gray-500"
+                  onChange={handleChange}
+                  className="w-full border border-[var(--secondary)] p-2 rounded"
                 />
               </div>
 
@@ -144,11 +145,14 @@ function MapSheet() {
                 </label>
                 <input
                   type="file"
-                  name="deviceId"
-                  onChange={handleChange}
-                  value={addFormData.mapSheet}
-                  className="w-full  border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none "
-                  readOnly
+                  name="mapSheet"
+                  onChange={(e) =>
+                    setAddFormData((prev) => ({
+                      ...prev,
+                      mapSheet: e.target.files[0],
+                    }))
+                  }
+                  className="w-full border border-[var(--secondary)] p-2 rounded"
                 />
               </div>
 
@@ -156,8 +160,14 @@ function MapSheet() {
                 <label className="block mb-1 text-md font-medium text-gray-500">
                   Users
                 </label>
-                <select className="w-full  border border-[var(--secondary)] p-2 rounded focus:border-[var(--primary)] focus:outline-none">
-                  <option>Users</option>
+                <select
+                  name="users"
+                  value={addFormData.users}
+                  onChange={handleChange}
+                  className="w-full border border-[var(--secondary)] p-2 rounded"
+                >
+                  <option value="">Select Users</option>
+                  {/* Add user options dynamically if available */}
                 </select>
               </div>
 
