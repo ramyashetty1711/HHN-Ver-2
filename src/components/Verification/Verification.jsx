@@ -60,17 +60,14 @@ const VerificationModal = ({ showRegister, setShowRegister }) => {
       VerificationData.email_verified &&
       VerificationData.phone_verified
     ) {
-      setTimeout(() => {
-        showToast({
-          type: "success",
-          heading: "Account Verified",
-          message:
-            "Your account is verified. You now have full access to your account.",
-        });
-      }, 2000);
-      setTimeout(() => {
-        store.dispatch(updateShowVerification(false));
-      }, 4000);
+      showToast({
+        type: "success",
+        heading: "Account Verified",
+        message:
+          "Your account is verified. You now have full access to your account.",
+      });
+
+      store.dispatch(updateShowVerification(false));
     }
     if (VerificationData) {
       setVerifiedStatus({ ...VerificationData });
@@ -177,6 +174,12 @@ const VerificationModal = ({ showRegister, setShowRegister }) => {
           email_verified: true,
         }));
         setShowMobileOtp(false);
+      } else if (err.detail) {
+        showToast({
+          type: "error",
+          heading: "Error",
+          message: err.detail,
+        });
       }
       console.error("Mail OTP failed:", err);
     },

@@ -6,8 +6,13 @@ import { APPURL } from "../../../URL";
 import CustomButton from "../../Common/CustomButton";
 import { useToast } from "../../Toast/ToastContext";
 import { MdAddCircleOutline } from "react-icons/md";
+import { useQuery } from "@tanstack/react-query";
+import { useLocalUserData } from "../../../query/UseLocalData";
+import { getData } from "../../../query/UseFetchData";
+import { FaDownload } from "react-icons/fa";
 
 function Application() {
+  const SessionData = useLocalUserData();
   const [addFormData, setAddFormData] = useState({
     application_name: "",
     exe_file: null,
@@ -26,9 +31,12 @@ function Application() {
   const { mutate, isPostLoading } = usePost();
   const { showToast } = useToast();
 
-  const { data: tickets, refetch } = get({
-    key: "tickets",
-    url: APPURL.tickets,
+  const { data: exe, refetch: refetchTicket } = useQuery({
+    queryKey: ["exe"],
+    queryFn: () => getData(APPURL.exe, SessionData.token),
+    enabled: !!SessionData.token,
+    staleTime: 60 * 1000,
+    cacheTime: 5 * 60 * 1000,
   });
 
   const handleExeChange = (e) => {
@@ -104,42 +112,40 @@ function Application() {
       )} */}
 
       <div className="pb-4 max-h-[72vh] overflow-y-auto custom-scrollbar">
-      <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
-  <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
-    <tr>
-      <th className="px-4 py-2">S. No</th>
-      <th className="px-4 py-2">Application Name</th>
-      <th className="px-4 py-2">Updated At</th>
-      <th className="px-4 py-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody className="divide-y divide-gray-100 text-sm">
-    {tickets && tickets.length > 0 ? (
-      tickets.map((ticket, index) => (
-        <tr key={ticket.ticket_id} className="hover:bg-gray-50">
-          {/* <td className="px-4 py-2">{index + 1}</td>
-          <td className="px-4 py-2">{ticket.application_name}</td>
-          <td className="px-4 py-2">
-            {new Date(ticket.updated_at).toLocaleString()}
-          </td>
-          <td className="px-4 py-2">
-            {ticket.status === "closed" && (
-              <CgCheckO className="text-green-700 inline-block mr-1" size={18} />
+        <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
+          <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
+            <tr>
+              <th className="px-4 py-2">S. No</th>
+              <th className="px-4 py-2">Application Name</th>
+              <th className="px-4 py-2">Updated At</th>
+              <th className="px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100 text-sm">
+            {exe && exe.length > 0 ? (
+              exe.map((ticket, index) => (
+                <tr key={ticket.ticket_id} className="hover:bg-gray-50">
+                  <td className="px-4 py-2">{index + 1}</td>
+                  <td className="px-4 py-2">{ticket.file_name}</td>
+                  <td className="px-4 py-2">
+                    {new Date(ticket.updated_at).toLocaleString()}
+                  </td>
+                  <td className="px-4 py-2">
+                    <a href={ticket.file} download>
+                      <FaDownload className="text-[var(--primary)]" size={18} />
+                    </a>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="text-center py-4 text-gray-500">
+                  No application available
+                </td>
+              </tr>
             )}
-            {ticket.status}
-          </td> */}
-        </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan={4} className="text-center py-4 text-gray-500">
-          Application not available
-        </td>
-      </tr>
-    )}
-  </tbody>
-</table>
-
+          </tbody>
+        </table>
       </div>
 
       <Modal show={Add} handleShow={() => setAdd(false)} onHide={true}>
@@ -154,13 +160,12 @@ function Application() {
                 Application Name
               </label>
               <input
-  type="text"
-  name="application_name"
-  value={addFormData.application_name}
-  disabled
-  className="w-full border border-[var(--secondary)] p-2 rounded cursor-not-allowed  text-gray-500"
-/>
-
+                type="text"
+                name="application_name"
+                value={addFormData.application_name}
+                disabled
+                className="w-full border border-[var(--secondary)] p-2 rounded cursor-not-allowed  text-gray-500"
+              />
             </div>
 
             <div>

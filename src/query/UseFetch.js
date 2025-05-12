@@ -95,3 +95,12 @@ export const useFetch = () => {
     queryClient,
   };
 };
+
+export const getData = async (url, token) => {
+  const res = await api.get(url, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+  return res.data;
+};

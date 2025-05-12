@@ -1,25 +1,25 @@
-import React from 'react';
-import { useSearchParams } from 'react-router-dom';
-import Devices from './Apk/Devices';
-import Application from './Application/Application';
-import MapSheet from './MapSheets/MapSheet';
-import TutorialDocuments from './Tutorial/TutorialDocuments';
+import React from "react";
+import { useSearchParams } from "react-router-dom";
+import Devices from "./Apk/Devices";
+import Application from "./Application/Application";
+import MapSheet from "./MapSheets/MapSheet";
+import TutorialDocuments from "./Tutorial/TutorialDocuments";
 
 function More() {
   const [searchParams, setSearchParams] = useSearchParams();
-  
+
   // Use 'subtab' instead of 'tab' to avoid conflict with outer component
-  const activeSubTab = parseInt(searchParams.get('subtab')) || 1;
+  const activeSubTab = parseInt(searchParams.get("subtab")) || 1;
 
   const TabData = [
-    { name: 'Devices', TabContent: <Devices />, key: 1 },
-    { name: 'Map Processing Software', TabContent: <Application />, key: 2 },
-    { name: 'Map Sheets', TabContent: <MapSheet />, key: 3 },
-    { name: 'Tutorials', TabContent: <TutorialDocuments />, key: 4 },
+    { name: "Devices", TabContent: <Devices />, key: 1 },
+    { name: "Map Processing Software", TabContent: <Application />, key: 2 },
+    { name: "Map Sheets", TabContent: <MapSheet />, key: 3 },
+    { name: "Tutorials", TabContent: <TutorialDocuments />, key: 4 },
   ];
 
   const handleTabChange = (key) => {
-    searchParams.set('subtab', key); // Set subtab not tab
+    searchParams.set("subtab", key); // Set subtab not tab
     setSearchParams(searchParams);
   };
 
@@ -33,9 +33,9 @@ function More() {
               onClick={() => handleTabChange(tab.key)}
               className={`py-2 px-4 text-sm font-medium focus:outline-none transition-colors duration-300 rounded-t-md tw-min-w-[8em] cursor-pointer  transition-all duration-300 ${
                 activeSubTab === tab.key
-                  ? 'bg-[var(--primary)]  text-white'
-                  : 'text-gray-500 hover:bg-gray-100'
-              } ${idx !== TabData.length - 1 ? 'mr-1' : ''}`}
+                  ? "bg-[var(--primary)]  text-white"
+                  : "text-gray-500 hover:bg-gray-100"
+              } ${idx !== TabData.length - 1 ? "mr-1" : ""}`}
             >
               {tab.name}
             </button>

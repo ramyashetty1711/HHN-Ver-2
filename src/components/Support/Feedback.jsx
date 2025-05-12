@@ -44,7 +44,12 @@ export default function Feedback() {
   const { showToast } = useToast();
 
   const HandleFeedBackSubmit = async () => {
-    if (ratings.looks === 0 || ratings.ruggedness === 0 || ratings.software === 0 || ratings.easeOfUse === 0) {
+    if (
+      ratings.looks === 0 ||
+      ratings.ruggedness === 0 ||
+      ratings.software === 0 ||
+      ratings.easeOfUse === 0
+    ) {
       showToast({
         type: "error",
         heading: "Error",
@@ -109,7 +114,7 @@ export default function Feedback() {
   const questionForEaseOfUse = generateQuestions(ratings.easeOfUse);
 
   useEffect(() => {
-    setDisabled(comments.general === "" || !Object.values(ratings).every(r => r > 0));
+    setDisabled(!Object.values(ratings).every((r) => r > 0));
   }, [comments, ratings]);
 
   return (
@@ -133,8 +138,12 @@ export default function Feedback() {
                     onClick={() => {
                       setRatings((prev) => ({ ...prev, looks: currentRating }));
                     }}
-                    onMouseEnter={() => setHover((prev) => ({ ...prev, looks: currentRating }))}
-                    onMouseLeave={() => setHover((prev) => ({ ...prev, looks: null }))}
+                    onMouseEnter={() =>
+                      setHover((prev) => ({ ...prev, looks: currentRating }))
+                    }
+                    onMouseLeave={() =>
+                      setHover((prev) => ({ ...prev, looks: null }))
+                    }
                     className="cursor-pointer"
                   >
                     <FaStar
@@ -151,10 +160,14 @@ export default function Feedback() {
             </div>
             {ratings.looks > 0 && (
               <div className="mt-2">
-                <label className="text-sm font-semibold">{questionForLooks}</label>
+                <label className="text-sm font-semibold">
+                  {questionForLooks}
+                </label>
                 <textarea
                   value={comments.looks}
-                  onChange={(e) => setComments((prev) => ({ ...prev, looks: e.target.value }))}
+                  onChange={(e) =>
+                    setComments((prev) => ({ ...prev, looks: e.target.value }))
+                  }
                   className="w-full border p-2 rounded resize-none border-gray-300 mt-2"
                   rows={3}
                   placeholder="Write your feedback about looks..."
@@ -174,16 +187,27 @@ export default function Feedback() {
                     key={i}
                     type="button"
                     onClick={() => {
-                      setRatings((prev) => ({ ...prev, ruggedness: currentRating }));
+                      setRatings((prev) => ({
+                        ...prev,
+                        ruggedness: currentRating,
+                      }));
                     }}
-                    onMouseEnter={() => setHover((prev) => ({ ...prev, ruggedness: currentRating }))}
-                    onMouseLeave={() => setHover((prev) => ({ ...prev, ruggedness: null }))}
+                    onMouseEnter={() =>
+                      setHover((prev) => ({
+                        ...prev,
+                        ruggedness: currentRating,
+                      }))
+                    }
+                    onMouseLeave={() =>
+                      setHover((prev) => ({ ...prev, ruggedness: null }))
+                    }
                     className="cursor-pointer"
                   >
                     <FaStar
                       size={24}
                       className={
-                        currentRating <= (hover.ruggedness || ratings.ruggedness)
+                        currentRating <=
+                        (hover.ruggedness || ratings.ruggedness)
                           ? "text-yellow-400"
                           : "text-gray-300"
                       }
@@ -194,10 +218,17 @@ export default function Feedback() {
             </div>
             {ratings.ruggedness > 0 && (
               <div className="mt-2">
-                <label className="text-sm font-semibold">{questionForRuggedness}</label>
+                <label className="text-sm font-semibold">
+                  {questionForRuggedness}
+                </label>
                 <textarea
                   value={comments.ruggedness}
-                  onChange={(e) => setComments((prev) => ({ ...prev, ruggedness: e.target.value }))}
+                  onChange={(e) =>
+                    setComments((prev) => ({
+                      ...prev,
+                      ruggedness: e.target.value,
+                    }))
+                  }
                   className="w-full border p-2 rounded resize-none border-gray-300 mt-2"
                   rows={3}
                   placeholder="Write your feedback about ruggedness..."
@@ -208,7 +239,7 @@ export default function Feedback() {
 
           {/* Star Rating for Software */}
           <div className="flex flex-col mb-4">
-            <h3 className="text-lg font-semibold mb-2">Application</h3>
+            <h3 className="text-lg font-semibold mb-2">Software</h3>
             <div className="flex space-x-2">
               {[...Array(5)].map((_, i) => {
                 const currentRating = i + 1;
@@ -217,10 +248,17 @@ export default function Feedback() {
                     key={i}
                     type="button"
                     onClick={() => {
-                      setRatings((prev) => ({ ...prev, software: currentRating }));
+                      setRatings((prev) => ({
+                        ...prev,
+                        software: currentRating,
+                      }));
                     }}
-                    onMouseEnter={() => setHover((prev) => ({ ...prev, software: currentRating }))}
-                    onMouseLeave={() => setHover((prev) => ({ ...prev, software: null }))}
+                    onMouseEnter={() =>
+                      setHover((prev) => ({ ...prev, software: currentRating }))
+                    }
+                    onMouseLeave={() =>
+                      setHover((prev) => ({ ...prev, software: null }))
+                    }
                     className="cursor-pointer"
                   >
                     <FaStar
@@ -237,10 +275,17 @@ export default function Feedback() {
             </div>
             {ratings.software > 0 && (
               <div className="mt-2">
-                <label className="text-sm font-semibold">{questionForSoftware}</label>
+                <label className="text-sm font-semibold">
+                  {questionForSoftware}
+                </label>
                 <textarea
                   value={comments.software}
-                  onChange={(e) => setComments((prev) => ({ ...prev, software: e.target.value }))}
+                  onChange={(e) =>
+                    setComments((prev) => ({
+                      ...prev,
+                      software: e.target.value,
+                    }))
+                  }
                   className="w-full border p-2 rounded resize-none border-gray-300 mt-2"
                   rows={3}
                   placeholder="Write your feedback about software..."
@@ -260,10 +305,20 @@ export default function Feedback() {
                     key={i}
                     type="button"
                     onClick={() => {
-                      setRatings((prev) => ({ ...prev, easeOfUse: currentRating }));
+                      setRatings((prev) => ({
+                        ...prev,
+                        easeOfUse: currentRating,
+                      }));
                     }}
-                    onMouseEnter={() => setHover((prev) => ({ ...prev, easeOfUse: currentRating }))}
-                    onMouseLeave={() => setHover((prev) => ({ ...prev, easeOfUse: null }))}
+                    onMouseEnter={() =>
+                      setHover((prev) => ({
+                        ...prev,
+                        easeOfUse: currentRating,
+                      }))
+                    }
+                    onMouseLeave={() =>
+                      setHover((prev) => ({ ...prev, easeOfUse: null }))
+                    }
                     className="cursor-pointer"
                   >
                     <FaStar
@@ -280,10 +335,17 @@ export default function Feedback() {
             </div>
             {ratings.easeOfUse > 0 && (
               <div className="mt-2">
-                <label className="text-sm font-semibold">{questionForEaseOfUse}</label>
+                <label className="text-sm font-semibold">
+                  {questionForEaseOfUse}
+                </label>
                 <textarea
                   value={comments.easeOfUse}
-                  onChange={(e) => setComments((prev) => ({ ...prev, easeOfUse: e.target.value }))}
+                  onChange={(e) =>
+                    setComments((prev) => ({
+                      ...prev,
+                      easeOfUse: e.target.value,
+                    }))
+                  }
                   className="w-full border p-2 rounded resize-none border-gray-300 mt-2"
                   rows={3}
                   placeholder="Write your feedback about ease of use..."
@@ -295,22 +357,23 @@ export default function Feedback() {
 
         {/* General Feedback Textarea */}
         <div className="mt-4">
-          <label className="text-lg font-semibold mb-2">Feedback</label>
+          <label className="text-lg font-semibold mb-2">
+            Additional Feedback
+          </label>
           <textarea
             placeholder="Write your feedback..."
             className="w-full border p-2 rounded resize-none border-gray-300"
             rows={4}
             value={comments.general}
-            onChange={(e) => setComments((prev) => ({ ...prev, general: e.target.value }))}
+            onChange={(e) =>
+              setComments((prev) => ({ ...prev, general: e.target.value }))
+            }
           />
         </div>
 
         {/* Submit Button */}
         <div className="w-full flex flex-row justify-end">
-          <CustomButton
-            onClick={HandleFeedBackSubmit}
-            disabled={disabled || !selectedDevice.device_id}
-          >
+          <CustomButton onClick={HandleFeedBackSubmit} disabled={disabled}>
             Submit
           </CustomButton>
         </div>

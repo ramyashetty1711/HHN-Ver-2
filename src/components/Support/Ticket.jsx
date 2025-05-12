@@ -5,12 +5,14 @@ import CustomButton from "../Common/CustomButton";
 import { CgCheckO } from "react-icons/cg";
 import { useFetch } from "../../query/UseFetch";
 import { APPURL } from "../../URL";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Feedback from "./Feedback";
 import { IoIosCloseCircle } from "react-icons/io";
-import More from '../More/More'
+import More from "../More/More";
 import Admin from "../Admin/Admin";
-import { useSearchParams } from "react-router-dom"; 
+import { useSearchParams } from "react-router-dom";
+import { useLocalUserData } from "../../query/UseLocalData";
+import { getData } from "../../query/UseFetchData";
 
 export default function Ticket() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -63,18 +65,14 @@ function TicketStatus() {
     description: "",
     images: [],
   });
+  const SessionData = useLocalUserData();
 
-  const { get, usePost } = useFetch();
-  const { mutate, isPostLoading, isSuccess, isError, error, data } = usePost();
-  const {
-    data: devices,
-    isLoading,
-    isDeviceError,
-    Deviceerror,
-    refetch,
-  } = get({
-    key: "devices",
-    url: APPURL.devices,
+  const { data: devices, refetch: refetchDevices } = useQuery({
+    queryKey: ["devices"],
+    queryFn: () => getData(APPURL.devices, SessionData.token),
+    enabled: !!SessionData.token,
+    staleTime: 60 * 1000,
+    cacheTime: 5 * 60 * 1000,
   });
 
   const mutationFn = async ({ url, data, loadingkey }) => {
@@ -167,11 +165,14 @@ function TicketStatus() {
   };
 
   const [AddTicket, setAddTicket] = useState(false);
-  const { data: tickets } = get({
-    key: "tickets",
-    url: APPURL.tickets,
+  const { data: tickets, refetch: refetchTicket } = useQuery({
+    queryKey: ["tickets"],
+    queryFn: () => getData(APPURL.tickets, SessionData.token),
+    enabled: !!SessionData.token,
+    staleTime: 60 * 1000,
+    cacheTime: 5 * 60 * 1000,
   });
-  console.log(tickets);
+  // console.log(tickets);
 
   return (
     <>
@@ -198,33 +199,44 @@ function TicketStatus() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-sm">
-            {tickets?.map((ticket) => (
-              <tr key={ticket.ticket_id} className="hover:bg-gray-50">
-                <td className="px-4 py-2">{ticket.ticket_id}</td>
-                <td className="px-4 py-2">{ticket.device_name}</td>
-                <td className="px-4 py-2">{ticket.created_by}</td>
-                <td className="px-4 py-2">{ticket.email_id}</td>
+            {tickets && tickets.length === 0 ? (
+              <tr>
                 <td
-                  className={`px-4 py-2 capitalize cursor-pointer flex flex-row items-center ${
-                    ticket.status === "open"
-                      ? " text-red-500"
-                      : ticket.status === "in-progress"
-                      ? "text-sky-500"
-                      : ticket.status === "closed"
-                      ? "text-green-700"
-                      : ""
-                  }`}
+                  colSpan={6}
+                  className="text-center py-2 font-semibold text-gray-500"
                 >
-                  {ticket.status}{" "}
-                  {ticket.status === "closed" && (
-                    <CgCheckO className="text-green-700 ml-2" size={18} />
-                  )}
-                </td>
-                <td className="px-4 py-2">
-                  {new Date(ticket.created_at).toLocaleString()}
+                  No Ticket Found
                 </td>
               </tr>
-            ))}
+            ) : (
+              tickets?.map((ticket) => (
+                <tr key={ticket.ticket_id} className="hover:bg-gray-50">
+                  <td className="px-4 py-2">{ticket.ticket_id}</td>
+                  <td className="px-4 py-2">{ticket.device_name}</td>
+                  <td className="px-4 py-2">{ticket.created_by}</td>
+                  <td className="px-4 py-2">{ticket.email_id}</td>
+                  <td
+                    className={`px-4 py-2 capitalize cursor-pointer flex flex-row items-center ${
+                      ticket.status === "open"
+                        ? " text-red-500"
+                        : ticket.status === "in-progress"
+                        ? "text-sky-500"
+                        : ticket.status === "closed"
+                        ? "text-green-700"
+                        : ""
+                    }`}
+                  >
+                    {ticket.status}{" "}
+                    {ticket.status === "closed" && (
+                      <CgCheckO className="text-green-700 ml-2" size={18} />
+                    )}
+                  </td>
+                  <td className="px-4 py-2">
+                    {new Date(ticket.created_at).toLocaleString()}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
@@ -244,111 +256,111 @@ function TicketStatus() {
           >
             <h4 className="text-lg">Raise Ticket</h4>
             <div className="p-4">
-      <form
-        className="grid grid-cols-1 md:grid-cols-3 gap-4"
-        onSubmit={handleSubmit}
-      >
-        {/* Device Dropdown */}
-        <div>
-          <label className="block mb-1 text-md font-medium text-gray-500">
-            Device
-          </label>
-          <select
-            name="device_id"
-            value={addFormData.device_id}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          >
-            <option value="" disabled>
-              Select a device
-            </option>
-            {devices?.map((device) => (
-              <option key={device.device_id} value={device.device_id}>
-                {device.device_info}
-              </option>
-            ))}
-          </select>
-        </div>
+              <form
+                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                onSubmit={handleSubmit}
+              >
+                {/* Device Dropdown */}
+                <div>
+                  <label className="block mb-1 text-md font-medium text-gray-500">
+                    Device
+                  </label>
+                  <select
+                    name="device_id"
+                    value={addFormData.device_id}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                  >
+                    <option value="" disabled>
+                      Select a device
+                    </option>
+                    {devices?.map((device) => (
+                      <option key={device.device_id} value={device.device_id}>
+                        {device.device_info}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-        {/* Name Input */}
-        <div>
-          <label className="block mb-1 text-md font-medium text-gray-500">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={addFormData.name}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            placeholder="Enter name"
-          />
-        </div>
+                {/* Name Input */}
+                <div>
+                  <label className="block mb-1 text-md font-medium text-gray-500">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={addFormData.name}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    placeholder="Enter name"
+                  />
+                </div>
 
-        {/* Mail Input */}
-        <div>
-          <label className="block mb-1 text-md font-medium text-gray-500">
-            Mail
-          </label>
-          <input
-            type="email"
-            name="mail"
-            value={addFormData.mail}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            placeholder="Enter email"
-          />
-        </div>
-        <div className="md:col-span-1">
-          <label className="block mb-1 text-md font-medium text-gray-500">
-            Upload Images
-          </label>
-          <input
-            type="file"
-            name="images"
-            accept="image/*"
-            multiple
-            onChange={handleImageChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-          />
-          {addFormData.images.length > 0 && (
-            <>
-              <h5 className="mb-0">Selected Images</h5>
-              <ul className="mt-2 text-sm text-gray-600 list-disc pl-5 max-h-[10vh] overflow-y-auto custom-scrollbar">
-                {addFormData.images.map((file, idx) => (
-                  <li key={idx}>{file.name}</li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
-        {/* Description */}
-        <div className="md:col-span-2">
-          <label className="block mb-1 text-md font-medium text-gray-500">
-            Description
-          </label>
-          <textarea
-            name="description"
-            value={addFormData.description}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            rows="4"
-            placeholder="Enter description"
-          />
-        </div>
+                {/* Mail Input */}
+                <div>
+                  <label className="block mb-1 text-md font-medium text-gray-500">
+                    Mail
+                  </label>
+                  <input
+                    type="email"
+                    name="mail"
+                    value={addFormData.mail}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    placeholder="Enter email"
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <label className="block mb-1 text-md font-medium text-gray-500">
+                    Upload Images
+                  </label>
+                  <input
+                    type="file"
+                    name="images"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageChange}
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                  />
+                  {addFormData.images.length > 0 && (
+                    <>
+                      <h5 className="mb-0">Selected Images</h5>
+                      <ul className="mt-2 text-sm text-gray-600 list-disc pl-5 max-h-[10vh] overflow-y-auto custom-scrollbar">
+                        {addFormData.images.map((file, idx) => (
+                          <li key={idx}>{file.name}</li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </div>
+                {/* Description */}
+                <div className="md:col-span-2">
+                  <label className="block mb-1 text-md font-medium text-gray-500">
+                    Description
+                  </label>
+                  <textarea
+                    name="description"
+                    value={addFormData.description}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    rows="4"
+                    placeholder="Enter description"
+                  />
+                </div>
 
-        {/* Submit Button */}
-        <div className="md:col-span-3 text-right w-full flex justify-end">
-          <CustomButton
-            disabled={AddStatus}
-            loading={AddStatus.loading}
-            onClick={(e) => {}}
-          >
-            Submit
-          </CustomButton>
-        </div>
-      </form>
-    </div>
+                {/* Submit Button */}
+                <div className="md:col-span-3 text-right w-full flex justify-end">
+                  <CustomButton
+                    disabled={AddStatus}
+                    loading={AddStatus.loading}
+                    onClick={(e) => {}}
+                  >
+                    Submit
+                  </CustomButton>
+                </div>
+              </form>
+            </div>
           </div>
         }
       />
