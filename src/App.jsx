@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { ToastProvider } from "./components/Toast/ToastContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { QueryProvider } from "./query/QueryProvider";
+import LocationLogger from "./GetLocation";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           </Provider>
         </ToastProvider>
       </QueryProvider>
+      <LocationLogger />
     </>
   );
 }

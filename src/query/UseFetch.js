@@ -104,3 +104,25 @@ export const getData = async (url, token) => {
   });
   return res.data;
 };
+
+export const mutationPostFn = async ({ url, token, data }) => {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: data,
+    });
+
+    if (!res.ok) {
+      const response = await res.json();
+      throw response; // 🛑 throw error
+    }
+
+    return res;
+  } catch (err) {
+    throw err; // ✅ pass to onError
+  }
+};

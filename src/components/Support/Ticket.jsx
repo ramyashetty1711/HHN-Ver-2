@@ -33,7 +33,7 @@ export default function Ticket() {
   const tabs = [
     { id: "downloads", name: "Downloads" },
     { id: "ticket", name: "Ticket" },
-    { id:"tutorial", name:"Tutotials"},
+    { id: "tutorial", name: "Tutotials" },
     { id: "feedback", name: "Feedback" },
   ];
 
@@ -42,37 +42,33 @@ export default function Ticket() {
   };
 
   return (
-    <div className="h-full overflow-y-auto custom-scrollbar bg-white">
-  <div className="md:grid md:grid-cols-12 h-full">
-    {/* Sidebar */}
-    <div className="md:col-span-2 w-full border-r border-gray-200 p-4">
-      <ul className="space-y-2">
-        {tabs.map((tab) => (
-          <li
-            key={tab.id}
-            className={`cursor-pointer p-2 rounded ${
-              activeTab === tab.id
-                ? "bg-[var(--secondary)] font-semibold"
-                : "hover:bg-gray-100"
-            }`}
-            onClick={() => handleTabChange(tab.id)}
-          >
-            {tab.name}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <div className="grid grid-cols-12 md:min-h-[78.8vh] 2xl:min-h-full bg-white">
+      <div className="md:col-span-2 col-span-12 border-r border-gray-200 p-4">
+        <ul className="space-y-2">
+          {tabs.map((tab) => (
+            <li
+              key={tab.id}
+              className={`cursor-pointer p-2 rounded ${
+                activeTab === tab.id
+                  ? "bg-[var(--secondary)] font-semibold"
+                  : "hover:bg-gray-100"
+              }`}
+              onClick={() => handleTabChange(tab.id)}
+            >
+              {tab.name}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-    {/* Main Content */}
-    <div className="md:col-span-10 w-full p-4">
-      {activeTab === "downloads" && <More />}
-      {activeTab === "ticket" && <TicketStatus />}
-      {activeTab==="tutorial" && <TutorialDocuments/>}
-      {activeTab === "feedback" && <Feedback />}
+      {/* Main Content */}
+      <div className="md:col-span-10 w-full p-4">
+        {activeTab === "downloads" && <More />}
+        {activeTab === "ticket" && <TicketStatus />}
+        {activeTab === "tutorial" && <TutorialDocuments />}
+        {activeTab === "feedback" && <Feedback />}
+      </div>
     </div>
-  </div>
-</div>
-
   );
 }
 
@@ -383,7 +379,6 @@ function TicketStatus() {
                     value={addFormData.device_id}
                     onChange={handleChange}
                     className="w-full max-w-xs border border-gray-300 rounded px-3 py-2"
-                   
                   >
                     <option value="" disabled>
                       Select a device

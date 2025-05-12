@@ -41,7 +41,7 @@ function More() {
           ))}
         </div>
 
-        <div className="mt-6">
+        <div className="mt-3">
           {TabData.find((tab) => tab.key === activeSubTab)?.TabContent}
         </div>
       </div>

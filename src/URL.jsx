@@ -18,6 +18,7 @@ const baseURL = "https://admin.elenahhn.com:7443/";
 export const APPURL = {
   login: baseURL + "user/login/",
   logout: baseURL + "user/logout/",
+  location: baseURL + "location/",
   apk: baseURL + "apk/",
   mapsheets: baseURL + "mapsheets/",
   exe: baseURL + "exe/",
@@ -27,6 +28,7 @@ export const APPURL = {
   ticketImages: baseURL + "ticket-images/",
   feedbacks: baseURL + "feedback/",
   user: baseURL + "user/",
+  mapRequest: baseURL + "map_request/",
   sendEmailCode: baseURL + "send_email_code/",
   verifyEmailCode: baseURL + "verify_email_code/",
   sendPhoneCode: baseURL + "send_phone_code/",
