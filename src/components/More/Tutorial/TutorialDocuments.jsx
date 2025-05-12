@@ -43,7 +43,7 @@ function TutorialDocuments() {
      
 
     
-      <div className="md:col-span-7 col-span-12">
+      <div className="md:col-span-8 col-span-12">
   {videos.map((video, index) => (
     <div
       key={index}
@@ -53,7 +53,7 @@ function TutorialDocuments() {
       <video
         ref={(el) => (videoRefs.current[index] = el)}
         controls
-        className={`rounded w-auto ${isFullscreen ? "h-screen" : "md:h-[50vh] h-[30vh]"}`}
+        className={`rounded w-auto ${isFullscreen ? "h-screen" : "md:h-[60vh] h-[30vh]"}`}
         style={{ objectFit: "cover" }}
       >
         <source src={video.link} type="video/mp4" />
@@ -64,7 +64,7 @@ function TutorialDocuments() {
 </div>
 
 
-      <div className="md:col-span-5 col-span-12 ">
+      <div className="md:col-span-4 col-span-12 ">
         {documents.map((item, index) => (
           <div
             key={index}

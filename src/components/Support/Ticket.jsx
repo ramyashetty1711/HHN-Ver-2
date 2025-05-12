@@ -658,7 +658,7 @@ const EditTicketModal = ({
                   {EditData.email_id}
                 </div>
               </div> */}
-              <div className=" col-span-1 text-right flex flex-row justify-end items-center ">
+              <div className="md:col-span-1 col-span-4 text-right flex flex-row md:justify-end justify-start items-center ">
                 <span className="font-semibold text-black">Status : </span>
                 {isView ? (
                   <div
@@ -696,7 +696,7 @@ const EditTicketModal = ({
                 )}
               </div>
 
-              <div className=" col-span-4 max-h-[40vh] overflow-y-auto custom-scrollbar mt-4 text-gray-600 mb-4">
+              <div className=" col-span-4 w-[50%] md:w-full max-h-[40vh] overflow-y-auto custom-scrollbar mt-4 text-gray-600 mb-4">
                 <h5 className="font-semibold  text-black  mb-2">
                   Description :{" "}
                 </h5>
