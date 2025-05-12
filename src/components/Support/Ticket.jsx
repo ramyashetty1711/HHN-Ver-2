@@ -46,10 +46,11 @@ export default function Ticket() {
           {tabs.map((tab) => (
             <li
               key={tab.id}
-              className={`cursor-pointer p-2 rounded ${activeTab === tab.id
+              className={`cursor-pointer p-2 rounded ${
+                activeTab === tab.id
                   ? "bg-[var(--secondary)] font-semibold"
                   : "hover:bg-gray-100"
-                }`}
+              }`}
               onClick={() => handleTabChange(tab.id)}
             >
               {tab.name}
@@ -146,7 +147,7 @@ function TicketStatus() {
         setAddTicket(false);
       }
     },
-    onError: (err) => { },
+    onError: (err) => {},
   });
 
   const [AddStatus, setAddStatus] = useState({
@@ -294,14 +295,15 @@ function TicketStatus() {
                     {ticket.description}
                   </td>
                   <td
-                    className={`px-4 py-2 capitalize cursor-pointer flex flex-row items-center ${ticket.status === "open"
+                    className={`px-4 py-2 capitalize cursor-pointer flex flex-row items-center ${
+                      ticket.status === "open"
                         ? " text-red-500"
                         : ticket.status === "in_progress"
-                          ? "text-sky-500"
-                          : ticket.status === "closed"
-                            ? "text-green-700"
-                            : ""
-                      }`}
+                        ? "text-sky-500"
+                        : ticket.status === "closed"
+                        ? "text-green-700"
+                        : ""
+                    }`}
                   >
                     {Status[ticket.status]}{" "}
                     {ticket.status === "closed" && (
@@ -444,7 +446,7 @@ function TicketStatus() {
                   )}
                 </div>
                 {/* Description */}
-                <div className="md:col-span-4">
+                <div className="col-span-1 md:col-span-4">
                   <label className="block mb-1 text-md font-medium text-gray-500">
                     Description
                   </label>
@@ -452,11 +454,10 @@ function TicketStatus() {
                     name="description"
                     value={addFormData.description}
                     onChange={handleChange}
-                    className="w-full  border border-gray-300 rounded px-3 py-2 custom-scrollbar"
+                    className=" w-[45%] md:w-full  border border-gray-300 rounded px-3 py-2 custom-scrollbar"
                     rows="4"
                     placeholder="Enter description"
                   />
-
                 </div>
 
                 {/* Submit Button */}
@@ -473,7 +474,6 @@ function TicketStatus() {
                   </CustomButton>
                 </div>
               </form>
-
             </div>
           </div>
         }
@@ -652,14 +652,15 @@ const EditTicketModal = ({
                 <span className="font-semibold text-black">Status : </span>
                 {isView ? (
                   <div
-                    className={`ml-2 ${EditData.status === "open"
+                    className={`ml-2 ${
+                      EditData.status === "open"
                         ? " text-red-500"
                         : EditData.status === "in_progress"
-                          ? "text-sky-500"
-                          : EditData.status === "closed"
-                            ? "text-green-700"
-                            : ""
-                      }`}
+                        ? "text-sky-500"
+                        : EditData.status === "closed"
+                        ? "text-green-700"
+                        : ""
+                    }`}
                   >
                     {Status[EditData.status]}
                   </div>
@@ -670,10 +671,11 @@ const EditTicketModal = ({
                     onChange={(e) => {
                       HandleChange(e);
                     }}
-                    className={`block w-fit ml-2 p-2  border border-gray-400 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none cursor-pointer ${Loading
+                    className={`block w-fit ml-2 p-2  border border-gray-400 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none cursor-pointer ${
+                      Loading
                         ? "opacity-50 bg-gray-300 text-gray-600 cursor-wait"
                         : " "
-                      }`}
+                    }`}
                   >
                     {Object.entries(Status).map(([key, label]) => (
                       <option key={key} value={key} className="cursor-pointer">

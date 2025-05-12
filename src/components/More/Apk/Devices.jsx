@@ -51,7 +51,7 @@ function Devices() {
 
   return (
     <div>
-      <div className="pb-4 max-h-[72vh] overflow-y-auto custom-scrollbar">
+      <div className="pb-4 max-h-[62vh] overflow-y-auto custom-scrollbar">
         {/* {role === 0 && (
           <div className="flex flex-row justify-end mb-3">
             <div

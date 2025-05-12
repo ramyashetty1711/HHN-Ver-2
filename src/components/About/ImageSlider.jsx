@@ -24,37 +24,36 @@ const ImageSlider = () => {
     arrows: false,
   };
 
-  const images = [Elena, NavIC, GC,Artillery];
+  const images = [Elena, NavIC, GC, Artillery];
 
   return (
     <div className="relative w-full  overflow-hidden  h-[calc(100vh-16em)] ">
       <button
-        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 cursor-pointer"
+        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 text-white md:text-white cursor-pointer"
         onClick={() => sliderRef.current?.slickPrev()}
       >
         <FaChevronCircleLeft />
       </button>
       <button
-        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 cursor-pointer"
+        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 cursor-pointer text-white md:text-white"
         onClick={() => sliderRef.current?.slickNext()}
       >
         <FaChevronCircleRight />
       </button>
 
       <Slider ref={sliderRef} {...settings}>
-  {images.map((src, index) => (
-    <div key={index}>
-      <div className="flex justify-center items-center h-[calc(100vh-15em)]">
-      <img
-  src={src}
-  alt={`Image-${index}`}
-  className="w-full h-full object-contain mx-auto"
-/>
-      </div>
-    </div>
-  ))}
-</Slider>
-
+        {images.map((src, index) => (
+          <div key={index}>
+            <div className="flex justify-center items-center h-[calc(100vh-15em)]">
+              <img
+                src={src}
+                alt={`Image-${index}`}
+                className="w-full h-full object-contain mx-auto"
+              />
+            </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 };

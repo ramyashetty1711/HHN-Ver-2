@@ -19,12 +19,15 @@ function MapSheet() {
     disabled: false,
   });
 
-  const { data: mapsheets, refetch, isLoading: MapSheetLoading } = get({
+  const {
+    data: mapsheets,
+    refetch,
+    isLoading: MapSheetLoading,
+  } = get({
     key: "mapsheets",
     url: APPURL.mapsheets,
   });
-console.log(mapsheets);
-
+  console.log(mapsheets);
 
   const user = JSON.parse(sessionStorage.getItem("user"));
   const role = user?.role;
@@ -41,19 +44,17 @@ console.log(mapsheets);
   };
 
   const handleDownload = (url, fileName) => {
-    
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = fileName || 'download.tiff';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
-
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName || "download.tiff";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div>
-      <div className="pb-4 max-h-[72vh] overflow-y-auto custom-scrollbar">
+      <div className="pb-4 max-h-[62vh] overflow-y-auto custom-scrollbar">
         {/* {role === 0 && (
           <div className="flex flex-row justify-end mb-3">
             <div
@@ -74,48 +75,47 @@ console.log(mapsheets);
               <th className="md:flex md:justify-center py-2">Actions</th>
             </tr>
           </thead>
-       <tbody className="divide-y divide-gray-100 text-sm">
-  {MapSheetLoading ? (
-    <tr className="text-center">
-      <td colSpan={4} className="py-6">
-        <div className="flex justify-center items-center">
-          <SpinnerCircularFixed
-            speed={200}
-            thickness={200}
-            size={20}
-            color="var(--primary)"
-            secondaryColor="#98acc0"
-          />
-        </div>
-      </td>
-    </tr>
-  ) : mapsheets && mapsheets.length > 0 ? (
-    mapsheets.map((sheet, index) => (
-      <tr key={sheet.id} className="hover:bg-gray-50">
-        <td className="px-4 py-2">{index + 1}</td>
-        <td className="px-4 py-2">{sheet.file_name}</td>
-        <td className="px-4 py-2">
-          {new Date(sheet.uploaded_at).toLocaleString()}
-        </td>
-        <td className="flex justify-center py-2">
-          <a href={sheet.file} download>
-            <FaDownload
-              className="border border-[var(--primary)] text-[var(--primary)] rounded-md p-1 cursor-pointer hover:bg-[var(--secondary)]"
-              size={25}
-            />
-          </a>
-        </td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan={4} className="text-center py-4 text-gray-500">
-        Map Sheets not available
-      </td>
-    </tr>
-  )}
-</tbody>
-
+          <tbody className="divide-y divide-gray-100 text-sm">
+            {MapSheetLoading ? (
+              <tr className="text-center">
+                <td colSpan={4} className="py-6">
+                  <div className="flex justify-center items-center">
+                    <SpinnerCircularFixed
+                      speed={200}
+                      thickness={200}
+                      size={20}
+                      color="var(--primary)"
+                      secondaryColor="#98acc0"
+                    />
+                  </div>
+                </td>
+              </tr>
+            ) : mapsheets && mapsheets.length > 0 ? (
+              mapsheets.map((sheet, index) => (
+                <tr key={sheet.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-2">{index + 1}</td>
+                  <td className="px-4 py-2">{sheet.file_name}</td>
+                  <td className="px-4 py-2">
+                    {new Date(sheet.uploaded_at).toLocaleString()}
+                  </td>
+                  <td className="flex justify-center py-2">
+                    <a href={sheet.file} download>
+                      <FaDownload
+                        className="border border-[var(--primary)] text-[var(--primary)] rounded-md p-1 cursor-pointer hover:bg-[var(--secondary)]"
+                        size={25}
+                      />
+                    </a>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="text-center py-4 text-gray-500">
+                  Map Sheets not available
+                </td>
+              </tr>
+            )}
+          </tbody>
         </table>
 
         <Modal show={add} handleShow={() => setAdd(false)} onHide={true}>

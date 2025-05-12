@@ -139,26 +139,26 @@ export default function Contact() {
 
       <div className="grid grid-cols-12">
         {/* Contact Info Section */}
-        <div className="md:col-span-5 col-span-12 px-5">
-          <h2 className="text-md md:mb-1 mb-5  text-[var(--heading)] md:mt-0 mt-5">
-            Contact
+        <div className="md:col-span-5 col-span-12 md:px-5">
+          <h2 className="text-xl font-semibold md:text-md md:mb-1 mb-2  text-[var(--heading)] md:mt-0 mt-2 underline underline-offset-4">
+            Contact :
           </h2>
-          <div className="mt-5 space-y-6 text-md">
+          <div className="mt-5 space-y-6 text-md grid md:flex grid-cols-12">
             {/* Contact 1 */}
-            <div className="grid grid-cols-12 items-start">
+            <div className="grid grid-cols-12 items-start col-span-6 wrap-anywhere">
               <div className="md:col-span-5 col-span-12 font-medium">
                 Mr. Purushotham V
               </div>
               <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
                 <a
                   href="mailto:info@elenageo.com"
-                  className="hover:text-[var(--primary)] inline-flex items-center  rounded w-fit"
+                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
                 >
                   <FaEnvelope className="mr-2" /> info@elenageo.com
                 </a>
                 <a
                   href="tel:+919384864411"
-                  className="hover:text-[var(--primary)] inline-flex items-center  rounded w-fit"
+                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
                 >
                   <FaPhoneAlt className="mr-2" /> +91 9384864411
                 </a>
@@ -166,20 +166,20 @@ export default function Contact() {
             </div>
 
             {/* Contact 2 */}
-            <div className="grid grid-cols-12 items-start">
+            <div className="grid grid-cols-12 items-start col-span-6 wrap-anywhere">
               <div className="md:col-span-5 col-span-12 font-medium">
                 Mr. Naveen Kumar P
               </div>
               <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
                 <a
                   href="mailto:sales@elenageo.com"
-                  className="hover:text-[var(--primary)] inline-flex items-center   rounded w-fit"
+                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md  rounded w-fit"
                 >
                   <FaEnvelope className="mr-2" /> sales@elenageo.com
                 </a>
                 <a
                   href="tel:+919384864422"
-                  className="hover:text-[var(--primary)] inline-flex items-center   rounded w-fit"
+                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md  rounded w-fit"
                 >
                   <FaPhoneAlt className="mr-2" /> +91 9384864422
                 </a>
@@ -187,14 +187,14 @@ export default function Contact() {
             </div>
 
             {/* Contact 3 */}
-            <div className="grid grid-cols-12 items-start">
+            <div className="grid grid-cols-12 items-start col-span-6">
               <div className="md:col-span-5 col-span-12 font-medium">
                 Mrs. Shabeen Taj P
               </div>
               <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
                 <a
                   href="tel:+918023554555"
-                  className="hover:text-[var(--primary)] inline-flex items-center   rounded w-fit"
+                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md  rounded w-fit"
                 >
                   <FaPhoneAlt className="mr-2" /> +91 8023554555
                 </a>
@@ -204,7 +204,7 @@ export default function Contact() {
         </div>
 
         {/* Contact Form Section */}
-        <div className="md:col-span-7 col-span-12 px-5">
+        <div className="md:col-span-7 col-span-12 md:px-5">
           <h2 className="text-md md:mb-3 mb-6  text-[var(--heading)] md:mt-0 mt-5 font-semibold text-xl underline underline-offset-4">
             Send Direct Message
           </h2>

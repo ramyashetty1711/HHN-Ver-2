@@ -103,15 +103,15 @@ const Navbar = () => {
               alt="Elena Logo"
               onClick={handlereload}
             />
-            <h5 className="text-white font-semibold text-xl ml-2">
+            <h5 className="text-white font-semibold text-md md:text-xl ml-2">
               Elena Handheld Navigator
             </h5>
           </div>
 
-          <div className="flex items-center gap-3" ref={dropdownRef}>
+          <div className="flex items-center md:gap-3" ref={dropdownRef}>
             {!LoggedInStatus ? (
               <>
-                <span className="text-sm text-gray-300 font-semibold text-center">
+                <span className="text-[0.8em] md:text-sm text-gray-300 font-semibold text-center wrap-break-word mr-1  md:mr-0">
                   Login for Customer Support
                 </span>
                 <div
@@ -166,7 +166,7 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-white text-2xl p-2 rounded hover:bg-white/10 transition duration-300"
+              className="xl:hidden text-white text-2xl p-2 rounded hover:bg-white/10 transition duration-300 cursor-pointer"
               onClick={() => setMenuOpen(!menuOpen)}
             >
               {menuOpen ? <FaTimes /> : <FaBars />}
@@ -179,9 +179,9 @@ const Navbar = () => {
           ref={menuRef}
           className={`${
             menuOpen ? "block absolute z-50 left-0 top-full" : "hidden"
-          } md:flex justify-center items-center bg-[var(--secondary)] w-full md:static md:z-auto`}
+          } xl:flex justify-center items-center bg-[var(--secondary)] w-full xl:static xl:z-auto`}
         >
-          <ul className="flex flex-col md:flex-row justify-between w-full py-1 px-4">
+          <ul className="flex flex-col xl:flex-row justify-between w-full py-1 px-4">
             {MenuElements.map((val, index) => (
               <Link
                 key={index}
@@ -189,10 +189,10 @@ const Navbar = () => {
                 onClick={() => setMenuOpen(false)}
               >
                 <li
-                  className={`font-semibold text-sm p-2 px-4 cursor-pointer duration-300 text-center rounded-lg m-1 ${
+                  className={`font-semibold text-sm p-2 px-4 cursor-pointer duration-300 text-center rounded-lg m-1 transition-all  ${
                     location.pathname === val.link
                       ? "text-white bg-[var(--primary)]"
-                      : "text-gray-900"
+                      : "text-gray-900 hover:bg-blue-900/25 "
                   }`}
                 >
                   {val.display}
@@ -222,8 +222,8 @@ const Navbar = () => {
                   </div>
                 </li>
 
-    {/* More Tab */}
-    {/* <li
+                {/* More Tab */}
+                {/* <li
       className={`relative font-semibold text-sm p-2 px-4 text-gray-900 text-center rounded-lg m-1 cursor-pointer ${
         location.pathname.includes("/more") && "text-white bg-[var(--primary)]"
       }`}
@@ -239,9 +239,8 @@ const Navbar = () => {
         More
       </div>
     </li> */}
-  </>
-)}
-
+              </>
+            )}
           </ul>
         </nav>
       </div>

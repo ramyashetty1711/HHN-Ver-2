@@ -132,10 +132,10 @@ export default function Feedback() {
     }
   };
 
-  const questionForLooks = generateQuestions(ratings.looks);
-  const questionForRuggedness = generateQuestions(ratings.ruggedness);
-  const questionForSoftware = generateQuestions(ratings.software);
-  const questionForEaseOfUse = generateQuestions(ratings.easeOfUse);
+  const questionForLooks = generateQuestions(ratings.look_rating);
+  const questionForRuggedness = generateQuestions(ratings.rugged_rating);
+  const questionForSoftware = generateQuestions(ratings.app_ratings);
+  const questionForEaseOfUse = generateQuestions(ratings.ease_of_use);
 
   useEffect(() => {
     setDisabled(!Object.values(ratings).every((r) => r > 0));
