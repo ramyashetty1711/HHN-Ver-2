@@ -33,4 +33,5 @@ export const APPURL = {
   verifyEmailCode: baseURL + "verify_email_code/",
   sendPhoneCode: baseURL + "send_phone_code/",
   verifyPhoneCode: baseURL + "verify_phone_code/",
+  userLocation: baseURL + "user_location/",
 };

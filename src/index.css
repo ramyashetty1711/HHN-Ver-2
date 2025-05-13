@@ -43,3 +43,16 @@ h1 {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+/* Lower the z-index of Leaflet container and its elements */
+.leaflet-container {
+  z-index: 0 !important;
+}
+
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom,
+.leaflet-tile-pane,
+.leaflet-map-pane {
+  z-index: 0 !important;
+}

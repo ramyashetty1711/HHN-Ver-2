@@ -12,7 +12,7 @@ import More from "../More/More";
 import Admin from "../Admin/Admin";
 import { useSearchParams } from "react-router-dom";
 import { useLocalUserData } from "../../query/UseLocalData";
-import { getData } from "../../query/UseFetchData";
+import { getData, getUserRole } from "../../query/UseFetchData";
 import { useSelector } from "react-redux";
 import { useToast } from "../Toast/ToastContext";
 import { SpinnerCircularFixed } from "spinners-react";
@@ -30,14 +30,20 @@ const Status = {
 export default function Ticket() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "downloads";
+  
+const role=getUserRole()
+console.log(role);
 
-  const tabs = [
-    { id: "downloads", name: "Downloads" },
-    { id: "ticket", name: "Ticket" },
-    { id: "tutorial", name: "Tutotials" },
-    { id: "feedback", name: "Feedback" },
-    { id: "admin", name: "Admin" },
-  ];
+  
+
+const tabs = [
+  { id: "downloads", name: "Downloads" },
+  { id: "ticket", name: "Ticket" },
+  { id: "tutorial", name: "Tutorials" },
+  { id: "feedback", name: "Feedback" },
+  ...(role === 1 ? [{ id: "admin", name: "Admin" }] : []),
+];
+
 
   const handleTabChange = (tabId) => {
     setSearchParams({ tab: tabId });

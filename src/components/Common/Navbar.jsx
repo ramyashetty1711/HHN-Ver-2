@@ -215,6 +215,7 @@ const Navbar = () => {
                     onClick={(e) => {
                       e.stopPropagation();
                       setSuppotMenu((prev) => !prev);
+                      setMenuOpen(false)
                       navigate("/support");
                     }}
                   >

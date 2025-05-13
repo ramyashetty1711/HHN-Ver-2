@@ -10,7 +10,7 @@ function Admin() {
   const activeSubTab = parseInt(searchParams.get("subtab")) || 1;
 
   const TabData = [
-    { name: "Visitor Locations", TabContent: <VisitorsLocation/>, key: 1 },
+    { name: "Viewer Locations", TabContent: <VisitorsLocation/>, key: 1 },
     { name: "Logged-In User Locations", TabContent: <LoggedInLocation/>, key: 2 },
   ];
 
@@ -20,7 +20,7 @@ function Admin() {
   };
 
   return (
-    <div className="bg-white h-full p-4 md:max-h-[72vh] overflow-y-auto custom-scrollbar">
+    <div className="bg-white h-full ">
       <div className="w-full tw-mt-2 tw-mx-2">
         <div className="flex border-b border-gray-300">
           {TabData.map((tab, idx) => (

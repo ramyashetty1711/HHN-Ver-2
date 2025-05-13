@@ -1,72 +1,73 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useLocalUserData } from '../../query/UseLocalData';
-import { SpinnerCircularFixed } from 'spinners-react';
-import { APPURL } from '../../URL';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { SpinnerCircularFixed } from "spinners-react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-markercluster";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { MdLocationOn } from "react-icons/md";
+import { renderToStaticMarkup } from "react-dom/server";
+import { useLocalUserData } from "../../query/UseLocalData";
 
-// Import React Icons
-import { FiMapPin } from 'react-icons/fi';  // Import Map Pin icon
+// Custom icons and CSS
+import markerIcon from "../../assets/location_icon.png";
+import "../../assets/leaflet/MarkerCluster.css";
+import "../../assets/leaflet/MarkerCluster.Default.css";
+import { getData } from "../../query/UseFetchData";
+import { APPURL } from "../../URL";
 
-// Fix Leaflet icon paths
-
-import markerIcon from '../../assets/location_icon.png';
-
-
-const customIcon = L.icon({
-  iconUrl: markerIcon,
-  iconSize: [25, 41], // You can adjust the size
-  iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
-  popupAnchor: [1, -34],
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-  shadowSize: [41, 41],
+const iconMarkup = renderToStaticMarkup(<MdLocationOn size={32} color="red" />);
+const customDivIcon = L.divIcon({
+  html: iconMarkup,
+  className: "", // Prevent default leaflet styles
+  iconSize: [32, 32], // match your icon size
+  iconAnchor: [16, 32], // center bottom point
 });
 
+// Dummy Data (used instead of API call)
+const dummyVisitorLocation = [
+  { coord: { lat: 12.9716, lng: 77.5946 } }, // Bangalore
+  { coord: { lat: 13.0827, lng: 80.2707 } }, // Chennai
+  { coord: { lat: 17.385, lng: 78.4867 } }, // Hyderabad
+  { coord: { lat: 28.6139, lng: 77.209 } }, // Delhi
+  { coord: { lat: 19.076, lng: 72.8777 } }, // Mumbai
+  { coord: { lat: 26.9124, lng: 75.7873 } }, // Jaipur
+];
 
-// Simulated data fetcher
-async function getData(url, token) {
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.json();
-}
+const defaultCenter = [20.5937, 78.9629];
 
 function VisitorsLocation() {
   const SessionData = useLocalUserData();
+  console.log(SessionData);
 
-  const {
-    data: visitorLocation,
-    isLoading: locationLoading,
-  } = useQuery({
-    queryKey: ['devices'],
-    queryFn: () => getData(APPURL.devices, SessionData.token),
+  const visitorLocation = dummyVisitorLocation;
+
+  const { data: visitors, isLoading: VisitorsLoading } = useQuery({
+    queryKey: ["visitors"],
+    queryFn: () => getData(APPURL.location, SessionData.token),
     enabled: !!SessionData.token,
     staleTime: 60 * 1000,
     cacheTime: 5 * 60 * 1000,
   });
-
-  const defaultCenter = [20.5937, 78.9629]; 
+  console.log(visitors);
 
   return (
-    <div>
+    <div  className="bg-white h-full">
       <div className="grid grid-cols-12 gap-4">
-        {/* Visitor Table */}
-        <div className="col-span-4 overflow-auto max-h-[500px]">
+        {/* Table Section */}
+        {/* <div className="xl:col-span-4 col-span-12  overflow-auto max-h-[500px]">
           <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
             <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
               <tr>
                 <th className="px-4 py-2">S. No</th>
                 <th className="px-4 py-2">Location</th>
+                <th className="px-4 py-2">Visited at</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 text-sm">
-              {locationLoading ? (
+              {VisitorsLoading ? (
                 <tr className="text-center">
-                  <td colSpan={2} className="py-6">
+                  <td colSpan={4} className="py-6">
                     <div className="flex justify-center items-center">
                       <SpinnerCircularFixed
                         speed={200}
@@ -78,70 +79,64 @@ function VisitorsLocation() {
                     </div>
                   </td>
                 </tr>
-              ) : visitorLocation && visitorLocation.length > 0 ? (
-                visitorLocation.map((location, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
+              ) : visitors && visitors.length > 0 ? (
+                visitors.map((location, index) => (
+                  <tr key={location.id} className="hover:bg-gray-50">
                     <td className="px-4 py-2">{index + 1}</td>
-                    <td className="px-4 py-2 flex items-center">
-                      <FiMapPin className="mr-2" />{' '}
-                      {location.coord
-                        ? `${location.coord.lat}, ${location.coord.lng}`
-                        : 'N/A'}
+                    <td className="px-4 py-2">
+                      {location
+                        ? `${location.latitude}, ${location.longitude}`
+                        : "N/A"}
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={2} className="text-center py-4 text-gray-500">
-                    No visitor location records found
+                  <td colSpan={4} className="text-center py-4 text-gray-500">
+                    No login location records found
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
-        </div>
+        </div> */}
 
         {/* Map Section */}
-<div className="col-span-8 h-[65vh]">
-  <MapContainer center={defaultCenter} zoom={5} style={{ height: '100%', width: '100%' }}>
-    <TileLayer
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    />
+        <div className="xl:col-span-12 col-span-12 relative z-0 rounded-lg overflow-hidden ">
+          <MapContainer
+          
+            center={defaultCenter}
+            zoom={4}
+           style={{ height: '65vh', width: '100%' }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            />
 
-    {/* Show default marker if no data */}
-    {(!visitorLocation || visitorLocation.length === 0) && (
-      <Marker position={defaultCenter} icon={customIcon}>
-        <Popup>
-          <div>
-            <h3>Default Location</h3>
-            <p>Lat: 20.5937, Lng: 78.9629</p>
-          </div>
-        </Popup>
-      </Marker>
-    )}
+            <MarkerClusterGroup>
+              {visitors?.map((loc, index) => {
+                if (!loc) return null;
+                const lat = loc.latitude;
+                const lng = loc.longitude;
 
-    {/* Show visitor markers */}
-    {/* {visitorLocation &&
-      visitorLocation.map((loc, index) => {
-        if (!loc.coord) return null;
-
-        const { lat, lng } = loc.coord;
-
-        return (
-          <Marker key={index} position={[lat, lng]} icon={customIcon}>
-            <Popup>
-              <div>
-                <h3>Visitor {index + 1}</h3>
-                <p>Lat: {lat}, Lng: {lng}</p>
-              </div>
-            </Popup>
-          </Marker>
-        );
-      })} */}
-  </MapContainer>
-</div>
-
+                return (
+                  <Marker
+                    key={index}
+                    position={[lat, lng]}
+                    icon={customDivIcon}
+                  >
+                    <Popup>
+                      <strong>Visitor {index + 1}</strong>
+                      <br />
+                      Lat: {lat}, Lng: {lng}
+                    </Popup>
+                  </Marker>
+                );
+              })}
+            </MarkerClusterGroup>
+          </MapContainer>
+        </div>
       </div>
     </div>
   );

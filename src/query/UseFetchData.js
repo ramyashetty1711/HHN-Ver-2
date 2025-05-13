@@ -31,3 +31,14 @@ export const getData = async (url, token) => {
   });
   return res.data;
 };
+
+
+export const getUserRole = () => {
+  try {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    return user?.role || null;
+  } catch (error) {
+    console.error("Error parsing user data from sessionStorage:", error);
+    return null;
+  }
+};
