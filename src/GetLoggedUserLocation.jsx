@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { getAuthToken } from "./query/UseFetch";
 import { APPURL } from "./URL";
 
-const LocationLogger = () => {
+const token=getAuthToken()
+
+
+const GetLoggedUserLocation= () => {
   const [permissionStatus, setPermissionStatus] = useState(null);
 
   useEffect(() => {
     const hasLoggedLocation = localStorage.getItem("zqw091203");
 
     if (hasLoggedLocation) {
-      console.log("Initial Location Location already logged previously.");
+      console.log("Location already logged previously.");
       return;
     }
 
@@ -24,7 +28,9 @@ const LocationLogger = () => {
 
           fetch(APPURL.location, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+                Authorization: `Token ${token}`, 
+             },
             body: JSON.stringify({
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
@@ -60,4 +66,4 @@ const LocationLogger = () => {
   return null;
 };
 
-export default LocationLogger;
+export default GetLoggedUserLocation;

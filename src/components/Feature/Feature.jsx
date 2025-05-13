@@ -35,7 +35,7 @@ export default function Feature() {
             <h5 className="text-2xl text-[var(--heading)] mb-4 font-bold flex justify-center">
               Features
             </h5>
-            <ul className="list-disc md:px-8 px-4 overflow-y-auto custom-scrollbar grid md:grid-cols-2 grid-cols-1 gap-y-3 gap-x-6">
+            <ul className="list-disc md:px-8 px-4 overflow-y-auto custom-scrollbar grid xl:grid-cols-2 grid-cols-1 gap-y-3 gap-x-6">
               {FeatureList.map((val, index) => (
                 <li key={index} className="text-black">
                   {val}

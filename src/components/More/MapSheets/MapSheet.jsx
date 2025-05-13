@@ -275,9 +275,11 @@ function MapSheet() {
       </div>
     </div>
   );
+  
 }
 
 const Modal = ({ show, handleShow, children, onHide = false }) => {
+  if (!show) return null;
   if (!show) return null;
 
   return (

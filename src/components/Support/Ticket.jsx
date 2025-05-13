@@ -19,6 +19,7 @@ import { SpinnerCircularFixed } from "spinners-react";
 import { IoEye } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import TutorialDocuments from "../More/Tutorial/TutorialDocuments";
+import GetLoggedUserLocation from "../../GetLoggedUserLocation";
 
 const Status = {
   open: "Open",
@@ -35,41 +36,48 @@ export default function Ticket() {
     { id: "ticket", name: "Ticket" },
     { id: "tutorial", name: "Tutotials" },
     { id: "feedback", name: "Feedback" },
+    { id: "admin", name: "Admin" },
   ];
 
   const handleTabChange = (tabId) => {
     setSearchParams({ tab: tabId });
   };
 
-  return (
-    <div className="grid grid-cols-12 md:min-h-[78.8vh] 2xl:min-h-full bg-white">
-      <div className="md:col-span-2 col-span-12 border-r border-gray-200 p-4">
-        <ul className="space-y-2">
-          {tabs.map((tab) => (
-            <li
-              key={tab.id}
-              className={`cursor-pointer p-2 rounded ${
-                activeTab === tab.id
-                  ? "bg-[var(--secondary)] font-semibold"
-                  : "hover:bg-gray-100"
-              }`}
-              onClick={() => handleTabChange(tab.id)}
-            >
-              {tab.name}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Main Content */}
-      <div className="md:col-span-10 w-full p-4">
-        {activeTab === "downloads" && <More />}
-        {activeTab === "ticket" && <TicketStatus />}
-        {activeTab === "tutorial" && <TutorialDocuments />}
-        {activeTab === "feedback" && <Feedback />}
-      </div>
+return (
+  <div className="grid grid-cols-12 md:min-h-[78.8vh] 2xl:min-h-full bg-white">
+    {/* Sidebar */}
+    <div className="md:col-span-2 col-span-12 border-r border-gray-200 p-4">
+      <ul className="space-y-2">
+        {tabs.map((tab) => (
+          <li
+            key={tab.id}
+            className={`cursor-pointer p-2 rounded ${
+              activeTab === tab.id
+                ? "bg-[var(--secondary)] font-semibold"
+                : "hover:bg-gray-100"
+            }`}
+            onClick={() => handleTabChange(tab.id)}
+          >
+            {tab.name}
+          </li>
+        ))}
+      </ul>
     </div>
-  );
+
+    {/* Main Content */}
+    <div className="md:col-span-10 col-span-12 w-full p-4">
+      {activeTab === "downloads" && <More />}
+      {activeTab === "ticket" && <TicketStatus />}
+      {activeTab === "tutorial" && <TutorialDocuments />}
+      {activeTab === "feedback" && <Feedback />}
+      {activeTab === "admin" && <Admin/>}
+    </div>
+
+    {/* Log user location once */}
+    <GetLoggedUserLocation />
+  </div>
+);
+
 }
 
 function TicketStatus() {
@@ -379,6 +387,7 @@ function TicketStatus() {
                     value={addFormData.device_id}
                     onChange={handleChange}
                     className="w-full max-w-xs border border-gray-300 rounded px-3 py-2"
+               
                   >
                     <option value="" disabled>
                       Select a device
@@ -417,6 +426,7 @@ function TicketStatus() {
                     name="email_id"
                     value={addFormData.mail}
                     onChange={handleChange}
+                    className="w-full max-w-xs border border-gray-300 rounded px-3 py-2"
                     className="w-full max-w-xs border border-gray-300 rounded px-3 py-2"
                     placeholder="Enter email"
                   />

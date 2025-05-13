@@ -29,13 +29,13 @@ const ImageSlider = () => {
   return (
     <div className="relative w-full  overflow-hidden  h-[calc(100vh-16em)] ">
       <button
-        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 text-white md:text-white cursor-pointer"
+        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 text-white md:text-black cursor-pointer"
         onClick={() => sliderRef.current?.slickPrev()}
       >
         <FaChevronCircleLeft />
       </button>
       <button
-        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 cursor-pointer text-white md:text-white"
+        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 cursor-pointer text-white md:text-black"
         onClick={() => sliderRef.current?.slickNext()}
       >
         <FaChevronCircleRight />

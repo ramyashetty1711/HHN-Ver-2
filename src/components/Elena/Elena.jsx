@@ -30,7 +30,7 @@ function Elena() {
       <div className="relative">
         {/* Custom Previous Arrow */}
         <button
-          className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
+          className="absolute md:top-1/2 top-1/3 left-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
           onClick={() => sliderRef.current?.slickPrev()}
         >
           <FaChevronCircleLeft />
@@ -38,7 +38,7 @@ function Elena() {
 
         {/* Custom Next Arrow */}
         <button
-          className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
+          className="absolute md:top-1/2 top-1/3 right-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
           onClick={() => sliderRef.current?.slickNext()}
         >
           <FaChevronCircleRight />
