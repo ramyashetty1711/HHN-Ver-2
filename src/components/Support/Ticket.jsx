@@ -20,6 +20,7 @@ import { IoEye } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import TutorialDocuments from "../More/Tutorial/TutorialDocuments";
 import GetLoggedUserLocation from "../../GetLoggedUserLocation";
+import VerificationModal from "../Verification/Verification";
 
 const Status = {
   open: "Open",
@@ -32,7 +33,7 @@ export default function Ticket() {
   const activeTab = searchParams.get("tab") || "downloads";
   
 const role=getUserRole()
-console.log(role);
+// console.log(role);
 
   
 
@@ -49,41 +50,40 @@ const tabs = [
     setSearchParams({ tab: tabId });
   };
 
-return (
-  <div className="grid grid-cols-12 md:min-h-[78.8vh] 2xl:min-h-full bg-white">
-    {/* Sidebar */}
-    <div className="md:col-span-2 col-span-12 border-r border-gray-200 p-4">
-      <ul className="space-y-2">
-        {tabs.map((tab) => (
-          <li
-            key={tab.id}
-            className={`cursor-pointer p-2 rounded ${
-              activeTab === tab.id
-                ? "bg-[var(--secondary)] font-semibold"
-                : "hover:bg-gray-100"
-            }`}
-            onClick={() => handleTabChange(tab.id)}
-          >
-            {tab.name}
-          </li>
-        ))}
-      </ul>
+  return (
+    <div className="grid grid-cols-12 min-h-full 2xl:min-h-full bg-white">
+      {/* Sidebar */}
+      <div className="md:col-span-2 col-span-12 border-r border-gray-200 p-4">
+        <ul className="space-y-2">
+          {tabs.map((tab) => (
+            <li
+              key={tab.id}
+              className={`cursor-pointer p-2 rounded ${
+                activeTab === tab.id
+                  ? "bg-[var(--secondary)] font-semibold"
+                  : "hover:bg-gray-100"
+              }`}
+              onClick={() => handleTabChange(tab.id)}
+            >
+              {tab.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Main Content */}
+      <div className="md:col-span-10 col-span-12 w-full p-4">
+        {activeTab === "downloads" && <More />}
+        {activeTab === "ticket" && <TicketStatus />}
+        {activeTab === "tutorial" && <TutorialDocuments />}
+        {activeTab === "feedback" && <Feedback />}
+        {activeTab === "admin" && <Admin />}
+      </div>
+      <VerificationModal />
+      {/* Log user location once */}
+      <GetLoggedUserLocation />
     </div>
-
-    {/* Main Content */}
-    <div className="md:col-span-10 col-span-12 w-full p-4">
-      {activeTab === "downloads" && <More />}
-      {activeTab === "ticket" && <TicketStatus />}
-      {activeTab === "tutorial" && <TutorialDocuments />}
-      {activeTab === "feedback" && <Feedback />}
-      {activeTab === "admin" && <Admin/>}
-    </div>
-
-    {/* Log user location once */}
-    <GetLoggedUserLocation />
-  </div>
-);
-
+  );
 }
 
 function TicketStatus() {
@@ -393,7 +393,6 @@ function TicketStatus() {
                     value={addFormData.device_id}
                     onChange={handleChange}
                     className="w-full max-w-xs border border-gray-300 rounded px-3 py-2"
-               
                   >
                     <option value="" disabled>
                       Select a device

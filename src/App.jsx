@@ -9,8 +9,17 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { QueryProvider } from "./query/QueryProvider";
 import "leaflet/dist/leaflet.css";
 import LocationLogger from "./GetLocation";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    caches.keys().then((names) => {
+      names.forEach((name) => {
+        caches.delete(name);
+      });
+      console.log("Cache cleared !!");
+    });
+  }, []);
   return (
     <>
       <QueryProvider>

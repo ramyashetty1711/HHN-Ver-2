@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useLocalUserData } from '../../query/UseLocalData';
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useLocalUserData } from "../../query/UseLocalData";
 import { SpinnerCircularFixed } from "spinners-react";
-import { APPURL } from '../../URL';
+import { APPURL } from "../../URL";
 import { FaLocationArrow } from "react-icons/fa";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { getData } from '../../query/UseFetchData';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { getData } from "../../query/UseFetchData";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MdLocationOn } from "react-icons/md";
 
@@ -17,7 +17,7 @@ function FlyToLocation({ position }) {
 
   useEffect(() => {
     if (position) {
-      map.flyTo(position, 10); // Zoom level: 12 (adjust as needed)
+      map.flyTo(position, 12);
     }
   }, [position, map]);
 
@@ -25,7 +25,9 @@ function FlyToLocation({ position }) {
 }
 
 function LoggedInLocation() {
-  const iconMarkup = renderToStaticMarkup(<MdLocationOn size={32} color="red" />);
+  const iconMarkup = renderToStaticMarkup(
+    <MdLocationOn size={32} color="red" />
+  );
   const customDivIcon = L.divIcon({
     html: iconMarkup,
     className: "",
@@ -45,19 +47,19 @@ function LoggedInLocation() {
 
   const [selectedLatitude, setSelectedLatitude] = useState(null);
   const [selectedLongitude, setSelectedLongitude] = useState(null);
-  const [selectedUser,setSelectedUser]=useState("")
+  const [selectedUser, setSelectedUser] = useState("");
 
   const handleViewLocation = (location) => {
     setSelectedLatitude(location.latitude);
     setSelectedLongitude(location.longitude);
-    setSelectedUser(location.reg_username)
+    setSelectedUser(location.reg_username);
   };
 
   return (
     <div className="bg-white h-full md:max-h-[70vh] overflow-y-auto custom-scrollbar">
-      <div className='grid grid-cols-12 gap-4'>
+      <div className="grid grid-cols-12 gap-4">
         {/* Table Section */}
-        <div className='xl:col-span-4 col-span-12'>
+        <div className="xl:col-span-4 col-span-12">
           <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
             <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
               <tr>
@@ -87,11 +89,13 @@ function LoggedInLocation() {
                 loggedInUsers.map((location, index) => (
                   <tr key={location.id} className="hover:bg-gray-50">
                     <td className="px-4 py-2">{index + 1}</td>
-                    <td className="px-4 py-2">{location.reg_username || 'N/A'}</td>
+                    <td className="px-4 py-2">
+                      {location.reg_username || "N/A"}
+                    </td>
                     <td className="px-4 py-2">
                       {location.accessed_at
                         ? new Date(location.accessed_at).toLocaleString()
-                        : 'N/A'}
+                        : "N/A"}
                     </td>
                     <td className="px-4 py-2 flex justify-center">
                       <FaLocationArrow
@@ -114,50 +118,66 @@ function LoggedInLocation() {
         </div>
 
         {/* Map Section */}
-        <div className='xl:col-span-8 col-span-12 rounded-lg overflow-hidden'>
-          <MapContainer center={[20.5937, 78.9629]} zoom={4} style={{ height: '65vh', width: '100%' }}>
+        <div className="xl:col-span-8 col-span-12 rounded-lg overflow-hidden">
+          <MapContainer
+            center={[20.5937, 78.9629]}
+            zoom={4}
+            style={{ height: "65vh", width: "100%" }}
+          >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
 
             {/* Markers for all users */}
-            {loggedInUsers && loggedInUsers.map((location, index) => (
-              <Marker
-                key={location.id}
-                position={[location.latitude, location.longitude]}
-                icon={customDivIcon}
-              >
-                <Popup>
-  <div className="  bg-white rounded-lg  text-sm text-gray-800 font-sans">
-    <h3 className="text-base font-semibold text-[var(--primary)] mb-2">
-      {location.reg_username || 'Unknown User'}
-    </h3>
-    <p>
-      <span className="font-medium">Latitude:</span> {location.latitude}<br />
-      <span className="font-medium">Longitude:</span> {location.longitude}
-    </p>
-  </div>
-</Popup>
-
-              </Marker>
-            ))}
+            {loggedInUsers &&
+              loggedInUsers.map((location, index) => (
+                <Marker
+                  key={location.id}
+                  position={[location.latitude, location.longitude]}
+                  icon={customDivIcon}
+                >
+                  <Popup>
+                    <div className="  bg-white rounded-lg  text-sm text-gray-800 font-sans">
+                      <h3 className="text-base font-semibold text-[var(--primary)] mb-2">
+                        {location.reg_username || "Unknown User"}
+                      </h3>
+                      <p>
+                        <span className="font-medium">Latitude:</span>{" "}
+                        {location.latitude}
+                        <br />
+                        <span className="font-medium">Longitude:</span>{" "}
+                        {location.longitude}
+                      </p>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
 
             {/* Selected location marker with fly-to */}
             {selectedLatitude && selectedLongitude && (
               <>
-                <FlyToLocation position={[selectedLatitude, selectedLongitude]} />
-                <Marker position={[selectedLatitude, selectedLongitude]} icon={customDivIcon}>
+                <FlyToLocation
+                  position={[selectedLatitude, selectedLongitude]}
+                />
+                <Marker
+                  position={[selectedLatitude, selectedLongitude]}
+                  icon={customDivIcon}
+                >
                   <Popup>
-  <div className="  bg-white rounded-lg text-sm text-gray-800 font-sans">
-    <h3 className="text-base font-semibold text-[var(--primary)] mb-2">{selectedUser}</h3>
-    <p>
-      <span className="font-medium">Latitude:</span> {selectedLatitude}<br />
-      <span className="font-medium">Longitude:</span> {selectedLongitude}
-    </p>
-  </div>
-</Popup>
-
+                    <div className="  bg-white rounded-lg text-sm text-gray-800 font-sans">
+                      <h3 className="text-base font-semibold text-[var(--primary)] mb-2">
+                        {selectedUser}
+                      </h3>
+                      <p>
+                        <span className="font-medium">Latitude:</span>{" "}
+                        {selectedLatitude}
+                        <br />
+                        <span className="font-medium">Longitude:</span>{" "}
+                        {selectedLongitude}
+                      </p>
+                    </div>
+                  </Popup>
                 </Marker>
               </>
             )}

@@ -27,9 +27,9 @@ const Feedback = lazy(() => import("./components/Support/Feedback"));
 const Ticket = lazy(() => import("./components/Support/Ticket"));
 const Cert = lazy(() => import("./components/CofHHN/Cert"));
 const More = lazy(() => import("./components/More/More"));
-const VerificationModal = lazy(() =>
-  import("./components/Verification/Verification")
-);
+// const VerificationModal = lazy(() =>
+//   import("./components/Verification/Verification")
+// );
 
 export default function AppRoutes() {
   const routes = [
@@ -54,18 +54,7 @@ export default function AppRoutes() {
   return (
     <>
       <Router>
-        {/* <Suspense
-        fallback={
-          <div className="flex justify-center items-center h-full">
-            <SpinnerCircularFixed
-              size={40}
-              thickness={180}
-              speed={120}
-              color="skyblue"
-            />
-          </div>
-        }
-      > */}
+      
 
         <Routes>
           <Route element={<Wrapper />}>
@@ -102,7 +91,7 @@ export default function AppRoutes() {
         </Routes>
         {/* </Suspense> */}
       </Router>
-      <VerificationModal />
+      {/* <VerificationModal /> */}
     </>
   );
 }

@@ -38,7 +38,7 @@ const defaultCenter = [20.5937, 78.9629];
 
 function VisitorsLocation() {
   const SessionData = useLocalUserData();
-  console.log(SessionData);
+  // console.log(SessionData);
 
   const visitorLocation = dummyVisitorLocation;
 
@@ -49,7 +49,7 @@ function VisitorsLocation() {
     staleTime: 60 * 1000,
     cacheTime: 5 * 60 * 1000,
   });
-  console.log(visitors);
+  // console.log(visitors);
 
   return (
     <div  className="bg-white h-full">

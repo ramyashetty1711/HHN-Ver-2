@@ -14,7 +14,7 @@ function More() {
   const TabData = [
     { name: "Devices", TabContent: <Devices />, key: 1 },
     { name: "Map Processing Software", TabContent: <Application />, key: 2 },
-    { name: "Map Sheets", TabContent: <MapSheet />, key: 3 }
+    { name: "Map Sheets", TabContent: <MapSheet />, key: 3 },
   ];
 
   const handleTabChange = (key) => {

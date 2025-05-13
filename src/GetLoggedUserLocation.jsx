@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getAuthToken } from "./query/UseFetch";
 import { APPURL } from "./URL";
 
-const token=getAuthToken()
+const token = getAuthToken();
 
-
-const GetLoggedUserLocation= () => {
+const GetLoggedUserLocation = () => {
   const [permissionStatus, setPermissionStatus] = useState(null);
-
+  const sessionData = sessionStorage.getItem("poasdfu123");
   useEffect(() => {
-    const hasLoggedLocation = localStorage.getItem("zqw091203");
-
-    if (hasLoggedLocation) {
+    if (sessionData) {
       console.log("Location already logged previously.");
       return;
     }
@@ -22,29 +19,26 @@ const GetLoggedUserLocation= () => {
     }
 
     const logLocation = () => {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          //   localStorage.setItem("zqw091203", "true");
-
-          fetch(APPURL.location, {
+      navigator.geolocation.getCurrentPosition((position) => {
+        if (!sessionData) {
+          fetch(APPURL.userLocation, {
             method: "POST",
-            headers: { "Content-Type": "application/json",
-                Authorization: `Token ${token}`, 
-             },
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+            },
             body: JSON.stringify({
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
             }),
           }).then((res) => {
-            if (res.ok) {
-              localStorage.setItem("zqw091203", "true");
-            }
+            sessionStorage.setItem("poasdfu123", "true");
           });
-        },
+        }
         (error) => {
           console.error("Error getting location:", error.message);
-        }
-      );
+        };
+      });
     };
 
     if (navigator.permissions) {
@@ -58,9 +52,6 @@ const GetLoggedUserLocation= () => {
         }
       });
     }
-    // else {
-    //   logLocation(); // fallback for browsers without `navigator.permissions`
-    // }
   }, []);
 
   return null;
