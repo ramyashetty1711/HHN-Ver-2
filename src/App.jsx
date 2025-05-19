@@ -8,7 +8,7 @@ import { ToastProvider } from "./components/Toast/ToastContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { QueryProvider } from "./query/QueryProvider";
 import "leaflet/dist/leaflet.css";
-import LocationLogger from "./GetLocation";
+// import LocationLogger from "./GetLocation";
 import { useEffect } from "react";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           </Provider>
         </ToastProvider>
       </QueryProvider>
-      <LocationLogger />
+      {/* <LocationLogger /> */}
     </>
   );
 }

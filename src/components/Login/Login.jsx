@@ -76,7 +76,7 @@ export default function Login() {
 
         window.sessionStorage.setItem("user", JSON.stringify(data));
         store.dispatch(updateLoggedInStatus(true));
-        navigate("/support");
+        navigate("/downloads");
       }
     } catch (err) {
       showToast({

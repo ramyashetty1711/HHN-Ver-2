@@ -35,7 +35,7 @@ function TutorialDocuments() {
   }, []);
 
   return (
-    <div className="px-4">
+    <div className="px-4 bg-white h-full pt-4">
       <div className="grid grid-cols-12">
         <div className="xl:col-span-8 col-span-12">
           {videos.map((video, index) => (

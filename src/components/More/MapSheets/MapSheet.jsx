@@ -130,7 +130,7 @@ function MapSheet() {
           Request new Map sheet
         </div>
       </div>
-      <div className=" max-h-[52vh] overflow-y-auto custom-scrollbar">
+      <div className=" max-h-[60vh] overflow-y-auto custom-scrollbar">
         <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
           <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
             <tr>

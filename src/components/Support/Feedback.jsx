@@ -142,13 +142,13 @@ export default function Feedback() {
   }, [comments, ratings]);
 
   return (
-    <div className="bg-white h-full p-4 md:max-h-[72vh] overflow-y-auto custom-scrollbar">
+    <div className="bg-white h-full p-4 px-2 md:px-6   overflow-y-auto custom-scrollbar">
       <div className="space-y-4 ">
         <div className="flex flex-row">
           {/* Device Selection (Uncomment and customize if needed) */}
         </div>
 
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-4  md:max-h-[44vh] overflow-y-auto custom-scrollbar mb-2">
           {/* Star Rating for Looks */}
           <div className="flex flex-col mb-4">
             <h3 className="text-lg font-semibold mb-2">Device Looks</h3>

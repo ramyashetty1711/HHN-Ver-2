@@ -4,6 +4,7 @@ const initialState = {
   TicketData: [],
   LoggedInStatus: false,
   currentUserRole: 0,
+  AddRaiseTicket: false,
   ShowVerification: false,
   VerificationData: { email_verified: false, phone_verified: false },
 };
@@ -27,6 +28,9 @@ export const DataSlice = createSlice({
     updateVerificationData: (state, action) => {
       state.VerificationData = action.payload;
     },
+    updateAddRaiseTicket: (state, action) => {
+      state.AddRaiseTicket = action.payload;
+    },
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   updateCurrentUserRole,
   updateShowVerification,
   updateVerificationData,
+  updateAddRaiseTicket, 
 } = DataSlice.actions;
 
 export default DataSlice.reducer;

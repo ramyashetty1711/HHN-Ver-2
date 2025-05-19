@@ -41,7 +41,11 @@ function Devices() {
   //   url: APPURL.tickets,
   // });
 
-  const { data: devices, refetch: refetchTicket,isLoading: DevicesLoading } = useQuery({
+  const {
+    data: devices,
+    refetch: refetchTicket,
+    isLoading: DevicesLoading,
+  } = useQuery({
     queryKey: ["devices"],
     queryFn: () => getData(APPURL.devices, SessionData.token),
     enabled: !!SessionData.token,
@@ -50,6 +54,10 @@ function Devices() {
   });
   // console.log(tickets);
 
+  const sessionData = useLocalUserData();
+  const FilteredDevices = Array.isArray(devices)
+    ? devices.filter((val) => val.device_user === sessionData?.user_id)
+    : [];
   return (
     <div>
       <div className="pb-4 max-h-[72vh] overflow-y-auto custom-scrollbar">
@@ -74,7 +82,7 @@ function Devices() {
             </tr>
           </thead>
 
-           <tbody className="divide-y divide-gray-100 text-sm">
+          <tbody className="divide-y divide-gray-100 text-sm">
             {DevicesLoading ? (
               <tr className="text-center">
                 <td colSpan={6} className="py-6">
@@ -89,15 +97,12 @@ function Devices() {
                   </div>
                 </td>
               </tr>
-            ) : devices && devices.length > 0 ? (
-            devices.map((device, index) => (
+            ) : FilteredDevices && FilteredDevices.length > 0 ? (
+              FilteredDevices.map((device, index) => (
                 <tr key={device.id} className="hover:bg-gray-50">
                   <td className="px-4 py-2">{index + 1}</td>
                   <td className="px-4 py-2">{device.ser_no}</td>
-                  <td className="px-4 py-2">
-                   {device.device_id}
-                  </td>
-                 
+                  <td className="px-4 py-2">{device.device_id}</td>
                 </tr>
               ))
             ) : (
@@ -108,7 +113,6 @@ function Devices() {
               </tr>
             )}
           </tbody>
-         
         </table>
 
         <Modal show={add} handleShow={() => setAdd(false)} onHide={true}>

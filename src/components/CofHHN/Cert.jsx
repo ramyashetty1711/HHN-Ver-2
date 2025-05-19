@@ -10,7 +10,7 @@ const certificates = [
     title: "BIS Certificate",
     img: bis,
     alt: "BIS",
-    link: "/Documents/Elena-HHN-BIS-Certificate.pdf",
+    link: "/Documents/Elena-HHN-BIS-Certificate.pdf?v=1",
   },
   {
     title: "CE Certificate",

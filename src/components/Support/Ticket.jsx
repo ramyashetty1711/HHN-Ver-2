@@ -19,7 +19,7 @@ import { SpinnerCircularFixed } from "spinners-react";
 import { IoEye } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import TutorialDocuments from "../More/Tutorial/TutorialDocuments";
-import GetLoggedUserLocation from "../../GetLoggedUserLocation";
+// import GetLoggedUserLocation from "../../GetLoggedUserLocation";
 import VerificationModal from "../Verification/Verification";
 
 const Status = {
@@ -31,20 +31,17 @@ const Status = {
 export default function Ticket() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "downloads";
-  
-const role=getUserRole()
-// console.log(role);
 
-  
+  const role = getUserRole();
+  // console.log(role);
 
-const tabs = [
-  { id: "downloads", name: "Downloads" },
-  { id: "ticket", name: "Ticket" },
-  { id: "tutorial", name: "Tutorials" },
-  { id: "feedback", name: "Feedback" },
-  ...(role === 1 ? [{ id: "admin", name: "Admin" }] : []),
-];
-
+  const tabs = [
+    { id: "downloads", name: "Downloads" },
+    { id: "ticket", name: "Ticket" },
+    { id: "tutorial", name: "Tutorials" },
+    { id: "feedback", name: "Feedback" },
+    ...(role === 1 ? [{ id: "admin", name: "Admin" }] : []),
+  ];
 
   const handleTabChange = (tabId) => {
     setSearchParams({ tab: tabId });
@@ -79,9 +76,9 @@ const tabs = [
         {activeTab === "feedback" && <Feedback />}
         {activeTab === "admin" && <Admin />}
       </div>
-      <VerificationModal />
+      
       {/* Log user location once */}
-      <GetLoggedUserLocation />
+      {/* <GetLoggedUserLocation /> */}
     </div>
   );
 }
@@ -256,116 +253,121 @@ function TicketStatus() {
   };
   return (
     <>
-      <div className="flex flex-row justify-end mb-3">
-        <div
-          className="p-2 bg-[var(--primary)] text-white rounded-lg font-semibold cursor-pointer hover:bg-blue-900"
-          onClick={() => {
-            setAddTicket(true);
-          }}
-        >
-          Raise Ticket
+      <div className="bg-white h-full p-4">
+        <div className="flex flex-row justify-start mb-3">
+          <div
+            className="p-2 bg-[var(--primary)] text-white rounded-lg font-semibold cursor-pointer hover:bg-blue-900 hidden"
+            onClick={() => {
+              setAddTicket(true);
+            }}
+          >
+            Raise Ticket
+          </div>
+          <h2 className="font-semibold text-gray-700 text-lg ps-1">Raised Tickets</h2>
         </div>
-      </div>
-      <div className="pb-4 max-h-[60vh] min-h-[51vh] overflow-y-auto custom-scrollbar">
-        <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
-          <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
-            <tr>
-              <th className="px-4 py-2 max-w-[8em]">Ticket No</th>
-              <th className="px-4 py-2 max-w-[6em]">Device Name</th>
-              {/* <th className="px-4 py-2">Name</th> */}
-              <th className="px-4 py-2">Description</th>
-              <th className="px-4 py-2">Status</th>
-              <th className="px-4 py-2">Created At</th>
-              {/* {UserRole === 1 ? <th>Manage</th> : */}
-              <th>View</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100 text-sm">
-            {TicketLoading ? (
-              <tr className="text-center">
-                <td colSpan={6} className="py-6">
-                  <div className="flex justify-center items-center">
-                    <SpinnerCircularFixed
-                      speed={200}
-                      thickness={200}
-                      size={20}
-                      color="var(--primary)"
-                      secondaryColor="#98acc0"
-                    />
-                  </div>
-                </td>
+        <div className="pb-4 max-h-full  overflow-y-auto custom-scrollbar">
+          <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
+            <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
+              <tr>
+                <th className="px-4 py-2 max-w-[8em]">Ticket No</th>
+                <th className="px-4 py-2 max-w-[6em]">Device Name</th>
+                {/* <th className="px-4 py-2">Name</th> */}
+                <th className="px-4 py-2">Description</th>
+                <th className="px-4 py-2">Status</th>
+                <th className="px-4 py-2">Created At</th>
+                {/* {UserRole === 1 ? <th>Manage</th> : */}
+                <th>View</th>
               </tr>
-            ) : tickets && tickets.length === 0 ? (
-              <tr className=" text-center ">
-                <td className=" py-3 font-semibold text-gray-500" colSpan={6}>
-                  No Tickets Found
-                </td>
-              </tr>
-            ) : (
-              tickets?.map((ticket) => (
-                <tr key={ticket.ticket_id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2 max-w-[10em]">{ticket.ticket_id}</td>
-                  <td className="px-4 py-2 max-w-[6em]">
-                    {GetDeviceName(ticket.device_info)}
+            </thead>
+            <tbody className="divide-y divide-gray-100 text-sm">
+              {TicketLoading ? (
+                <tr className="text-center">
+                  <td colSpan={6} className="py-6">
+                    <div className="flex justify-center items-center">
+                      <SpinnerCircularFixed
+                        speed={200}
+                        thickness={200}
+                        size={20}
+                        color="var(--primary)"
+                        secondaryColor="#98acc0"
+                      />
+                    </div>
                   </td>
-                  {/* <td className="px-4 py-2">{ticket.created_by}</td> */}
-                  <td className="px-4 py-2 max-w-[15em] text-ellipsis whitespace-nowrap overflow-hidden">
-                    {ticket.description}
+                </tr>
+              ) : tickets && tickets.length === 0 ? (
+                <tr className=" text-center ">
+                  <td className=" py-3 font-semibold text-gray-500" colSpan={6}>
+                    No Tickets Found
                   </td>
-                  <td
-                    className={`px-4 py-2 capitalize cursor-pointer flex flex-row items-center ${
-                      ticket.status === "open"
-                        ? " text-red-500"
-                        : ticket.status === "in_progress"
-                        ? "text-sky-500"
-                        : ticket.status === "closed"
-                        ? "text-green-700"
-                        : ""
-                    }`}
-                  >
-                    {Status[ticket.status]}{" "}
-                    {ticket.status === "closed" && (
-                      <CgCheckO className="text-green-700 ml-2" size={18} />
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    {new Date(ticket.created_at).toLocaleString()}
-                  </td>
-                  <td>
-                    <div className="flex flex-row items-center ">
-                      <div
-                        className="bg-[var(--secondary)] w-fit p-1.5  rounded-md text-[var(--primary)] hover:bg-gray-600 hover:text-white transition-all duration-300 cursor-pointer mr-2"
-                        onClick={(e) => {
-                          setEditTicket({
-                            show: true,
-                            data: ticket,
-                            isView: true,
-                          });
-                        }}
-                      >
-                        <IoEye size={20} />
-                      </div>
-                      {UserRole === 1 && false && (
+                </tr>
+              ) : (
+                tickets?.map((ticket) => (
+                  <tr key={ticket.ticket_id} className="hover:bg-gray-50">
+                    <td className="px-4 py-2 max-w-[10em]">
+                      {ticket.ticket_id}
+                    </td>
+                    <td className="px-4 py-2 max-w-[6em]">
+                      {GetDeviceName(ticket.device_info)}
+                    </td>
+                    {/* <td className="px-4 py-2">{ticket.created_by}</td> */}
+                    <td className="px-4 py-2 max-w-[15em] text-ellipsis whitespace-nowrap overflow-hidden">
+                      {ticket.description}
+                    </td>
+                    <td
+                      className={`px-4 py-2 capitalize cursor-pointer flex flex-row items-center ${
+                        ticket.status === "open"
+                          ? " text-red-500"
+                          : ticket.status === "in_progress"
+                          ? "text-sky-500"
+                          : ticket.status === "closed"
+                          ? "text-green-700"
+                          : ""
+                      }`}
+                    >
+                      {Status[ticket.status]}{" "}
+                      {ticket.status === "closed" && (
+                        <CgCheckO className="text-green-700 ml-2" size={18} />
+                      )}
+                    </td>
+                    <td className="px-4 py-2">
+                      {new Date(ticket.created_at).toLocaleString()}
+                    </td>
+                    <td>
+                      <div className="flex flex-row items-center ">
                         <div
-                          className="bg-[var(--primary)] w-fit p-1.5 rounded-md text-[var(--secondary)] hover:bg-sky-700  transition-all duration-300 cursor-pointer"
+                          className="bg-[var(--secondary)] w-fit p-1.5  rounded-md text-[var(--primary)] hover:bg-gray-600 hover:text-white transition-all duration-300 cursor-pointer mr-2"
                           onClick={(e) => {
                             setEditTicket({
                               show: true,
                               data: ticket,
-                              isView: false,
+                              isView: true,
                             });
                           }}
                         >
-                          <FiEdit size={20} />
+                          <IoEye size={20} />
                         </div>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+                        {UserRole === 1 && false && (
+                          <div
+                            className="bg-[var(--primary)] w-fit p-1.5 rounded-md text-[var(--secondary)] hover:bg-sky-700  transition-all duration-300 cursor-pointer"
+                            onClick={(e) => {
+                              setEditTicket({
+                                show: true,
+                                data: ticket,
+                                isView: false,
+                              });
+                            }}
+                          >
+                            <FiEdit size={20} />
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
       <Modal
         show={AddTicket}
@@ -513,7 +515,7 @@ function TicketStatus() {
   );
 }
 
-const Modal = ({ show, handleShow, children, onHide = false }) => {
+export const Modal = ({ show, handleShow, children, onHide = false }) => {
   if (!show) return null;
 
   return (
@@ -758,3 +760,5 @@ const EditTicketModal = ({
     />
   );
 };
+
+export { TicketStatus };

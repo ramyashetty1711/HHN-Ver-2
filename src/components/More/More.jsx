@@ -23,14 +23,14 @@ function More() {
   };
 
   return (
-    <div className="bg-white h-full p-4 md:max-h-[72vh] overflow-y-auto custom-scrollbar">
+    <div className="bg-white h-full p-4  overflow-y-auto custom-scrollbar">
       <div className="w-full tw-mt-2 tw-mx-2">
         <div className="flex border-b border-gray-300">
           {TabData.map((tab, idx) => (
             <button
               key={tab.key}
               onClick={() => handleTabChange(tab.key)}
-              className={`py-2 px-4 text-sm font-medium focus:outline-none transition-colors duration-300 rounded-t-md tw-min-w-[8em] cursor-pointer  transition-all duration-300 ${
+              className={`py-2 px-4 text-sm font-medium focus:outline-none transition-colors duration-300 rounded-t-md tw-min-w-[8em] cursor-pointer ${
                 activeSubTab === tab.key
                   ? "bg-[var(--primary)]  text-white"
                   : "text-gray-500 hover:bg-gray-100"

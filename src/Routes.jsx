@@ -10,6 +10,8 @@ import SplashPage from "./components/Splash/SplashPage";
 import Navbar from "./components/Common/Navbar";
 import Footer from "./components/Common/Footer";
 import Home from "./components/Home/Home";
+import { TicketStatus } from "./components/Support/Ticket";
+import TutorialDocuments from "./components/More/Tutorial/TutorialDocuments";
 const BackGround = lazy(() => import("./components/BackGround/BackGround"));
 const Necessity = lazy(() => import("./components/Necessity/Necessity"));
 const Development = lazy(() => import("./components/Development/Development"));
@@ -54,8 +56,6 @@ export default function AppRoutes() {
   return (
     <>
       <Router>
-      
-
         <Routes>
           <Route element={<Wrapper />}>
             {routes.map((val, idx) => (
@@ -66,6 +66,30 @@ export default function AppRoutes() {
               element={
                 <PrivateRoute>
                   <Ticket />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/tickets"
+              element={
+                <PrivateRoute>
+                  <TicketStatus />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/tutorials"
+              element={
+                <PrivateRoute>
+                  <TutorialDocuments />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/downloads"
+              element={
+                <PrivateRoute>
+                  <More />
                 </PrivateRoute>
               }
             />
