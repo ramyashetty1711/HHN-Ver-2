@@ -59,14 +59,14 @@ function LoggedInLocation() {
     <div className="bg-white h-full md:max-h-[70vh] overflow-y-auto custom-scrollbar">
       <div className="grid grid-cols-12 gap-4">
         {/* Table Section */}
-        <div className="xl:col-span-4 col-span-12">
+        <div className="xl:col-span-4 col-span-12  max-h-[62vh] overflow-y-auto custom-scrollbar">
           <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
             <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700 sticky top-0 z-10">
               <tr>
                 <th className="px-4 py-2">S. No</th>
                 <th className="px-4 py-2">User</th>
                 <th className="px-4 py-2">Visited at</th>
-                <th className="px-4 py-2 flex justify-center">View</th>
+                <th className="px-4 py-2 ">View</th>
               </tr>
             </thead>
 
@@ -86,7 +86,8 @@ function LoggedInLocation() {
                   </td>
                 </tr>
               ) : loggedInUsers && loggedInUsers.length > 0 ? (
-                loggedInUsers.map((location, index) => (
+                [...loggedInUsers]
+      .sort((a, b) => new Date(b.accessed_at) - new Date(a.accessed_at)).map((location, index) => (
                   <tr key={location.id} className="hover:bg-gray-50">
                     <td className="px-4 py-2">{index + 1}</td>
                     <td className="px-4 py-2">
@@ -122,7 +123,8 @@ function LoggedInLocation() {
           <MapContainer
             center={[20.5937, 78.9629]}
             zoom={4}
-            style={{ height: "65vh", width: "100%" }}
+            style={{ height: "62vh", width: "100%" }}
+            attributionControl={false} 
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

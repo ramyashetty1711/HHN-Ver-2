@@ -27,7 +27,7 @@ export default function Feature() {
   ];
 
   return (
-    <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar mb-10 pb-10">
+    <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar  pb-10">
       {/* Slide 1: Features */}
       <div>
         <div className="flex flex-col text-white md:px-3 rounded-lg bg-cover bg-center bg-no-repeat">

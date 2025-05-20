@@ -33,6 +33,14 @@ export const getData = async (url, token) => {
 };
 
 
+export const getCountData = async (url) => {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Failed to fetch");
+  return res.json();
+};
+
+
+
 export const getUserRole = () => {
   try {
     const user = JSON.parse(sessionStorage.getItem("user"));

@@ -13,14 +13,22 @@ import "slick-carousel/slick/slick-theme.css";
 function Elena() {
   const sliderRef = useRef(null);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false, // Disable default arrows
-  };
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,           
+  autoplay: true,           
+  autoplaySpeed: 3000,      
+  pauseOnHover: true,
+  // customPaging: () => (
+  //   <div className="dot"></div>
+  // )
+
+  
+};
 
   return (
     <div className="flex flex-col h-full bg-white px-2 px-6 overflow-y-auto custom-scrollbar">
@@ -30,7 +38,7 @@ function Elena() {
       <div className="relative">
         {/* Custom Previous Arrow */}
         <button
-          className="absolute md:top-1/2 top-1/3 left-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
+          className="absolute md:top-1/2 top-1/4 left-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
           onClick={() => sliderRef.current?.slickPrev()}
         >
           <FaChevronCircleLeft />
@@ -38,7 +46,7 @@ function Elena() {
 
         {/* Custom Next Arrow */}
         <button
-          className="absolute md:top-1/2 top-1/3 right-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
+          className="absolute md:top-1/2 top-1/4 right-2 z-10 text-2xl text-gray-1000 transform -translate-y-1/2 cursor-pointer"
           onClick={() => sliderRef.current?.slickNext()}
         >
           <FaChevronCircleRight />
@@ -50,7 +58,7 @@ function Elena() {
 
           <div className="">
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-              <div className="col-span-12 md:col-span-4 flex justify-center">
+              <div className="col-span-12 xl:col-span-4 flex justify-center">
                 <img
                   src={e2e}
                  
@@ -58,11 +66,11 @@ function Elena() {
                   alt="Elena for NavIC"
                 />
               </div>
-              <div className="col-span-12 md:col-span-8 flex flex-col justify-center">
+              <div className="col-span-12 xl:col-span-8 flex flex-col justify-center">
                 <h2 className="text-2xl font-bold text-[var(--heading)] mt-2 mb-2 flex justify-center">
                   Elena for NavIC
                 </h2>
-                <p className="text-justify text-lg pr-0 md:pr-10 ">
+                <p className="text-justify text-lg pr-0 xl:pr-10 ">
                   Elena Geo has designed and developed NavIC products which are
                   large in range and depth to cater to all types of user
                   segments. It has products for research domains and
@@ -80,7 +88,7 @@ function Elena() {
 
           <div className="">
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-              <div className="col-span-12 md:col-span-6 flex">
+              <div className="col-span-12 xl:col-span-6 flex">
                 <img
                   src={journey}
                   className="w-full h-full object-cover"
@@ -88,11 +96,11 @@ function Elena() {
                 />
               </div>
 
-              <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+              <div className="col-span-12 xl:col-span-6 flex flex-col justify-center">
                 <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
                   Our Journey
                 </h2>
-                <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
+                <p className="text-justify text-lg pr-0 xl:pr-10 pb-5">
                   Elena Geo was founded by Lt Col V S Velan in the Technology
                   Business incubator of IIT Kharagpur in Aug 2012, to work in
                   the niche Multi GNSS based monitoring domain. Over the years
@@ -117,7 +125,7 @@ function Elena() {
           {/* Slide 2 */}
           <div className="">
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-              <div className="md:col-span-4 col-span-12 flex justify-center items-center flex-col h-full">
+              <div className="xl:col-span-4 col-span-12 flex justify-center items-center xl:flex-col h-full">
                 <img
                   src={hhn}
                   className="w-full h-auto max-h-[250px] object-contain"
@@ -129,12 +137,12 @@ function Elena() {
                   alt="NavIC Systems"
                 />
               </div>
-              <div className="col-span-12 md:col-span-8 flex flex-col justify-center">
+              <div className="col-span-12 xl:col-span-8 flex flex-col justify-center">
                 <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
                   Elena for Atma Nirbharta
                 </h2>
 
-                <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
+                <p className="text-justify text-lg pr-0 xl:pr-10 pb-5">
                   As the only Indian company that provides complete NavIC-based
                   solutions, Elena Geo demonstrates unmatched expertise,
                   reliability, and innovation in this niche sector. The
@@ -147,7 +155,7 @@ function Elena() {
                   of these products and technology shall account towards a huge
                   import savings to the Govt Exchequer, approximately to the
                   tune of Rs 1000 Crores. Elena Geo has conceived and developed
-                  NavIC Navigator and NavIC Atomic Clock using 5G under the DCIS
+                   NavIC Atomic Clock and NavIC Navigator using 5G under the DCIS
                   scheme sponsored by DoT in 2021 and 2022 respectively.
                   
                 </p>
@@ -158,18 +166,18 @@ function Elena() {
           {/* Slide 3 */}
           <div className="">
             <div className="grid grid-cols-12 gap-6 items-start mt-4 w-full">
-              <div className="col-span-12 md:col-span-4 flex justify-center">
+              <div className="col-span-12 xl:col-span-4 flex justify-center">
                 <img
                   src={defence}
                   className="w-full h-auto max-h-[350px] object-contain"
                   alt="NavIC Systems"
                 />
               </div>
-              <div className="col-span-12 md:col-span-8 flex flex-col justify-center">
+              <div className="col-span-12 xl:col-span-8 flex flex-col justify-center">
                 <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
                   Elena for Defence
                 </h2>
-                <p className="text-justify text-lg pr-0 md:pr-10 pb-5">
+                <p className="text-justify text-lg pr-0 xl:pr-10 pb-5">
                   Elena Geo developed and supplied many state-of-the-art
                   products to the Indian Defence Forces. Some details are given
                   below:- 427 nos of Army Reference Stations (as shown in the

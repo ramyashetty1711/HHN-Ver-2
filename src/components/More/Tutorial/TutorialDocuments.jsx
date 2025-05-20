@@ -7,7 +7,7 @@ const documents = [
   { title: "Elena HHN User Manual", link: "Elena HHN User Manual.pdf" },
 ];
 
-const videos = [{ title: "About Device", link: "/Videos/HHN V4 1.4.5.mp4" }];
+const videos = [{ title: "Elena HHN", link: "/Videos/HHN V4 1.4.5.mp4" }];
 
 function TutorialDocuments() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -41,7 +41,7 @@ function TutorialDocuments() {
           {videos.map((video, index) => (
             <div
               key={index}
-              className="bg-gray-100 p-3 flex justify-center flex-col rounded-lg shadow w-full"
+              className="bg-gray-50 p-3 flex justify-center flex-col rounded-lg shadow w-full"
             >
               <p className="text-sm font-medium mb-2">{video.title}</p>
               <video
@@ -50,7 +50,8 @@ function TutorialDocuments() {
                 className={`rounded w-auto ${
                   isFullscreen ? "h-screen" : "xl:h-[60vh] h-[30vh]"
                 }`}
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "contain" }}
+
               >
                 <source src={video.link} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -63,9 +64,9 @@ function TutorialDocuments() {
           {documents.map((item, index) => (
             <div
               key={index}
-              className="bg-[var(--secondary)] text-black font-medium px-4 m-3 py-3 rounded-lg shadow flex items-center justify-between min-w-[250px]"
+              className="bg-[var(--secondary)] text-black font-medium px-4 m-3 py-3 rounded-lg shadow flex items-center justify-between"
             >
-              <span className="text-sm">{item.title}</span>
+              <span className="text-sm ">{item.title}</span>
               <div className="flex gap-2 ml-4">
                 <a
                   href={`/Documents/${item.link}`}

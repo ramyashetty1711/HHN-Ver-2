@@ -207,7 +207,7 @@ function MapSheet() {
                     }));
                   }}
                   placeholder="Enter Map Sheet No"
-                  className="w-full border border-[var(--secondary)] p-2 rounded  text-gray-500"
+                  className="w-full max-w-xs border border-[var(--secondary)] p-2 rounded  text-gray-500"
                 />
               </div>
               <div>
@@ -224,7 +224,7 @@ function MapSheet() {
                     }));
                   }}
                   placeholder="Enter remarks"
-                  className="w-full border border-[var(--secondary)] p-2 rounded  text-gray-500"
+                  className="w-full  max-w-xs border border-[var(--secondary)] p-2 rounded  text-gray-500"
                 />
               </div>
 
@@ -260,7 +260,7 @@ function MapSheet() {
                 </select>
               </div>
 
-              <div className="md:col-span-3 flex justify-end">
+              <div className="md:col-span-3 flex md:justify-end justify-start">
                 <CustomButton
                   disabled={SubmitDisabled}
                   loading={isPending}

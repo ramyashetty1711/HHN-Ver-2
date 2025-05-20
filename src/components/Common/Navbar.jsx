@@ -33,6 +33,7 @@ const Navbar = () => {
 
   const moreRef = useRef(null);
   const LoggedInStatus = useSelector((state) => state.data.LoggedInStatus);
+  const AddRaiseTicket=useSelector((state)=>state.data.AddRaiseTicket)
 
   const MenuElements = [
     { link: "/", display: "Home" },
@@ -241,9 +242,11 @@ const Navbar = () => {
               )}
               {LoggedInStatus && (
                 <li
-                  className={`font-semibold text-sm p-2 px-4 cursor-pointer duration-300 text-center rounded-lg m-1  text-gray-900 hover:bg-blue-900/25 `}
+                  className={`font-semibold text-sm p-2 px-4 cursor-pointer duration-300 text-center rounded-lg m-1  text-gray-900 hover:bg-blue-900/25 
+                   `}
                   onClick={() => {
                     store.dispatch(updateAddRaiseTicket(true));
+                     setMenuOpen(false)
                   }}
                 >
                   Raise New Ticket

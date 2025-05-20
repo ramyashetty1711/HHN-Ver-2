@@ -7,6 +7,8 @@ const initialState = {
   AddRaiseTicket: false,
   ShowVerification: false,
   VerificationData: { email_verified: false, phone_verified: false },
+  visitorsCount:null,
+  visitorsDataLoading:true
 };
 
 export const DataSlice = createSlice({
@@ -31,6 +33,12 @@ export const DataSlice = createSlice({
     updateAddRaiseTicket: (state, action) => {
       state.AddRaiseTicket = action.payload;
     },
+    updateVisitorsCount:(state,action)=>{
+      state.visitorsCount=action.payload
+    },
+    updateVisitorsDataLoading:(state,action)=>{
+      state.visitorsDataLoading=action.payload
+    }
   },
 });
 
@@ -41,6 +49,8 @@ export const {
   updateShowVerification,
   updateVerificationData,
   updateAddRaiseTicket, 
+  updateVisitorsCount,
+  updateVisitorsDataLoading
 } = DataSlice.actions;
 
 export default DataSlice.reducer;

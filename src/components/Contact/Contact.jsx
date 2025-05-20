@@ -139,72 +139,62 @@ export default function Contact() {
 
       <div className="grid grid-cols-12">
         {/* Contact Info Section */}
-        <div className="md:col-span-5 col-span-12 md:px-5">
-          <h2 className="text-xl font-semibold md:text-md md:mb-1 mb-2  text-[var(--heading)] md:mt-0 mt-2 underline underline-offset-4">
-            Contact :
-          </h2>
-          <div className="mt-5 space-y-6 text-md grid  grid-cols-12">
-            {/* Contact 1 */}
-            <div className="grid grid-cols-12 md:grid-cols-6 items-start col-span-6 wrap-anywhere">
-              <div className="md:col-span-5 col-span-12 font-medium">
-                Mr. Purushotham V
-              </div>
-              <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
-                <a
-                  href="mailto:info@elenageo.com"
-                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
-                >
-                  <FaEnvelope className="mr-2" /> info@elenageo.com
-                </a>
-                <a
-                  href="tel:+919384864411"
-                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
-                >
-                  <FaPhoneAlt className="mr-2" /> +91 9384864411
-                </a>
-              </div>
-            </div>
+<div className="xl:col-span-5 col-span-12 px-5">
+  <h2 className="text-xl font-semibold md:text-md md:mb-1 mb-2 text-[var(--heading)] md:mt-0 mt-2 underline underline-offset-4">
+    Contact :
+  </h2>
 
-            {/* Contact 2 */}
-            <div className="grid grid-cols-12 md:grid-cols-6 items-start col-span-6 wrap-anywhere">
-              <div className="md:col-span-5 col-span-12 font-medium">
-                Mr. Naveen Kumar P
-              </div>
-              <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
-                <a
-                  href="mailto:sales@elenageo.com"
-                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md  rounded w-fit"
-                >
-                  <FaEnvelope className="mr-2" /> sales@elenageo.com
-                </a>
-                <a
-                  href="tel:+919384864422"
-                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md  rounded w-fit"
-                >
-                  <FaPhoneAlt className="mr-2" /> +91 9384864422
-                </a>
-              </div>
-            </div>
+  <div className="mt-5 grid grid-cols-1 md:grid-cols-3 xl:grid-cols-2 gap-6">
+    {/* Contact 1 */}
+    <div className="flex flex-col space-y-1">
+      <div className="font-medium">Mr. Purushotham V</div>
+      <a
+        href="mailto:info@elenageo.com"
+        className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
+      >
+        <FaEnvelope className="mr-2" /> info@elenageo.com
+      </a>
+      <a
+        href="tel:+919384864411"
+        className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
+      >
+        <FaPhoneAlt className="mr-2" /> +91 9384864411
+      </a>
+    </div>
 
-            {/* Contact 3 */}
-            <div className="grid grid-cols-12 md:grid-cols-6 items-start col-span-6">
-              <div className="md:col-span-5 col-span-12 font-medium">
-                Mrs. Shabeen Taj P
-              </div>
-              <div className="md:col-span-7 col-span-12 flex flex-col space-y-1">
-                <a
-                  href="tel:+918023554555"
-                  className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md  rounded w-fit"
-                >
-                  <FaPhoneAlt className="mr-2" /> +91 8023554555
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+    {/* Contact 2 */}
+    <div className="flex flex-col space-y-1">
+      <div className="font-medium">Mr. Naveen Kumar P</div>
+      <a
+        href="mailto:sales@elenageo.com"
+        className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
+      >
+        <FaEnvelope className="mr-2" /> sales@elenageo.com
+      </a>
+      <a
+        href="tel:+919384864422"
+        className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
+      >
+        <FaPhoneAlt className="mr-2" /> +91 9384864422
+      </a>
+    </div>
+
+    {/* Contact 3 */}
+    <div className="flex flex-col space-y-1">
+      <div className="font-medium">Mrs. Shabeen Taj P</div>
+      <a
+        href="tel:+918023554555"
+        className="hover:text-[var(--primary)] inline-flex items-center text-sm md:text-md rounded w-fit"
+      >
+        <FaPhoneAlt className="mr-2" /> +91 8023554555
+      </a>
+    </div>
+  </div>
+</div>
+
 
         {/* Contact Form Section */}
-        <div className="md:col-span-7 col-span-12 md:px-5">
+        <div className="xl:col-span-7 col-span-12 md:px-5 mt-0 md:mt-4 xl:mt-0">
           <h2 className="text-md md:mb-3 mb-6  text-[var(--heading)] md:mt-0 mt-5 font-semibold text-xl underline underline-offset-4">
             Send Direct Message
           </h2>
@@ -312,7 +302,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={btnName === "Sending..."}
-                  className={`border border-[var(--primary)] rounded-md px-4 py-2 flex items-center gap-2
+                  className={`border border-[var(--primary)] rounded-md px-4 py-2 flex items-center gap-2 cursor-pointer
                             ${
                               btnName === "Sending..."
                                 ? "bg-gray-300 text-gray-500 cursor-not-allowed"

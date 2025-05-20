@@ -16,20 +16,20 @@ const certificates = [
     title: "CE Certificate",
     img: CE,
     alt: "CE",
-    link: "/Documents/Elena HHN CE Certificate.pdf",
+    link: "/Documents/Elena HHN CE Certificate.pdf?v=1",
   },
 
   {
     title: "IP67 Rating",
     img: IP,
     alt: "IP67",
-    link: "/Documents/Elena HHN IP67 Rating.pdf",
+    link: "/Documents/Elena HHN IP67 Rating.pdf?v=1",
   },
   {
     title: "RoHS Certificate",
     img: ROHS,
     alt: "RoHS",
-    link: "/Documents/Elena HHN ROHS Certificate.pdf",
+    link: "/Documents/Elena HHN ROHS Certificate.pdf?v=1",
   },
 ];
 

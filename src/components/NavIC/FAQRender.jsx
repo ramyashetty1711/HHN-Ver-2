@@ -22,10 +22,11 @@ const FAQItem = ({ data, isActive, onClick }) => {
       >
         {data?.title ?? "Untitled"}
         <FaChevronDown
-          className={`${
-            isActive ? "rotate-[180deg]" : ""
-          } transition-all duration-300`}
-        />
+  className={`w-[15px] h-[15px] flex-shrink-0 ${
+    isActive ? "rotate-[180deg]" : ""
+  } transition-all duration-300`}
+/>
+
       </button>
 
       <div
@@ -33,7 +34,7 @@ const FAQItem = ({ data, isActive, onClick }) => {
         style={{ maxHeight: height }}
         className="overflow-hidden transition-all duration-300 ease-in-out px-6 text-md text-gray-500"
       >
-        <div className="md:flex py-3 ">
+        <div className="xl:flex py-3 ">
           {/* Descriptions */}
           {data?.description && <p>{data.description}</p>}
           {data?.description1 && <p>{data.description1}</p>}

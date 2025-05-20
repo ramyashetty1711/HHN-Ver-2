@@ -16,12 +16,13 @@ const ImageSlider = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
+    
   };
 
   const images = [Elena, NavIC, GC, Artillery];
@@ -29,13 +30,13 @@ const ImageSlider = () => {
   return (
     <div className="relative w-full  overflow-hidden  h-[calc(100vh-16em)] ">
       <button
-        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 text-white md:text-black cursor-pointer"
+        className="absolute top-1/2 left-2 z-10 text-2xl text-gray-1000 text-white xl:text-black cursor-pointer"
         onClick={() => sliderRef.current?.slickPrev()}
       >
         <FaChevronCircleLeft />
       </button>
       <button
-        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 cursor-pointer text-white md:text-black"
+        className="absolute top-1/2 right-2 z-10 text-2xl text-gray-1000 cursor-pointer text-white xl:text-black"
         onClick={() => sliderRef.current?.slickNext()}
       >
         <FaChevronCircleRight />

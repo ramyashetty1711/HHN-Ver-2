@@ -5,11 +5,11 @@ import necessity from "../../assets/necessity_pic.png";
 function Necessity() {
   return (
     <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
-      <div className="grid grid-cols-12 md:gap-8 items-start">
+      <div className="grid grid-cols-12 xl:gap-8 items-start">
         {" "}
         {/* Align items center vertically */}
         {/* Image Section - centered in column */}
-        <div className="md:col-span-4 col-span-12 flex justify-center mb-4 md:mb-0 ">
+        <div className="xl:col-span-4 col-span-12 flex justify-center mb-4 md:mb-0 ">
           
 
           <img
@@ -19,7 +19,7 @@ function Necessity() {
           />
         </div>
         {/* Text Section */}
-        <div className="md:col-span-8 col-span-12 rounded-lg flex flex-col justify-start">
+        <div className="xl:col-span-8 col-span-12 rounded-lg flex flex-col justify-start">
           <h2 className="text-2xl font-bold text-[var(--heading)]  mb-2 text-center">
             Necessity
           </h2>

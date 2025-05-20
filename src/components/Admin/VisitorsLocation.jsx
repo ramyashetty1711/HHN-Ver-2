@@ -49,6 +49,8 @@ function VisitorsLocation() {
     staleTime: 60 * 1000,
     cacheTime: 5 * 60 * 1000,
   });
+  console.log(VisitorsLoading);
+  
   // console.log(visitors);
 
   return (
@@ -102,41 +104,59 @@ function VisitorsLocation() {
         </div> */}
 
         {/* Map Section */}
-        <div className="xl:col-span-12 col-span-12 relative z-0 rounded-lg overflow-hidden ">
-          <MapContainer
-          
-            center={defaultCenter}
-            zoom={4}
-           style={{ height: '65vh', width: '100%' }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            />
+        {/* Map Section */}
+<div className="xl:col-span-12 col-span-12 relative z-0 rounded-lg overflow-hidden">
+  {/* Loading Overlay */}
+  {VisitorsLoading && (
+    <div className="absolute inset-0 z-10 bg-white bg-opacity-60 flex items-center justify-center">
+      <SpinnerCircularFixed
+        speed={200}
+        thickness={150}
+        size={40}
+        color="var(--primary)"
+        secondaryColor="#98acc0"
+      />
+    </div>
+  )}
 
-            <MarkerClusterGroup>
-              {visitors?.map((loc, index) => {
-                if (!loc) return null;
-                const lat = loc.latitude;
-                const lng = loc.longitude;
+  {/* Map */}
+  <MapContainer
+    center={defaultCenter}
+    zoom={4}
+    style={{ height: '62vh', width: '100%' }}
+    attributionControl={false} 
+  >
+    <TileLayer
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    />
 
-                return (
-                  <Marker
-                    key={index}
-                    position={[lat, lng]}
-                    icon={customDivIcon}
-                  >
-                    <Popup>
-                      <strong>Visitor {index + 1}</strong>
-                      <br />
-                      Lat: {lat}, Lng: {lng}
-                    </Popup>
-                  </Marker>
-                );
-              })}
-            </MarkerClusterGroup>
-          </MapContainer>
-        </div>
+    <MarkerClusterGroup>
+      {visitors?.map((loc, index) => {
+        if (!loc) return null;
+        const lat = loc.latitude;
+        const lng = loc.longitude;
+
+        return (
+          <Marker key={index} position={[lat, lng]} icon={customDivIcon}>
+            <Popup>
+              <div className="bg-white rounded-lg text-sm text-gray-800 font-sans">
+                <h3 className="text-base font-semibold text-[var(--primary)] mb-2">
+                  Viewer {index + 1}
+                </h3>
+                Lat: {lat}
+                <br />
+                Lng: {lng}
+              </div>
+            </Popup>
+          </Marker>
+        );
+      })}
+    </MarkerClusterGroup>
+  </MapContainer>
+</div>
+
+
       </div>
     </div>
   );

@@ -18,9 +18,9 @@ function Procurment() {
 
   return (
     <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-2 xl:gap-6">
         {/* Left Section */}
-        <div className="text-justify col-span-12 md:col-span-9 w-full">
+        <div className="text-justify col-span-12 xl:col-span-9 md:col-span-8 w-full">
           <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
             Procurement
           </h2>
@@ -62,7 +62,7 @@ function Procurment() {
         </div>
 
         {/* Right Section - Document List */}
-        <div className="col-span-12 md:col-span-3 flex flex-col gap-4">
+        <div className="col-span-12 xl:col-span-3 md:col-span-4 flex flex-col gap-4 mt-10">
           {documents.map((item, index) => (
             <div
               key={index}

@@ -5,13 +5,33 @@ import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { getCountData } from "../../query/UseFetchData";
+import { useQuery } from "@tanstack/react-query";
+import { useLocalUserData } from "../../query/UseLocalData";
+import { APPURL } from "../../URL";
+import { SpinnerCircularFixed } from "spinners-react";
+import { FaEye } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 function Footer() {
+ 
+
+
+
+
   const footerLinks = [
     { path: "/", label: "Home" },
     { path: "/contact", label: "Contact" },
     { path: "/help", label: "Help" },
   ];
+
+  const visitorsCount=useSelector((state)=>state.data.visitorsCount)
+  console.log(visitorsCount);
+  
+  const visitorsDataLoading=useSelector((state)=>state.data.visitorsDataLoading)
+  console.log(visitorsDataLoading);
+  
+  
   return (
     <div className=" bg-[var(--primary)] py-2 ">
       {/* <div className="grid grid-cols-12 gap-8 border-b-1 border-white pb-7">
@@ -114,13 +134,32 @@ function Footer() {
         </div>
       </div> */}
 
-        <div className="col-span-12 flex justify-center items-center">
-          <p className="text-sm text-white">
-             &copy; {new Date().getFullYear()} Elena Geo Tech Pvt Ltd, All
-            Rights Reserved.
-          </p>
-        </div>
-      
+      <div className="w-full px-6 py-1 bg-[var(--primary)] relative text-white">
+        {/* Copyright - always centered */}
+        <p className="text-sm text-center">
+          &copy; {new Date().getFullYear()} Elena Geo Tech Pvt Ltd, All Rights
+          Reserved.
+        </p>
+
+        
+        <p className="text-sm text-center mt-1 md:mt-0 md:text-right md:absolute md:right-6 md:top-1/2 md:-translate-y-1/2 flex items-center gap-2">
+  Viewers:
+  {visitorsDataLoading ? (
+    // Spinner
+    <SpinnerCircularFixed
+                          speed={200}
+                          thickness={200}
+                          size={20}
+                          color="var(--primary)"
+                          secondaryColor="#98acc0"
+                        />
+  ) : (
+    // Count
+    <> {visitorsCount?.[0]?.count }</>
+  )}
+</p>
+
+      </div>
     </div>
   );
 }

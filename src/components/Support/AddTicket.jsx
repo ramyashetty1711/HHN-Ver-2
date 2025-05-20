@@ -290,14 +290,14 @@ export default function AddTicket() {
                   name="description"
                   value={addFormData.description}
                   onChange={handleChange}
-                  className=" w-[45%] md:w-full  border border-gray-300 rounded px-3 py-2 custom-scrollbar"
+                  className=" w-[43%] md:w-full  border border-gray-300 rounded px-3 py-2 custom-scrollbar"
                   rows="4"
                   placeholder="Enter description"
                 />
               </div>
 
               {/* Submit Button */}
-              <div className="md:col-span-4 text-right w-full flex justify-end">
+              <div className="md:col-span-4 text-right w-full flex md:justify-end justify-start">
                 <CustomButton
                   disabled={AddStatus.disabled}
                   loading={AddStatus.loading}

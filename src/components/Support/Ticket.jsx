@@ -47,16 +47,17 @@ export default function Ticket() {
     setSearchParams({ tab: tabId });
   };
 
-  return (
-    <div className="grid grid-cols-12 min-h-full 2xl:min-h-full bg-white">
+return (
+  <div className="h-full overflow-y-auto custom-scrollbar bg-white">
+    <div className="md:grid md:grid-cols-12 h-full">
       {/* Sidebar */}
-      <div className="md:col-span-2 col-span-12 border-r border-gray-200 p-4">
+      <div className="md:col-span-2 w-full border-r border-gray-200 p-4">
         <ul className="space-y-2">
           {tabs.map((tab) => (
             <li
               key={tab.id}
               className={`cursor-pointer p-2 rounded ${
-                activeTab === tab.id
+                tabParam === tab.id
                   ? "bg-[var(--secondary)] font-semibold"
                   : "hover:bg-gray-100"
               }`}
@@ -68,19 +69,21 @@ export default function Ticket() {
         </ul>
       </div>
 
-      {/* Main Content */}
-      <div className="md:col-span-10 col-span-12 w-full p-4">
-        {activeTab === "downloads" && <More />}
-        {activeTab === "ticket" && <TicketStatus />}
-        {activeTab === "tutorial" && <TutorialDocuments />}
-        {activeTab === "feedback" && <Feedback />}
-        {activeTab === "admin" && <Admin />}
+      {/* Right content */}
+      <div className="col-span-10 p-4">
+        {tabParam === "downloads" && <More />}
+        {tabParam === "ticket" && <TicketStatus />}
+        {tabParam === "tutorials" && <TutorialDocuments />}
+        {tabParam === "feedback" && <Feedback />}
+        {tabParam === "admin" && <Admin />}
       </div>
-      
-      {/* Log user location once */}
-      {/* <GetLoggedUserLocation /> */}
     </div>
-  );
+
+    {/* Optional: Log user location */}
+    {/* <GetLoggedUserLocation /> */}
+  </div>
+);
+
 }
 
 function TicketStatus() {
@@ -394,7 +397,7 @@ function TicketStatus() {
                     name="device_id"
                     value={addFormData.device_id}
                     onChange={handleChange}
-                    className="w-full max-w-xs border border-gray-300 rounded px-3 py-2"
+                    className="w-full max-w-xs border border-[var(--secondary)] rounded px-3 py-2"
                   >
                     <option value="" disabled>
                       Select a device
@@ -454,7 +457,7 @@ function TicketStatus() {
                     accept="image/*"
                     multiple
                     onChange={handleImageChange}
-                    className="w-full max-w-xs border  border-gray-300 rounded px-3 py-2 cursor-pointer"
+                    className="w-full max-w-xs border border-[var(--secondary)] rounded px-3 py-2 cursor-pointer"
                   />
                   {addFormData.uploaded_images.length > 0 && (
                     <>
@@ -476,14 +479,14 @@ function TicketStatus() {
                     name="description"
                     value={addFormData.description}
                     onChange={handleChange}
-                    className=" w-[45%] md:w-full  border border-gray-300 rounded px-3 py-2 custom-scrollbar"
+                    className=" w-[45%] md:w-full  border border-[var(--secondary)] rounded px-3 py-2 custom-scrollbar"
                     rows="4"
                     placeholder="Enter description"
                   />
                 </div>
 
                 {/* Submit Button */}
-                <div className="md:col-span-4 text-right w-full flex justify-end">
+                <div className="md:col-span-4 text-right w-full flex md:justify-end justify-start">
                   <CustomButton
                     disabled={AddStatus.disabled}
                     loading={AddStatus.loading}

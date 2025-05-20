@@ -34,4 +34,5 @@ export const APPURL = {
   sendPhoneCode: baseURL + "send_phone_code/",
   verifyPhoneCode: baseURL + "verify_phone_code/",
   userLocation: baseURL + "user_location/",
+  pageVisitors: baseURL+ "api/track-page/"
 };

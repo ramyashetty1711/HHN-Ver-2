@@ -56,3 +56,17 @@ h1 {
 .leaflet-map-pane {
   z-index: 0 !important;
 }
+
+
+.slick-dots li .dot {
+  width: 5px;
+  height: 5px;
+  background-color: gray;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.slick-dots li.slick-active .dot {
+  width: 15px;
+  background-color: var(--primary); /* or any color */
+}

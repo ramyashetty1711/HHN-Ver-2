@@ -46,20 +46,7 @@ export default function Development() {
 
       <div className="grid grid-cols-12 ">
         <div className=" md:col-span-10 col-span-12">
-          {/* <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
-            Proof of Concept (POC) Demonstrated to COAS
-          </h2>
-          <p className="text-justify">
-            Arty units, use ESM, DSM, and Lat-Long references in their Shakti
-            Equipment. The Grid converter facilitates the migration from ESM to
-            DSM without inhibiting the modernization of Artillery systems, to
-            keep pace with the latest miltech, including automation of fire
-            control systems. The initial Proof of Concept (POC) device,
-            demonstrated to the Chief of Army Staff (COAS), was a basic
-            prototype designed specifically for a single zone (Delhi). This
-            simplified version served as a feasibility demonstration, showcasing
-            the potential for grid conversion functionality.
-          </p> */}
+          
 
           <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
             Final Design

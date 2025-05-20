@@ -95,10 +95,10 @@ export default function Login() {
       <div className=" h-full flex items-center justify-center bag-gradient-to-br from-sky-100 to-blue-400 bg-gray-100">
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 w-full max-w-md "
+          className="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 w-full max-w-md m-2"
         >
           <h2 className="text-2xl font-semibold text-gray-600 mb-2 text-center hidden">
-            Elena Grid Converter
+            Elena HHN
           </h2>
           <h5 className="text-md font-medium text-gray-500 mb-4 text-center">
             Only for registered users.
