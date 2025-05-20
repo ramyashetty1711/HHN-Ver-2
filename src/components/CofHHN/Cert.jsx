@@ -10,26 +10,26 @@ const certificates = [
     title: "BIS Certificate",
     img: bis,
     alt: "BIS",
-    link: "/Documents/Elena-HHN-BIS-Certificate.pdf?v=1",
+    link: "/Documents/Elena-HHN-BIS-Certificate.pdf",
   },
   {
     title: "CE Certificate",
     img: CE,
     alt: "CE",
-    link: "/Documents/Elena HHN CE Certificate.pdf?v=1",
+    link: "/Documents/Elena HHN CE Certificate.pdf",
   },
 
   {
     title: "IP67 Rating",
     img: IP,
     alt: "IP67",
-    link: "/Documents/Elena HHN IP67 Rating.pdf?v=1",
+    link: "/Documents/Elena HHN IP67 Rating.pdf",
   },
   {
     title: "RoHS Certificate",
     img: ROHS,
     alt: "RoHS",
-    link: "/Documents/Elena HHN ROHS Certificate.pdf?v=1",
+    link: "/Documents/Elena HHN ROHS Certificate.pdf",
   },
 ];
 

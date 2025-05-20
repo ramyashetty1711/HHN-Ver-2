@@ -71,8 +71,8 @@ useEffect(() => {
   const { mutate: PostVisitorCount } = useMutation({
     mutationFn,
     onSuccess: (data) => {
-    console.log("POST: Visitor count updated");
-        setShouldFetch(true);
+      console.log("POST: Visitor count updated");
+        setShouldFetch(true); // trigger GET after POST
     },
     onError: (err) => {
       if (err.detail) {
