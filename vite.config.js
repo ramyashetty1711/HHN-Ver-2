@@ -38,12 +38,15 @@ const manifestForPlugIn = {
     theme_color: "#171717",
     background_color: "#f0e7db",
     display: "standalone",
-    scope: "/",
     start_url: "/",
     orientation: "portrait",
+    workbox: {
+      // defining cached files formats
+      globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest}"],
+    },
   },
 };
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePWA(manifestForPlugIn)],
+  plugins: [react()],
 });

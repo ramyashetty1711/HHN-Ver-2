@@ -12,18 +12,6 @@ import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
 
 function App() {
- useEffect(() => {
-    if ("caches" in window) {
-      caches.keys().then((names) => {
-        names.forEach((name) => {
-          caches.delete(name);
-        });
-        console.log("Cache cleared!");
-      });
-    } else {
-      console.warn("Cache API not supported in this environment.");
-    }
-  }, []);
   return (
     <>
       <QueryProvider>

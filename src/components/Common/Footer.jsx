@@ -14,24 +14,18 @@ import { FaEye } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 function Footer() {
- 
-
-
-
-
   const footerLinks = [
     { path: "/", label: "Home" },
     { path: "/contact", label: "Contact" },
     { path: "/help", label: "Help" },
   ];
 
-  const visitorsCount=useSelector((state)=>state.data.visitorsCount)
-  console.log(visitorsCount);
-  
-  const visitorsDataLoading=useSelector((state)=>state.data.visitorsDataLoading)
-  console.log(visitorsDataLoading);
-  
-  
+  const visitorsCount = useSelector((state) => state.data.visitorsCount);
+
+  const visitorsDataLoading = useSelector(
+    (state) => state.data.visitorsDataLoading
+  );
+
   return (
     <div className=" bg-[var(--primary)] py-2 ">
       {/* <div className="grid grid-cols-12 gap-8 border-b-1 border-white pb-7">
@@ -141,24 +135,22 @@ function Footer() {
           Reserved.
         </p>
 
-        
-        <p className="text-sm text-center mt-1 md:mt-0 md:text-right md:absolute md:right-6 md:top-1/2 md:-translate-y-1/2 flex items-center gap-2">
-  Viewers:
-  {visitorsDataLoading ? (
-    // Spinner
-    <SpinnerCircularFixed
-                          speed={200}
-                          thickness={200}
-                          size={20}
-                          color="var(--primary)"
-                          secondaryColor="#98acc0"
-                        />
-  ) : (
-    // Count
-    <> {visitorsCount?.[0]?.count }</>
-  )}
-</p>
-
+        <p className="text-sm text-center mt-1 md:mt-0 md:text-right md:absolute md:right-6 md:top-1/2 md:-translate-y-1/2 flex justify-center items-center gap-2">
+          Viewers:
+          {visitorsDataLoading ? (
+            // Spinner
+            <SpinnerCircularFixed
+              speed={200}
+              thickness={200}
+              size={20}
+              color="var(--primary)"
+              secondaryColor="#98acc0"
+            />
+          ) : (
+            // Count
+            <> {visitorsCount?.[0]?.count}</>
+          )}
+        </p>
       </div>
     </div>
   );

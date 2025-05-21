@@ -18,7 +18,6 @@ const certificates = [
     alt: "CE",
     link: "/Documents/Elena HHN CE Certificate.pdf",
   },
-
   {
     title: "IP67 Rating",
     img: IP,
