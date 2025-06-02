@@ -25,7 +25,7 @@ export default function NavIC() {
   };
 
   return (
-    <div className=" w-[99.9%] flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
+    <div className="flex flex-col h-full bg-white py-3 px-6 overflow-y-auto overflow-x-hidden custom-scrollbar">
       {/* Slider Container */}
       <div className="relative">
         {/* Custom Previous Arrow */}

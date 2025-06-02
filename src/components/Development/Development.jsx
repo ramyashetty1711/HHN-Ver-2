@@ -1,13 +1,14 @@
 import React from "react";
 import GC_Device from "../../assets/hhn_front.png";
 import black from "../../assets/hhn_prototype.png";
-import { FaArrowCircleDown } from "react-icons/fa";
 
 export default function Development() {
   return (
     <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
-      <div className="grid grid-cols-12 ">
-        <div className="md:col-span-2 col-span-12 flex justify-start items-center flex-col h-full ">
+      
+      {/* Prototype Section */}
+      <div className="grid grid-cols-12">
+        <div className="md:col-span-2 col-span-12 order-1 md:order-1 flex justify-start items-center flex-col h-full">
           <img
             src={black}
             alt="Device"
@@ -15,26 +16,11 @@ export default function Development() {
           />
         </div>
 
-        <div className=" md:col-span-10 col-span-12">
-          {/* <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
-            Proof of Concept (POC) Demonstrated to COAS
-          </h2>
-          <p className="text-justify">
-            Arty units, use ESM, DSM, and Lat-Long references in their Shakti
-            Equipment. The Grid converter facilitate  s the migration from ESM to
-            DSM without inhibiting the modernization of Artillery systems, to
-            keep pace with the latest miltech, including automation of fire
-            control systems. The initial Proof of Concept (POC) device,
-            demonstrated to the Chief of Army Staff (COAS), was a basic
-            prototype designed specifically for a single zone (Delhi). This
-            simplified version served as a feasibility demonstration, showcasing
-            the potential for grid conversion functionality.
-          </p> */}
-
+        <div className="md:col-span-10 col-span-12 order-2 md:order-2">
           <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
             Prototype
           </h2>
-          <p className="text-justify ">
+          <p className="text-justify">
             In order to address the need for indigenous GNSS incorporated
             navigation solutions, DoT tasked Elena Geo to deliver a Handheld
             Device with NavIC based multi GNSS functionalities, through the DCIS
@@ -44,14 +30,13 @@ export default function Development() {
         </div>
       </div>
 
-      <div className="grid grid-cols-12 ">
-        <div className=" md:col-span-10 col-span-12">
-          
-
+      {/* Final Design Section */}
+      <div className="grid grid-cols-12">
+        <div className="md:col-span-10 col-span-12 order-2 md:order-1">
           <h2 className="text-2xl font-bold text-[var(--heading)] my-1 flex justify-center">
             Final Design
           </h2>
-          <p className="text-justify ">
+          <p className="text-justify">
             The Elena NavIC Handheld Navigator prototype was put through
             rigorous testing across different terrains and operational
             environments in India. Subsequently, incorporating improvements
@@ -63,7 +48,8 @@ export default function Development() {
             device with the greatest reliability and highest precision.
           </p>
         </div>
-        <div className="md:col-span-2 col-span-12 flex justify-start items-center flex-col h-full ">
+
+        <div className="md:col-span-2 col-span-12 order-1 md:order-2 flex justify-start items-center flex-col h-full">
           <img
             src={GC_Device}
             alt="Device"
@@ -71,8 +57,6 @@ export default function Development() {
           />
         </div>
       </div>
-
-      {/* Grid Section */}
     </div>
   );
 }

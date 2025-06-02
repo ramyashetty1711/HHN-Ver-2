@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { APPURL } from "./URL";
-import { getCountData } from "./query/UseFetchData";
-import {
-  updateVisitorsCount,
-  updateVisitorsDataLoading,
-} from "./redux/DataSlice";
+import { updateVisitorsCount, updateVisitorsDataLoading } from "./redux/DataSlice";
 
-const mutationFn = async ({ url, data }) => {
+// Generic fetch POST helper
+const postOrGetData = async ({ url, data, method = "POST" }) => {
   const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
+    method,
+    headers: { "Content-Type": "application/json" },
+    body: method === "POST" ? JSON.stringify(data) : undefined,
   });
 
   let result;
@@ -39,75 +34,63 @@ export default function Script() {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [shouldFetch, setShouldFetch] = useState(false);
-
-  // Visitor count GET
-  const { data: visitorsCount, isLoading: visitorsCountLoading } = useQuery({
-    queryKey: ["visitorsCount"],
-    queryFn: () => getCountData(APPURL.pageVisitors),
-    enabled: shouldFetch,
-    staleTime: 60 * 1000,
-    cacheTime: 5 * 60 * 1000,
-  });
-
-  useEffect(() => {
-    if (visitorsCount) {
-      dispatch(updateVisitorsCount(visitorsCount));
-    }
-  }, [visitorsCount, dispatch]);
-
-  useEffect(() => {
-    dispatch(updateVisitorsDataLoading(visitorsCountLoading));
-  }, [visitorsCountLoading, dispatch]);
-
-  // Visitor count POST
-  const { mutate: PostVisitorCount } = useMutation({
-    mutationFn,
+  // GET Mutation for visitors count
+  const getVisitorCount = useMutation({
+    mutationFn: () =>
+      postOrGetData({ url: APPURL.pageVisitors, method: "GET" }),
     onSuccess: (data) => {
-      console.log("POST: Visitor count updated");
-      setShouldFetch(true); // trigger GET after POST
+      dispatch(updateVisitorsCount(data));
+      dispatch(updateVisitorsDataLoading(false));
+      console.log("GET: Visitor count fetched");
     },
     onError: (err) => {
-      if (err.detail) {
-        console.error("Error while posting visitor:", err.detail);
-      } else {
-        console.error("Error while posting visitor:", err);
-      }
+      console.error("Error while fetching visitor count:", err);
+      dispatch(updateVisitorsDataLoading(false));
+    },
+  });
+
+  // POST Mutation to update visitor count
+  const postVisitorCount = useMutation({
+    mutationFn: ({ url, data }) => postOrGetData({ url, data, method: "POST" }),
+    onSuccess: () => {
+      console.log("POST: Visitor count updated");
+      getVisitorCount.mutate(); // Trigger GET after successful POST  
+    },
+    onError: (err) => {
+      console.error("Error while posting visitor count:", err);
     },
   });
 
   // POST logic runs only once per session
   useEffect(() => {
-    if (
-      !sessionStorage.getItem("visited") &&
-      process.env.NODE_ENV &&
-      process.env.NODE_ENV === "production"
-    ) {
+    dispatch(updateVisitorsDataLoading(true));
+    if (!sessionStorage.getItem("visited")) {
       sessionStorage.setItem("visited", "true");
-      PostVisitorCount({
+      postVisitorCount.mutate({
         url: APPURL.pageVisitors,
-        data: {
-          page_name: "landing_page",
-        },
+        data: { page_name: "landing_page" },
       });
     } else {
-      setShouldFetch(true); // allow GET if already visited
+      getVisitorCount.mutate(); // Directly fetch count if already visited
     }
   }, []);
 
   // Redirect if logged in
   useEffect(() => {
-    if (LoggedInStatus) {
-      if (
-        !location.pathname.includes("downloads") &&
-        !location.pathname.includes("tickets") &&
-        !location.pathname.includes("tutorials") &&
-        !location.pathname.includes("feedback")
-      ) {
-        Navigate("/downloads");
-      }
+  if (LoggedInStatus) {
+    const isAllowedPath = [
+      "downloads",
+      "tickets",
+      "tutorials",
+      "feedback",
+    ].some((segment) => location.pathname.includes(segment));
+
+    if (!isAllowedPath) {
+      Navigate("/downloads");
     }
-  }, [LoggedInStatus, location.pathname, Navigate]);
+  }
+}, [LoggedInStatus, location.pathname, Navigate]);
+
 
   return null;
 }

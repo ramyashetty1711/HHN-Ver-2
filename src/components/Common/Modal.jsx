@@ -6,11 +6,10 @@ export default function Modal({
   isOpen,
   onClose,
   children,
-  onHide = false,
   bgBlur = false,
   CloseButton = true,
 }) {
-  if (!isOpen) return null; 
+  if (!isOpen) return null;
 
   return (
     <div
@@ -20,13 +19,12 @@ export default function Modal({
           "backdrop-blur bg-black/80": bgBlur,
         }
       )}
-      onClick={(e) => {
-        if (onHide) {
-          onClose();
-        }
-      }}
+      onClick={onClose} // close modal when clicking outside
     >
-      <div className="bg-white rounded-lg shadow-lg  w-fit relative p-6">
+      <div
+        className="bg-white rounded-lg shadow-lg w-fit relative p-6"
+        onClick={(e) => e.stopPropagation()} // prevent modal from closing when clicking inside
+      >
         {CloseButton && (
           <button
             onClick={onClose}

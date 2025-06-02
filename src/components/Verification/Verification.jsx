@@ -6,16 +6,20 @@ import { useEffect, useRef, useState } from "react";
 import { useFetch } from "../../query/UseFetch";
 import { useMutation } from "@tanstack/react-query";
 import { APPURL } from "../../URL";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocalUserData } from "../../query/UseLocalData";
+import { updateLoggedInStatus } from "../../redux/DataSlice";
 import { store } from "../../redux/Store";
 import {
   updateShowVerification,
   updateVerificationData,
 } from "../../redux/DataSlice";
+import { useNavigate } from "react-router-dom";
 
 const VerificationModal = ({ showRegister, setShowRegister }) => {
   const { showToast } = useToast();
+    const UserData = useLocalUserData()
+  const navigate=useNavigate()
 
   //   const [showPassword, setShowPassword] = useState(false);
   const [registerData, setRegisterData] = useState({
@@ -26,7 +30,10 @@ const VerificationModal = ({ showRegister, setShowRegister }) => {
   });
 
   const ShowModal = useSelector((state) => state.data.ShowVerification);
+    const [LogoutLoading, setLogoutLoading] = useState(false);
+  
   const VerificationData = useSelector((state) => state.data.VerificationData);
+  const dispatch=useDispatch()
   const ShowRef = useRef(ShowModal);
   const LoadingKey = {
     verifyMail: "verifyMail",
@@ -41,6 +48,32 @@ const VerificationModal = ({ showRegister, setShowRegister }) => {
     sendMobile: false,
     verifyMobile: false,
   });
+
+  const handleClose = () => {
+  console.log("Close clicked");
+  store.dispatch(updateShowVerification(false));
+  fetch(APPURL.logout, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Token ${UserData.token}`,
+        },
+      }).then((res) => {
+        if (res.ok) {
+          sessionStorage.clear();
+          store.dispatch(updateLoggedInStatus(false));
+          store.dispatch(updateShowVerification(false));
+          store.dispatch(
+            updateVerificationData({
+              email_verified: false,
+              phone_verified: false,
+            })
+          );
+          navigate("/login");
+          setLogoutLoading(false);
+        }
+      });
+};
 
   const handleLoadingStatus = (key, value) => {
     setLoadingStatus((prev) => ({ ...prev, [key]: value }));
@@ -379,11 +412,10 @@ const VerificationModal = ({ showRegister, setShowRegister }) => {
 
   return (
     <Modal
-      isOpen={ShowModal}
-      //   onClose={() => }
-      //   onHide={true}
-      bgBlur={true}
-      CloseButton={false}
+  isOpen={ShowModal}
+  onClose={handleClose}
+  bgBlur={true}
+  CloseButton={true}
     >
       <div
         className="min-w-md"

@@ -135,22 +135,24 @@ function Footer() {
           Reserved.
         </p>
 
-        <p className="text-sm text-center mt-1 md:mt-0 md:text-right md:absolute md:right-6 md:top-1/2 md:-translate-y-1/2 flex justify-center items-center gap-2">
-          Viewers:
-          {visitorsDataLoading ? (
-            // Spinner
-            <SpinnerCircularFixed
-              speed={200}
-              thickness={200}
-              size={20}
-              color="var(--primary)"
-              secondaryColor="#98acc0"
-            />
-          ) : (
-            // Count
-            <> {visitorsCount?.[0]?.count}</>
-          )}
-        </p>
+        
+        <p className="text-sm text-center mt-1 md:mt-0 md:text-right md:absolute md:right-6 md:top-1/2 md:-translate-y-1/2 flex items-center justify-center gap-2">
+  Viewers:
+  {visitorsDataLoading ? (
+    // Spinner
+    <SpinnerCircularFixed
+                          speed={200}
+                          thickness={200}
+                          size={20}
+                          color="var(--primary)"
+                          secondaryColor="#98acc0"
+                        />
+  ) : (
+    // Count
+    <> {visitorsCount?.[0]?.count }</>
+  )}
+</p>
+
       </div>
     </div>
   );

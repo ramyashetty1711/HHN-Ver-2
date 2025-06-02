@@ -17,7 +17,7 @@ const FAQItem = ({ data, isActive, onClick }) => {
     <div className="border-b border-gray-300">
       <button
         onClick={onClick}
-        className="w-full text-left px-4 py-3 !bg-white !font-semibold text-gray-800 hover:bg-gray-100 transition flex flex-row justify-between items-center border-2 border-gray-300"
+        className="w-full text-left px-4 py-3 !bg-white !font-semibold text-gray-800 hover:bg-gray-100 transition flex flex-row justify-between items-center border-2 border-gray-300 cursor-pointer"
         aria-expanded={isActive}
       >
         {data?.title ?? "Untitled"}
@@ -36,10 +36,25 @@ const FAQItem = ({ data, isActive, onClick }) => {
       >
         <div className="xl:flex py-3 ">
           {/* Descriptions */}
-          {data?.description && <p>{data.description}</p>}
-          {data?.description1 && <p>{data.description1}</p>}
-          {data?.description2 && <p>{data.description2}</p>}
-          {data?.description3 && <p>{data.description3}</p>}
+         <div className="text-md text-gray-500">
+  {data?.description && (
+    <p
+      dangerouslySetInnerHTML={{ __html: data.description }}
+      className="mb-2"
+    />
+  )}
+
+  {(data?.description1 || data?.description2 || data?.description3) && (
+    <ul className="list-disc list-inside pl-5 space-y-1">
+      {data?.description1 && <li>{data.description1}</li>}
+      {data?.description2 && <li>{data.description2}</li>}
+      {data?.description3 && <li>{data.description3}</li>}
+       {data?.description4 && <li>{data.description4}</li>}
+      {data?.description5 && <li>{data.description5}</li>}
+      {data?.description6 && <li>{data.description6}</li>}
+    </ul>
+  )}
+</div>
 
           {/* Download Link - Same line as description */}
           {data?.file && data?.downloadName && data?.linkText && (

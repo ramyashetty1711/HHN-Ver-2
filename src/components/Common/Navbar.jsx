@@ -179,7 +179,7 @@ const Navbar = () => {
 
               {/* Mobile Menu Button */}
               <button
-                className="xl:hidden text-white text-2xl p-2 rounded hover:bg-white/10 transition duration-300 cursor-pointer"
+                className="xl:hidden text-white text-2xl py-2 pl-2 rounded hover:bg-white/10 transition duration-300 cursor-pointer"
                 onClick={() => setMenuOpen(!menuOpen)}
               >
                 {menuOpen ? <FaTimes /> : <FaBars />}

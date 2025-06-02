@@ -3,19 +3,18 @@ import ImageSlider from "./ImageSlider";
 export default function About() {
   return (
     <>
-      <div className="flex flex-col h-full bg-white font-semibold text-lg py-3 px-6">
+      <div className="flex flex-col bg-white py-3 px-6 h-full overflow-y-auto custom-scrollbar">
         {/* Image Slider */}
         <div className="mb-4">
           <ImageSlider />
         </div>
 
         {/* Description Text */}
-        {/* <div className="text-center px-2">
+        <div className="text-center px-2">
     <p className="text-2xl font-bold tracking-wide leading-relaxed text-[var(--primary)]">
-     Grid Converter is a special tool to bring
-   Artillery Network into one Grid.
+     Elena NavIC Handheld – Rugged, precise, and reliable multi-GNSS navigation anytime, anywhere.
     </p>
-  </div> */}
+  </div>
 
         {/* <div className=" px-4 ">
           <h4 className=" text-stone-800 mb-6 text-lg">
