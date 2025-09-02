@@ -45,7 +45,7 @@ export default function AddTicket() {
     refetch: refetchTicket,
     isLoading: TicketLoading,
   } = useQuery({
-    queryKey: ["tickets"],
+    queryKey: ["tickets"],  
     queryFn: () => getData(APPURL.tickets, SessionData.token),
     enabled: !!SessionData?.token,
     staleTime: 60 * 1000,
@@ -54,7 +54,7 @@ export default function AddTicket() {
 
   const mutationFn = async ({ url, data }) => {
     setAddStatus((prev) => ({ ...prev, loading: true }));
-    try {
+    try {   
       const res = await fetch(url, {
         method: "POST",
         headers: {

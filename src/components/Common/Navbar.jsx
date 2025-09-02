@@ -5,6 +5,10 @@ import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { TbLogout } from "react-icons/tb";
 import { store } from "../../redux/Store";
+import { CiMenuFries } from "react-icons/ci";
+import { LiaTimesSolid } from "react-icons/lia";
+
+
 import {
   updateAddRaiseTicket,
   updateLoggedInStatus,
@@ -33,7 +37,7 @@ const Navbar = () => {
 
   const moreRef = useRef(null);
   const LoggedInStatus = useSelector((state) => state.data.LoggedInStatus);
-  const AddRaiseTicket=useSelector((state)=>state.data.AddRaiseTicket)
+  const AddRaiseTicket = useSelector((state) => state.data.AddRaiseTicket);
 
   const MenuElements = [
     { link: "/", display: "Home" },
@@ -54,6 +58,7 @@ const Navbar = () => {
     { link: "/tickets", display: "Ticket" },
     { link: "/tutorials", display: "Tutorial" },
     { link: "/feedback", display: "Feedback" },
+    { link: "/payment-details", display: "Payment Details" },
   ];
 
   const handlereload = () => {
@@ -179,10 +184,10 @@ const Navbar = () => {
 
               {/* Mobile Menu Button */}
               <button
-                className="xl:hidden text-white text-2xl py-2 pl-2 rounded hover:bg-white/10 transition duration-300 cursor-pointer"
+                className="xl:hidden text-white text-2xl my-2 ml-2 rounded transition duration-300 cursor-pointer"
                 onClick={() => setMenuOpen(!menuOpen)}
               >
-                {menuOpen ? <FaTimes /> : <FaBars />}
+                {menuOpen ? <LiaTimesSolid color="red" /> : <CiMenuFries/>}
               </button>
             </div>
           </nav>
@@ -190,10 +195,15 @@ const Navbar = () => {
           {/* Menu Items */}
           <nav
             ref={menuRef}
-            className={`${
-              menuOpen ? "block absolute z-50 left-0 top-full" : "hidden"
-            } xl:flex justify-center items-center bg-[var(--secondary)] w-full xl:static xl:z-auto`}
+            className={`xl:flex justify-center items-center xl:static xl:z-auto ${
+              menuOpen
+                ? "fixed top-0 left-0 w-3/4 h-full z-50 bg-[var(--secondary)]  transition-transform duration-300 translate-x-0 "
+                : "fixed top-0 left-0 w-3/4 h-full z-50 bg-[var(--secondary)] transition-transform duration-300 -translate-x-full"
+            } xl:translate-x-0 xl:w-full xl:h-auto xl:bg-[var(--secondary`}
           >
+            <div className="flex justify-center xl:hidden py-6 ">
+  <img src={Elena} alt="Elena Logo" className="h-[120px] bg-white rounded-lg p-5" />
+</div>
             <ul
               className={`flex flex-col xl:flex-row  w-full py-1 px-4 ${
                 LoggedInStatus ? "justify-center" : "justify-between"
@@ -207,7 +217,7 @@ const Navbar = () => {
                     onClick={() => setMenuOpen(false)}
                   >
                     <li
-                      className={`font-semibold text-sm p-2 px-4 cursor-pointer duration-300 text-center rounded-lg m-1 transition-all  ${
+                      className={`font-semibold text-sm p-2 px-4 cursor-pointer duration-300 xl:text-center text-start rounded-lg m-1 transition-all  ${
                         location.pathname === val.link
                           ? "text-white bg-[var(--primary)]"
                           : "text-gray-900 hover:bg-blue-900/25 "
@@ -246,7 +256,7 @@ const Navbar = () => {
                    `}
                   onClick={() => {
                     store.dispatch(updateAddRaiseTicket(true));
-                     setMenuOpen(false)
+                    setMenuOpen(false);
                   }}
                 >
                   Raise New Ticket

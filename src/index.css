@@ -13,8 +13,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  
 }
 
 #root {
@@ -75,3 +73,18 @@ h1 {
   width: 15px;
   background-color: var(--primary); /* or any color */
 }
+
+.mobile-frame {
+  display: inline-block;
+  background: black;   /* frame color */
+  padding: 40px 20px;  /* top-bottom | left-right */
+  border-radius: 30px; /* smooth rounded corners */
+}
+
+.mobile-frame img {
+  display: block;
+  border-radius: 20px; /* inner rounding */
+  max-width: 100%;
+  height: auto;
+}
+

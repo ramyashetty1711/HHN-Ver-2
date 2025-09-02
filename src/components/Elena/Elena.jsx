@@ -177,27 +177,51 @@ const settings = {
                 <h2 className="text-2xl font-bold text-[var(--heading)] mt-4 mb-2 flex justify-center">
                   Elena for Defence
                 </h2>
-                <p className="text-justify text-lg pr-0 xl:pr-10 pb-5">
-                  Elena Geo developed and supplied many state-of-the-art
-                  products to the Indian Defence Forces. Some details are given
-                  below:- 427 nos of Army Reference Stations (as shown in the
-                  image below) have been inducted, through BEL into every
-                  infantry battalion as a subsystem of the "Thermal Imager -
-                  Integrated Observation Equipment" (TI-IOE) system. 79 nos of
-                  NavIC Receivers have been supplied to Army through BEL. 14 nos
-                  of Marine Receivers have been supplied, through Goa Shipyard
-                  Ltd, for Patrol Boats which are being operated by Army in
-                  Pangong Tso Lake, Kachchh, and other locations. Intelligent
-                  Vehicle Tracking System supplied to various units of the Army
-                  including ASC Centre & College, Bengaluru. 36 nos of Handheld
-                  Navigators have been supplied to Officers Training Academy,
-                  Chennai, for training of Gentleman Cadets. A bridge unit to
-                  give Lat Long ESM Grid Reference and DSM Grid Reference has
-                  been developed in close coordination with the Army Mapping
-                  agency and Arty Dte. This is being issued as a companion to
-                  Gun firing and Communication Nodes. Elena is currently
-                  pursuing many R&D projects for the Indian Armed Forces.
-                </p>
+                <div className="text-justify text-lg pr-0 xl:pr-10 pb-5">
+                  <p>
+                    Elena Geo developed and supplied many state-of-the-art
+                    products to the Indian Defence Forces. Some details are
+                    given below:
+                  </p>
+                  <ul className="list-disc pl-5">
+                    <li>
+                      427 nos of Army Reference Stations have been inducted,
+                      through BEL into every infantry battalion as a subsystem
+                      of the "Thermal Imager - Integrated Observation Equipment"
+                      (TI-IOE) system.
+                    </li>
+                    <li>
+                      79 nos of NavIC Receivers have been supplied to Army
+                      through BEL.
+                    </li>
+                    <li>
+                      14 nos of Marine Receivers have been supplied, through Goa
+                      Shipyard Ltd, for Patrol Boats which are being operated by
+                      Army in Pangong Tso Lake, Kachchh, and other locations.
+                    </li>
+                    <li>
+                      Intelligent Vehicle Tracking System supplied to various
+                      units of the Army including ASC Centre & College,
+                      Bengaluru.
+                    </li>
+                    <li>
+                      36 nos of Handheld Navigators have been supplied to
+                      Officers Training Academy, Chennai, for training of
+                      Gentleman Cadets.
+                    </li>
+                    <li>
+                      A bridge unit to give Lat Long ESM Grid Reference and DSM
+                    Grid Reference has been developed in close coordination with
+                    the Army Mapping agency and Arty Dte. This is being issued
+                    as a companion to Gun firing and Communication Nodes. Elena
+                    is currently pursuing many R&D projects for the Indian Armed
+                    Forces.
+                    </li>
+                  </ul>
+                  <p className="pt-3">
+                    
+                  </p>
+                </div>
               </div>
             </div>
           </div>

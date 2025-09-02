@@ -26,7 +26,7 @@ export default function Trials() {
               Tech in consultation with ADG Mil Svy and Dte of Arty, was sent
               for field trials. The Arty Dte decided to have the product field
               evaluated at five different locations covering the entire country.
-              This included the School of Arty wherein The Trails and Technology
+              This included the School of Arty wherein The Trials and Technology
               wing was involved. On successful completion of trials, all user
               inputs were incorporated in the final product. This product is now
               available for use by Arty Units.

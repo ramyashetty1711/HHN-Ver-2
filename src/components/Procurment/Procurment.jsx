@@ -54,7 +54,7 @@ function Procurment() {
             .
           </p> */}
           <p className="mb-3">
-            The documents that will help in the procurement are given beside.
+            The supporting documentation for the procurement is provided.
           </p>
           {/* <p className="mb-1">
             The product needs to be collected through a special process which is given beside in the document "Collection Process".

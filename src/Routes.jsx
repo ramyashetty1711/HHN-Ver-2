@@ -12,6 +12,7 @@ import Home from "./components/Home/Home";
 import { TicketStatus } from "./components/Support/Ticket";
 import TutorialDocuments from "./components/More/Tutorial/TutorialDocuments";
 import NotFound from "./components/Common/NotFound";
+import PaymentDetails from "./components/PaymentDetails/PaymentDetails";
 
 const BackGround = lazy(() => import("./components/BackGround/BackGround"));
 const Necessity = lazy(() => import("./components/Necessity/Necessity"));
@@ -99,10 +100,18 @@ export default function AppRoutes() {
             }
           />
           <Route
-            path="/more"
+            path="/feedback"
             element={
               <PrivateRoute>
-                <More />
+                <Feedback />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/payment-details"
+            element={
+              <PrivateRoute>
+                <PaymentDetails/>
               </PrivateRoute>
             }
           />

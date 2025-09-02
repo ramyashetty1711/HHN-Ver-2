@@ -251,7 +251,7 @@ const Gcfaq = () => {
   });
 
   return (
-    <div className="max-w-full mx-auto bg-white rounded-md divide-y divide-gray-200 gap-2 p-4">
+    <div className="max-w-full mx-auto bg-white rounded-md divide-y divide-gray-200 gap-2 xl:p-4 p-0">
       {/* Search Input */}
       {/* <div className="mb-4 flex justify-end ">
         <input

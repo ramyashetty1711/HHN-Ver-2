@@ -83,6 +83,7 @@ export default function Script() {
       "tickets",
       "tutorials",
       "feedback",
+      "payment-details"
     ].some((segment) => location.pathname.includes(segment));
 
     if (!isAllowedPath) {
